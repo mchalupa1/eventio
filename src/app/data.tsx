@@ -55,4 +55,5 @@ const alldata = [
   },
 ];
 
+
 export default alldata;
