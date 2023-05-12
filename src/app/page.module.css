@@ -1,4 +1,6 @@
 /*
+
+/*
 All on page
 */
 .all {
@@ -15,6 +17,7 @@ Navbar
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
@@ -24,7 +27,6 @@ Navbar
   font-weight: bold;
   margin-left: 43.08px;
   color: #323c46;
-  display: inline;
 }
 
 .user {
@@ -47,17 +49,16 @@ Navbar
   margin-left: 8px;
 }
 
+.scroll {
+  margin-left: 8px;
+}
 /*
 Categories
 */
 .categories {
   display: flex;
-  margin: 0 auto;
-  margin-top: 60px;
-  border: 1px solid black;
-  align-items: center;
-  width: 74.3%;
-  height: 90%;
+  justify-content: space-between;
+  margin-bottom: 39px;
 }
 
 .allEV {
@@ -84,9 +85,6 @@ Categories
   font-family: "Hind";
   font-size: 12px;
   gap: 2rem;
-  margin-right: 30px;
-}
-.grip1 {
 }
 
 .grip2 {
@@ -94,11 +92,32 @@ Categories
 /*
 All boxs
 */
+
+/*
+middle part
+*/
+
+.middlePart {
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+  margin-top: 60px;
+  align-self: center;
+  max-width: 1500px;
+  width: 100%;
+  margin-right: 60px;
+  padding: 20px;
+}
+
+@media (min-width: 1500px) {
+  .middlePart {
+    max-width: 1500px;
+  }
+}
 .allBoxs {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
   gap: 1rem;
-  
 
   /*
 display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;
@@ -111,10 +130,8 @@ display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;
   background: #ffffff;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
   border-radius: 2px;
-  width: 390px;
-  height: 296px;
 
-  margin: 10px;
+  height: 296px;
 }
 
 .date {
@@ -149,9 +166,8 @@ LowerPart in box
 
 .lower {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   margin-top: 60px;
+  align-items: center;
 }
 .capacity {
   color: #949ea8;
@@ -159,7 +175,7 @@ LowerPart in box
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  display: inline;
+  padding-left: 60px;
 }
 
 .statusJ {
@@ -223,4 +239,5 @@ Create
   box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   margin-right: 25px;
+  align-items: center;
 }
