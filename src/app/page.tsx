@@ -11,16 +11,20 @@ import { WebDevelopment4 } from "@/componens/svg/index4";
 import { WebDevelopment5 } from "@/componens/svg/index5";
 import { WebD1 } from "@/componens/svg2/WebD1";
 import { WebD2 } from "@/componens/svg2/WebD2";
+import { WebD3WebD3 } from "@/componens/svg2/WebD3";
 
 export default function Dashboard() {
-  const [grip1, setgrip1] = useState(true);
-  const [grip2, setgrip2] = useState(true);
+  /*
+  list grip changig color
+  */
+  const [grip, setgrip] = useState(true);
   const changeGripColor1 = () => {
-    setgrip1(!grip1);
+    setgrip(!grip);
   };
   const changeGripColor2 = () => {
-    setgrip2(!grip2);
+    setgrip(!grip);
   };
+
   return (
     <section className={styles.all}>
       <div className={styles.navbar}>
@@ -40,7 +44,8 @@ export default function Dashboard() {
       <div className={styles.middlePart}>
         <main className={styles.categories}>
           <ul className={styles.allEV}>
-            <li className={styles.alE}>ALL EVENTS</li>
+            <li className={styles.categorisShow}>SHOW:</li>
+            <li className={styles.alE}>ALL EVENTS<a className={styles.show}><WebD3WebD3></WebD3WebD3></a></li>
             <li className={styles.fE}>FUTURE EVENTS</li>
             <li className={styles.pE}>PAST EVENTS</li>
           </ul>
@@ -50,7 +55,7 @@ export default function Dashboard() {
               className={styles.grip1}
               onClick={changeGripColor1}
             >
-              {grip1 === true ? (
+              {grip === true ? (
                 <WebDevelopment2></WebDevelopment2>
               ) : (
                 <WebD1></WebD1>
@@ -61,10 +66,10 @@ export default function Dashboard() {
               className={styles.grip2}
               onClick={changeGripColor2}
             >
-              {grip2 === true ? (
-                <WebDevelopment3></WebDevelopment3>
-              ) : (
+              {grip === false ? (
                 <WebD2></WebD2>
+              ) : (
+                <WebDevelopment3></WebDevelopment3>
               )}
             </li>
           </ul>
@@ -102,11 +107,8 @@ export default function Dashboard() {
         </div>
       </div>
       <div className={styles.create}>
-        <div className={styles.plus2}>
-          <p>.</p>
-        </div>
         <a href="/" className={styles.plus}>
-          <WebDevelopment5></WebDevelopment5>
+          +
         </a>
       </div>
     </section>
