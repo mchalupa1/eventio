@@ -1,0 +1,111 @@
+.allBoxs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+  gap: 1rem;
+  flex: 1;
+}
+.onebox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  background: #ffffff;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
+  border-radius: 2px;
+  height: 72px;
+  margin-bottom: 16px;
+}
+
+.date {
+  font-family: "Hind";
+  font-style: normal;
+  font-size: 14px;
+  color: #cacdd0;
+}
+
+.title {
+  font-family: "Hind";
+  font-style: normal;
+  font-size: 22px;
+  color: #323c46;
+  padding-left: 32px;
+  padding-top: 13px;
+  padding-bottom: 11px;
+
+}
+
+.mentor {
+  font-family: "Hind";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #7D7878;
+  
+}
+
+.description {
+  font-family: "Hind";
+  font-style: normal;
+  font-size: 16px;
+  color: #949ea8;
+  
+  display: inline;
+  
+  
+}
+
+/*
+  LowerPart in box
+  */
+
+.lower {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 15px;
+}
+.capacity {
+  color: #949ea8;
+  font-family: "Hind";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.statusJ {
+  background-color: #22d486;
+  width: 100px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-family: "Hind";
+  font-size: 14px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.statsuL {
+  background-color: #ff4081;
+  width: 100px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-family: "Hind";
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.statusE {
+  background: #d9dce1;
+  width: 100px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  color: #a9aeb4;
+  font-family: "Hind";
+  font-size: 14px;
+  cursor: pointer;
+}

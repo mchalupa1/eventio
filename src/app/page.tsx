@@ -3,7 +3,6 @@ import styles from "./page.module.css";
 import Navg from "@/componens/Navg";
 import alldata from "./data";
 import { use, useState } from "react";
-import BtnBox from "@/componens/BtnBox/BtnBox";
 import { WebDevelopment } from "@/componens/svg";
 import { WebDevelopment2 } from "@/componens/svg/index2-darkgrip";
 import { WebDevelopment3 } from "@/componens/svg/index3";
@@ -12,6 +11,11 @@ import { WebDevelopment5 } from "@/componens/svg/index5";
 import { WebD1 } from "@/componens/svg2/WebD1";
 import { WebD2 } from "@/componens/svg2/WebD2";
 import { WebD3WebD3 } from "@/componens/svg2/WebD3";
+import Allboxgrip from "./AllBoxGrip/AllboxGrip";
+import { Person } from "@/componens/svg/Person";
+
+
+
 
 export default function Dashboard() {
   /*
@@ -74,7 +78,7 @@ export default function Dashboard() {
             </li>
           </ul>
         </main>
-        <div className={styles.allBoxs}>
+        {(grip === true)? <div className={styles.allBoxs}>
           {alldata.map((onebox) => {
             const { id, date, title, mentor, description, capacity, status } =
               onebox;
@@ -85,7 +89,7 @@ export default function Dashboard() {
                 <p className={styles.mentor}>{mentor}</p>
                 <p className={styles.description}>{description}</p>
                 <div className={styles.lower}>
-                  <p className={styles.capacity}>{capacity}</p>
+               <div className={styles.PesronCapacity}> <Person></Person><p className={styles.capacity}>{capacity}</p></div>
                   <div className={styles.boxbtn}>
                     <button
                       key={id}
@@ -104,7 +108,7 @@ export default function Dashboard() {
               </div>
             );
           })}
-        </div>
+        </div>:<Allboxgrip></Allboxgrip>}
       </div>
       <div className={styles.create}>
         <a href="/" className={styles.plus}>
