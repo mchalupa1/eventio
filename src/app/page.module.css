@@ -56,6 +56,7 @@ Categories
 .categories {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 30px;
 }
 
@@ -110,14 +111,11 @@ middle part
   display: flex;
   flex-direction: column;
   align-self: center;
-  width: 1200px;
-  width: 80%;
+  max-width: 1500px;
+  width: 90%;
   padding: 20px;
   flex: 1;
-  /*margin: 60px 60px  60px;*/
-  margin-top: 60px;
-  margin-left: 60px;
-  margin-right: 60px;
+  margin: 50px 60px 16px 60px;
 }
 
 /*@media (min-width: 1500px) {
@@ -130,8 +128,9 @@ middle part
 .allBoxs {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
-  gap: 1rem;
   flex: 1;
+  gap: 1rem;
+  
 }
 .onebox {
   padding-left: 32px;
@@ -139,6 +138,8 @@ middle part
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
   border-radius: 2px;
   height: 296px;
+  
+  
 }
 
 .date {
@@ -155,6 +156,7 @@ middle part
   font-style: normal;
   font-size: 22px;
   color: #323c46;
+  
 }
 
 .mentor {
@@ -172,11 +174,7 @@ middle part
   font-style: normal;
   font-size: 16px;
   color: #949ea8;
-}
-
-.PesronCapacity {
-  display: flex;
-  align-items: center;
+  padding-right: 200px;
 }
 
 /*
@@ -235,6 +233,10 @@ LowerPart in box
   font-size: 14px;
   cursor: pointer;
 }
+.PesronCapacity {
+  display: flex;
+  align-items: center;
+}
 /*
 Create
 */
@@ -243,7 +245,7 @@ Create
   display: flex;
   justify-content: flex-end;
   margin-right: 32px;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 }
 
 .plus {
@@ -304,7 +306,7 @@ Create
   }
   .show {
     display: inline-flex;
-    margin-left: 39px;
+    margin-left: 9px;
     align-items: center;
   }
 }

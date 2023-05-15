@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import styles from "./page.module.css";
 import Navg from "@/componens/Navg";
 import alldata from "./data";
@@ -13,27 +14,25 @@ import { WebD2 } from "@/componens/svg2/WebD2";
 import { WebD3WebD3 } from "@/componens/svg2/WebD3";
 import Allboxgrip from "./AllBoxGrip/AllboxGrip";
 import { Person } from "@/componens/svg/Person";
+import { Logo } from "@/componens/svg/Logo";
 
 
 
 
 export default function Dashboard() {
-  /*
-  list grip changig color
-  */
+  
+  /*list grip changig color*/
   const [grip, setgrip] = useState(true);
-  const changeGripColor1 = () => {
+  const changeGripColor = () => {
     setgrip(!grip);
   };
-  const changeGripColor2 = () => {
-    setgrip(!grip);
-  };
+ /**/
 
   return (
     <section className={styles.all}>
       <div className={styles.navbar}>
         <a href="/" className={styles.logo}>
-          E.
+        <Logo></Logo>
         </a>
         <div className={styles.user}>
           <button className={styles.Icon}>TW</button>
@@ -57,7 +56,7 @@ export default function Dashboard() {
             <li
               role="button"
               className={styles.grip1}
-              onClick={changeGripColor1}
+              onClick={changeGripColor}
             >
               {grip === true ? (
                 <WebDevelopment2></WebDevelopment2>
@@ -68,7 +67,7 @@ export default function Dashboard() {
             <li
               role="button"
               className={styles.grip2}
-              onClick={changeGripColor2}
+              onClick={changeGripColor}
             >
               {grip === false ? (
                 <WebD2></WebD2>
@@ -111,9 +110,9 @@ export default function Dashboard() {
         </div>:<Allboxgrip></Allboxgrip>}
       </div>
       <div className={styles.create}>
-        <a href="/" className={styles.plus}>
+        <Link href="createevent" className={styles.plus}>
           +
-        </a>
+        </Link>
       </div>
     </section>
   );

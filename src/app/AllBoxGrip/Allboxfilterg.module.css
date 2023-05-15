@@ -5,10 +5,9 @@
   flex: 1;
 }
 .onebox {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 0.5fr 1fr 1.5fr;
   align-items: center;
-  
   background: #ffffff;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
   border-radius: 2px;
@@ -21,27 +20,23 @@
   font-style: normal;
   font-size: 14px;
   color: #cacdd0;
+  margin-left: 75px;
 }
 
 .title {
   font-family: "Hind";
   font-style: normal;
-  font-size: 22px;
+  font-size: 18px;
   color: #323c46;
   padding-left: 32px;
-  padding-top: 13px;
-  padding-bottom: 11px;
-
 }
 
 .mentor {
   font-family: "Hind";
   font-style: normal;
-  font-weight: 400;
   font-size: 14px;
-  line-height: 24px;
-  color: #7D7878;
-  
+  margin-left: 40px;
+  color: #7d7878;
 }
 
 .description {
@@ -49,10 +44,9 @@
   font-style: normal;
   font-size: 16px;
   color: #949ea8;
-  
-  display: inline;
-  
-  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*
@@ -63,14 +57,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-left: 15px;
+  padding-right: 32px;
+  margin-left: 35px;
 }
 .capacity {
   color: #949ea8;
   font-family: "Hind";
   font-style: normal;
-  font-weight: 400;
   font-size: 14px;
+  margin-left: 35px;
 }
 
 .statusJ {

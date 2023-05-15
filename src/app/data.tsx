@@ -4,7 +4,7 @@ const alldata = [
     date: "April 4, 2017 – 2:17PM",
     title: "How to get angry",
     mentor: "Tom Watts",
-    description: "I will show you how in a second",
+    description: "I will show you how to get angry in a second",
     capacity: "5 of 31 ",
     status: "EDIT",
   },
