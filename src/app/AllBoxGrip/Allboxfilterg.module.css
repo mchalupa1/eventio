@@ -13,16 +13,16 @@
   border-radius: 2px;
   height: 72px;
   margin-bottom: 16px;
-  
 }
-
 .date {
   font-family: "Hind";
   font-style: normal;
   font-size: 14px;
   color: #cacdd0;
   margin-left: 75px;
-  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title {
@@ -31,7 +31,6 @@
   font-size: 18px;
   color: #323c46;
   padding-left: 32px;
-  
 }
 
 .mentor {
@@ -40,6 +39,9 @@
   font-size: 14px;
   margin-left: 40px;
   color: #7d7878;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .description {
@@ -107,3 +109,50 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+/*media*/
+@media (max-width: 1150px) {
+  .mentor {
+    display: none;
+  }
+
+  .onebox {
+    grid-template-columns: 1.3fr 0.8fr 1fr 1.5fr;
+  }
+  .title,
+  .capacity {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+@media (max-width: 1000px) {
+  .onebox {
+    grid-template-columns: 1.3fr 0.8fr 1fr 1.5fr;
+  }
+}
+@media (max-width: 940px) {
+  .capacity {
+    display: none;
+  }
+  .onebox {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 800px) {
+  .date {
+    display: none;
+  }
+  .onebox {
+    grid-template-columns: 3fr 2fr 1.5fr;
+  }
+}
+@media(max-width:600px){
+  .description{
+    display: none;
+  }
+  .onebox {
+    grid-template-columns: 3fr 1.5fr;
+  }
+}
+

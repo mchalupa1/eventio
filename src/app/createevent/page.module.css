@@ -24,20 +24,21 @@
   margin-right: 8px;
   color: #323c46;
   font-size: 16px;
+  text-decoration: none;
 }
 
 .CloseL {
   font-family: "Hind";
   font-size: 16px;
   color: #323c46;
+  text-decoration: none;
 }
 
 /*Box*/
 .allbox {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));;
+  grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
   margin: 60px auto;
-  
 }
 
 .box {
@@ -92,4 +93,21 @@
   cursor: pointer;
   width: 240px;
   height: 57px;
+}
+
+@media (max-width: 500px) {
+  .allbox {
+    grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
+    margin: 25px 8px 40px 8px;
+  }
+
+  .oneform {
+    width: 272px;
+  }
+  .CloseL{
+    display: none;
+  }
+  .X{
+    margin-right: 8px;
+  }
 }

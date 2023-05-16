@@ -266,44 +266,6 @@ Create
 }
 
 /*media*/
-/*
-@media (max-width: 600px) {
-  .client {
-    display: none;
-  }
-  .scr {
-    display: flex;
-  }
-  .Icon {
-    margin-right: 42px;
-  }
-
-  /*Categoris*/
-  /*
-  .fE {
-    color: #a9aeb4;
-    display: none;
-  }
-
-  .pE {
-    color: #a9aeb4;
-    display: none;
-  }
-  .categorisShow {
-    display: flex;
-    margin-right: -11px;
-  }
-
-  .categories {
-    margin-left: 35px;
-  }
-  .show {
-    display: inline-flex;
-    margin-left: 9px;
-    align-items: center;
-  }
-*/
-
 @media (max-width: 500px) {
   .allBoxs {
     grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
@@ -351,3 +313,4 @@ Create
     align-items: center;
   }
 }
+
