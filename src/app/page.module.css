@@ -72,16 +72,28 @@ Categories
 
 .alE {
   color: #323c46;
-  font-weight: bold;
+  
   letter-spacing: 1px;
+}
+.alE:hover {
+  color: #323c46;
+  
 }
 
 .fE {
   color: #a9aeb4;
 }
+.fE:hover {
+  color: #323c46;
+  
+}
 
 .pE {
   color: #a9aeb4;
+}
+.pE:hover {
+  color: #323c46;
+  
 }
 .allGrip {
   display: flex;
@@ -308,9 +320,10 @@ Create
     margin-left: 35px;
   }
   .show {
-    display: inline-flex;
+    display: inline;
+    align-content: center;
     margin-left: 9px;
-    align-items: center;
+    
+    
   }
 }
-

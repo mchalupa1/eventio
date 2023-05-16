@@ -4,8 +4,11 @@ import { use, useState } from "react";
 import style from "./page.module.css";
 import { Logo } from "@/componens/svg/Logo";
 import { X } from "./svg/X";
+import alldata from "../data";
+
 
 const page = () => {
+  
   return (
     <>
       <div className={style.all}>
