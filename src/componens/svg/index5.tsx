@@ -1,1 +1,0 @@
-export {default as WebDevelopment5} from "./WebDevelopment5.svg"

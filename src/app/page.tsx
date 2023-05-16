@@ -1,14 +1,11 @@
 "use client";
 import Link from "next/link";
 import styles from "./page.module.css";
-import Navg from "@/componens/Navg";
 import alldata from "./data";
 import { use, useState } from "react";
 import { WebDevelopment } from "@/componens/svg";
 import { WebDevelopment2 } from "@/componens/svg/index2-darkgrip";
 import { WebDevelopment3 } from "@/componens/svg/index3";
-import { WebDevelopment4 } from "@/componens/svg/index4";
-import { WebDevelopment5 } from "@/componens/svg/index5";
 import { WebD1 } from "@/componens/svg2/WebD1";
 import { WebD2 } from "@/componens/svg2/WebD2";
 import { WebD3WebD3 } from "@/componens/svg2/WebD3";
