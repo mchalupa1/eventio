@@ -1,0 +1,88 @@
+.all {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+/*menu*/
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 39px;
+  margin-left: 59px;
+  margin-right: 40px;
+}
+.close {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.X {
+  margin-right: 8px;
+  color: #323c46;
+  font-size: 16px;
+}
+
+.CloseL {
+  font-family: "Hind";
+  font-size: 16px;
+  color: #323c46;
+}
+
+/*Box*/
+.allbox {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.box {
+  width: 480px;
+  height: 608px;
+  background: #ffffff;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-top: 41px;
+  font-family: "Hind";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  text-align: center;
+  color: #323c46;
+}
+
+.details {
+  margin-top: -25px;
+  font-family: "Hind";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #949ea8;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+
+.oneform {
+  margin-bottom: 39px;
+  border-bottom: 1px solid #dae1e7;
+  outline: none;
+  height: 33px;
+  width: 416px;
+  border: none;
+ 
+}

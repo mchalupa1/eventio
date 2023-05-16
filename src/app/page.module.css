@@ -25,7 +25,7 @@ Navbar
   text-decoration: none;
   font-size: 40px;
   font-weight: bold;
-  margin-left: 35px;
+  margin-left: 59px;
   color: #323c46;
 }
 
@@ -130,7 +130,6 @@ middle part
   grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
   flex: 1;
   gap: 1rem;
-  
 }
 .onebox {
   padding-left: 32px;
@@ -138,8 +137,6 @@ middle part
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
   border-radius: 2px;
   height: 296px;
-  
-  
 }
 
 .date {
@@ -156,7 +153,6 @@ middle part
   font-style: normal;
   font-size: 22px;
   color: #323c46;
-  
 }
 
 .mentor {
@@ -174,7 +170,7 @@ middle part
   font-style: normal;
   font-size: 16px;
   color: #949ea8;
-  padding-right: 200px;
+  /*padding-right: 200px;*/
 }
 
 /*
@@ -244,11 +240,11 @@ Create
 .create {
   display: flex;
   justify-content: flex-end;
-  margin-right: 32px;
-  margin-bottom: 35px;
 }
 
 .plus {
+  margin-right: 32px;
+  margin-bottom: 35px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -270,8 +266,57 @@ Create
 }
 
 /*media*/
-
+/*
 @media (max-width: 600px) {
+  .client {
+    display: none;
+  }
+  .scr {
+    display: flex;
+  }
+  .Icon {
+    margin-right: 42px;
+  }
+
+  /*Categoris*/
+  /*
+  .fE {
+    color: #a9aeb4;
+    display: none;
+  }
+
+  .pE {
+    color: #a9aeb4;
+    display: none;
+  }
+  .categorisShow {
+    display: flex;
+    margin-right: -11px;
+  }
+
+  .categories {
+    margin-left: 35px;
+  }
+  .show {
+    display: inline-flex;
+    margin-left: 9px;
+    align-items: center;
+  }
+*/
+
+@media (max-width: 500px) {
+  .allBoxs {
+    grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
+  }
+  .description {
+    padding-right: 100px;
+  }
+  .onebox {
+    padding-left: 35px;
+  }
+  .plus {
+    margin-bottom: 16px;
+  }
   .client {
     display: none;
   }
@@ -295,10 +340,6 @@ Create
   .categorisShow {
     display: flex;
     margin-right: -11px;
-  }
-
-  .allGrip {
-    margin-right: 24px;
   }
 
   .categories {

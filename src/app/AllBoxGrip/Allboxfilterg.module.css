@@ -13,6 +13,7 @@
   border-radius: 2px;
   height: 72px;
   margin-bottom: 16px;
+  
 }
 
 .date {
@@ -21,6 +22,7 @@
   font-size: 14px;
   color: #cacdd0;
   margin-left: 75px;
+  
 }
 
 .title {
@@ -29,6 +31,7 @@
   font-size: 18px;
   color: #323c46;
   padding-left: 32px;
+  
 }
 
 .mentor {
