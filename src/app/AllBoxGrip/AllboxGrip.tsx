@@ -17,6 +17,7 @@ const Allbox = () => {
               <p className={style.date}>{date}</p>
               <div className={style.lower}>
                 <p className={style.capacity}>{capacity}</p>
+              </div>
                 <div className={style.boxbtn}>
                   <button
                     key={id}
@@ -31,7 +32,6 @@ const Allbox = () => {
                     {status}
                   </button>
                 </div>
-              </div>
             </div>
           );
         })}

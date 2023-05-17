@@ -6,7 +6,7 @@
 }
 .onebox {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 0.5fr 1fr 1.5fr;
+  grid-template-columns: 1.3fr 1fr 0.7fr 0.8fr 0.5fr 0.45fr;
   align-items: center;
   background: #ffffff;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
@@ -19,7 +19,6 @@
   font-style: normal;
   font-size: 14px;
   color: #cacdd0;
-  margin-left: 75px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -63,14 +62,13 @@
   align-items: center;
   justify-content: space-between;
   padding-right: 32px;
-  margin-left: 35px;
+  
 }
 .capacity {
   color: #949ea8;
   font-family: "Hind";
   font-style: normal;
   font-size: 14px;
-  margin-left: 35px;
 }
 
 .statusJ {
@@ -109,51 +107,79 @@
   font-size: 14px;
   cursor: pointer;
 }
+.boxbtn{
+  padding-right: 45px;
+}
 
 /*media*/
-@media (max-width: 1150px) {
+@media (max-width: 1250px) {
   .mentor {
     display: none;
   }
 
   .onebox {
-    grid-template-columns: 1.3fr 0.8fr 1fr 1.5fr;
+    grid-template-columns: 2fr 1.8fr 1.5fr 0.5fr 0.8fr;
   }
-  .title,
+  
+  .title{
+    white-space: nowrap;
+    overflow: hidden;
+  }
   .capacity {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 }
-@media (max-width: 1000px) {
+
+@media (max-width:500px){
   .onebox {
-    grid-template-columns: 1.3fr 0.8fr 1fr 1.5fr;
+    display: grid;
+    height: 136px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 0.5fr;
+    grid-template-areas: 
+    "header header"
+    "main main"
+    "date sidebar"
+    "capacity sidebar"
+   
   }
-}
-@media (max-width: 940px) {
-  .capacity {
-    display: none;
+
+  .lower{
+    padding-bottom: 1px;
   }
-  .onebox {
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-  }
-}
-@media (max-width: 800px) {
-  .date {
-    display: none;
-  }
-  .onebox {
-    grid-template-columns: 3fr 2fr 1.5fr;
-  }
-}
-@media(max-width:600px){
   .description{
-    display: none;
+    grid-area: main;
+    padding-left: 35px;
+  
   }
-  .onebox {
-    grid-template-columns: 3fr 1.5fr;
+  .capacity {
+    padding-left: 35px;
+    grid-area: capacity;
+    
+    
   }
+  .title {
+    grid-area: header;
+  }
+
+  .date {
+    grid-area: date;
+    padding-left: 35px;
+    
+  }
+  .boxbtn{
+    grid-area: sidebar;
+    padding-left: 42px;
+    
+  }
+  
+
+
 }
+
+
+
 
 

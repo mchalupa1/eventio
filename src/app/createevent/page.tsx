@@ -37,6 +37,7 @@ const page = () => {
                 name="fname"
                 placeholder="Description"
                 className={style.oneform}
+                
               ></input>
               <input
                 name="fname"
