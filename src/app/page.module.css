@@ -48,9 +48,10 @@ Navbar
 
 .scroll {
   display: inline;
-  
+
   margin-left: 8px;
 }
+
 
 /*
 Categories
@@ -74,12 +75,11 @@ Categories
 
 .alE {
   color: #323c46;
-  
+
   letter-spacing: 1px;
 }
 .alE:hover {
   color: #323c46;
-  
 }
 
 .fE {
@@ -87,7 +87,6 @@ Categories
 }
 .fE:hover {
   color: #323c46;
-  
 }
 
 .pE {
@@ -95,7 +94,6 @@ Categories
 }
 .pE:hover {
   color: #323c46;
-  
 }
 .allGrip {
   display: flex;
@@ -296,9 +294,14 @@ Create
   .client {
     display: none;
   }
-  
-  .Icon {
-    margin-right: 42px;
+  .scroll {
+    padding-left: 1px;
+  }
+  .show {
+    padding-left: 1px;
+  }
+  .user{
+    margin-right: 24px;
   }
 
   /*Categoris*/
@@ -323,7 +326,5 @@ Create
     display: inline;
     align-content: center;
     margin-left: 9px;
-    
-    
   }
 }

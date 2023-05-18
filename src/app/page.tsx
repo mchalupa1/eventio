@@ -29,12 +29,9 @@ export default function Dashboard() {
         </a>
         <div className={styles.user}>
           <button className={styles.Icon}>TW</button>
-          <a href="/" className={styles.client}>
-            Tom Watts
-          <a/>
+          <a href="/" className={styles.client}>Tom Watts</a>
           <a className={styles.scroll}>
-              <WebDevelopment></WebDevelopment>
-          </a>
+          <WebDevelopment></WebDevelopment>
           </a>
         </div>
       </div>
