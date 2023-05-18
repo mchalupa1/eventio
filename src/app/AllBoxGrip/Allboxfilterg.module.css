@@ -121,10 +121,6 @@
     grid-template-columns: 2fr 1.8fr 1.5fr 0.5fr 0.8fr;
   }
   
-  .title{
-    white-space: nowrap;
-    overflow: hidden;
-  }
   .capacity {
     white-space: nowrap;
     overflow: hidden;
@@ -132,7 +128,7 @@
   }
 }
 
-@media (max-width:500px){
+@media (max-width:1000px){
   .onebox {
     display: grid;
     height: 136px;
@@ -171,7 +167,7 @@
   }
   .boxbtn{
     grid-area: sidebar;
-    padding-left: 42px;
+    
     
   }
   
