@@ -47,6 +47,8 @@ Navbar
 }
 
 .scroll {
+  display: inline;
+  
   margin-left: 8px;
 }
 
@@ -294,9 +296,7 @@ Create
   .client {
     display: none;
   }
-  .scr {
-    display: flex;
-  }
+  
   .Icon {
     margin-right: 42px;
   }
