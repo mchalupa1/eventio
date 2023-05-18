@@ -30,7 +30,7 @@ export default function Dashboard() {
         <div className={styles.user}>
           <button className={styles.Icon}>TW</button>
           <a href="/" className={styles.client}>
-            Tom Watts{" "}
+            Tom Watts
             <a className={styles.scroll}>
               <WebDevelopment></WebDevelopment>
             </a>
