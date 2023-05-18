@@ -2,13 +2,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
   flex: 1;
-}
-
-.all{
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
+
 .onebox {
   display: grid;
   grid-template-columns: 1.3fr 1fr 0.7fr 0.8fr 0.5fr 0.45fr;
@@ -17,6 +13,7 @@
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
   border-radius: 2px;
   height: 72px;
+  margin-bottom: 16px;
  
 }
 .date {
@@ -131,19 +128,14 @@
   }
 }
 
-@media (max-width:1000px){
-  .all{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  
+@media (max-width:1000px){  
   .onebox {
     display: grid;
     height: 136px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 1fr 1fr 1fr;
+    padding: 8px;
+    padding-left: 35px;
     grid-template-areas: 
     "header header"
     "main main"
@@ -157,35 +149,38 @@
   }
   .description{
     grid-area: main;
-    padding-left: 35px;
-  
+    margin-top: 1px;
   }
   .capacity {
-    padding-left: 35px;
     grid-area: capacity;
-   
+    margin-top: 1px;
     
   }
   .title {
     grid-area: header;
+    padding-left: 0px;
   }
 
   .date {
     grid-area: date;
-    padding-left: 35px;
-    
+    margin-top: 20px;
   }
   .boxbtn{
     grid-area: sidebar;
-   padding-left: 45px;
-    
+    display: flex;
+    justify-content: flex-end;
   }
-  
-
-
 }
 
+@media (max-width:420px){
+  .boxbtn{
+  margin-right: -29px;
+  }
 
+  .description{
+    margin-right: 87px;
+  }
+}
 
 
 

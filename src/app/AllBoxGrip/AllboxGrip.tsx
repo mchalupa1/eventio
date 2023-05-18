@@ -4,7 +4,7 @@ import style from "./Allboxfilterg.module.css";
 
 const Allbox = () => {
   return (
-    <div className={style.all}>
+    <div className={style.box}>
       <div className={style.allbox}>
         {alldata.map((onebox) => {
           const { id, date, title, mentor, description, capacity, status } =
