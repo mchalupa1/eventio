@@ -146,20 +146,23 @@ middle part
   gap: 1rem;
 }
 .onebox {
+  display: grid;
   padding-left: 32px;
   padding-right: 35px;
   background: #ffffff;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
   border-radius: 2px;
   height: 296px;
+  grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
+  margin: 0px;
 }
 
 .date {
+  padding-top: 32px;
   font-family: "Hind";
   font-style: normal;
   font-size: 14px;
   color: #cacdd0;
-  padding-top: 32px;
   padding-right: 60px;
 }
 
@@ -168,10 +171,11 @@ middle part
   font-style: normal;
   font-size: 22px;
   color: #323c46;
+  margin: 10px 0px 0px;
 }
 
 .mentor {
-  margin-top: -10px;
+  margin: 0px;
   font-family: "Hind";
   font-style: normal;
   font-weight: 400;
@@ -185,9 +189,8 @@ middle part
   font-style: normal;
   font-size: 16px;
   color: #949ea8;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin: 32px 0px 0px;
+  padding-right: 130px;
 }
 
 /*
@@ -196,10 +199,10 @@ LowerPart in box
 
 .lower {
   display: flex;
-  margin-top: 48px;
+  margin: 0px 0px 32px;
   align-items: center;
   justify-content: space-between;
-  padding-right: 32px;
+  padding-right: 24px;
 }
 .capacity {
   color: #949ea8;
@@ -306,6 +309,9 @@ Create
   }
   .user{
     margin-right: 35.5px;
+  }
+  .description{
+    padding-right: 65px;
   }
 
   /*Categoris*/
