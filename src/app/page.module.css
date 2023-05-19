@@ -147,6 +147,7 @@ middle part
 }
 .onebox {
   padding-left: 32px;
+  padding-right: 35px;
   background: #ffffff;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
   border-radius: 2px;
@@ -167,7 +168,6 @@ middle part
   font-style: normal;
   font-size: 22px;
   color: #323c46;
-  
 }
 
 .mentor {
@@ -185,6 +185,9 @@ middle part
   font-style: normal;
   font-size: 16px;
   color: #949ea8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*
@@ -283,9 +286,6 @@ Create
 @media (max-width: 500px) {
   .allBoxs {
     grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
-  }
-  .description {
-    padding-right: 100px;
   }
   .onebox {
     padding-left: 35px;
