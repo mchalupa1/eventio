@@ -42,14 +42,16 @@ Navbar
 .client {
   text-decoration: none;
   color: #949ea8;
-  margin-right: 50px;
   margin-left: 8px;
+}
+.user{
+  margin-right: 50px;
 }
 
 .scroll {
   display: inline;
-
   margin-left: 8px;
+  cursor: pointer;
 }
 
 
@@ -165,6 +167,7 @@ middle part
   font-style: normal;
   font-size: 22px;
   color: #323c46;
+  
 }
 
 .mentor {
@@ -182,7 +185,6 @@ middle part
   font-style: normal;
   font-size: 16px;
   color: #949ea8;
-  /*padding-right: 200px;*/
 }
 
 /*
@@ -191,7 +193,7 @@ LowerPart in box
 
 .lower {
   display: flex;
-  margin-top: 41px;
+  margin-top: 48px;
   align-items: center;
   justify-content: space-between;
   padding-right: 32px;
@@ -301,7 +303,7 @@ Create
     padding-left: 1px;
   }
   .user{
-    margin-right: 24px;
+    margin-right: 35.5px;
   }
 
   /*Categoris*/

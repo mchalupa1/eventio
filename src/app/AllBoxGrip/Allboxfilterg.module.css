@@ -162,6 +162,8 @@
   .date {
     grid-area: date;
     margin-top: 20px;
+    padding-left: 0px;
+    
   }
   .boxbtn{
     grid-area: sidebar;
@@ -178,9 +180,7 @@
   .description{
     margin-right: 87px;
   }
-  .date{
-    padding-left: 0px;
-  }
+ 
 }
 
 

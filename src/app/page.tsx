@@ -2,6 +2,8 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 import alldata from "./data";
+import Dropmenu from "./Dropdownmenu/index";
+import Droplist from "./Droplist/index";
 import { use, useState } from "react";
 import { WebDevelopment } from "@/componens/svg";
 import { WebDevelopment2 } from "@/componens/svg/index2-darkgrip";
@@ -21,6 +23,13 @@ export default function Dashboard() {
   };
   /**/
 
+  /*dropmenu*/
+  const [drop, setDrop] = useState(true);
+  const Drop = () => {
+    setDrop(!drop);
+  };
+  /**/
+
   return (
     <section className={styles.all}>
       <div className={styles.navbar}>
@@ -29,12 +38,17 @@ export default function Dashboard() {
         </a>
         <div className={styles.user}>
           <button className={styles.Icon}>TW</button>
-          <a href="/" className={styles.client}>Tom Watts</a>
-          <a className={styles.scroll}>
-          <WebDevelopment></WebDevelopment>
+          <a href="/" className={styles.client}>
+            Tom Watts
+          </a>
+          <a className={styles.scroll} onClick={Drop}>
+            <WebDevelopment></WebDevelopment>
           </a>
         </div>
       </div>
+      {
+       (drop === false)? <Dropmenu></Dropmenu>: drop
+      }
       <div className={styles.middlePart}>
         <main className={styles.categories}>
           <ul className={styles.allEV}>
@@ -44,6 +58,7 @@ export default function Dashboard() {
               <a className={styles.show}>
                 <WebD3WebD3></WebD3WebD3>
               </a>
+              <Droplist></Droplist>
             </li>
             <li className={styles.fE}>FUTURE EVENTS</li>
             <li className={styles.pE}>PAST EVENTS</li>
