@@ -298,9 +298,11 @@ Create
   }
   .scroll {
     padding-left: 1px;
+    
   }
   .show {
     padding-left: 1px;
+    
   }
   .user{
     margin-right: 35.5px;
@@ -324,9 +326,13 @@ Create
   .categories {
     margin-left: 35px;
   }
+  .alE{
+    display: flex;
+    
+  }
   .show {
     display: inline;
     align-content: center;
-    margin-left: 9px;
+    margin-left: 3px;
   }
 }

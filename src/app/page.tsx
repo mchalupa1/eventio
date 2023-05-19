@@ -30,6 +30,8 @@ export default function Dashboard() {
   };
   /**/
 
+  const[droplist,setdroplist] = useState(true)
+
   return (
     <section className={styles.all}>
       <div className={styles.navbar}>
@@ -46,19 +48,16 @@ export default function Dashboard() {
           </a>
         </div>
       </div>
-      {
-       (drop === false)? <Dropmenu></Dropmenu>: drop
-      }
+      {drop === false ? <Dropmenu></Dropmenu> : drop}
       <div className={styles.middlePart}>
         <main className={styles.categories}>
           <ul className={styles.allEV}>
             <li className={styles.categorisShow}>SHOW:</li>
             <li className={styles.alE}>
               ALL EVENTS
-              <a className={styles.show}>
+              <a className={styles.show} onClick={()=>(setdroplist(!droplist))}>
                 <WebD3WebD3></WebD3WebD3>
               </a>
-              <Droplist></Droplist>
             </li>
             <li className={styles.fE}>FUTURE EVENTS</li>
             <li className={styles.pE}>PAST EVENTS</li>
@@ -88,6 +87,9 @@ export default function Dashboard() {
             </li>
           </ul>
         </main>
+        {
+          (droplist === false)? <Droplist></Droplist>:droplist
+        }
         {grip === true ? (
           <div className={styles.allBoxs}>
             {alldata.map((onebox) => {
