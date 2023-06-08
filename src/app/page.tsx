@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import alldata from "./data";
 import Dropmenu from "./Dropdownmenu/index";
 import Droplist from "./Droplist/index";
-import { use, useState } from "react";
+import { use, useRef, useState } from "react";
 import { WebDevelopment } from "@/componens/svg";
 import { WebDevelopment2 } from "@/componens/svg/index2-darkgrip";
 import { WebDevelopment3 } from "@/componens/svg/index3";
@@ -22,6 +22,7 @@ export default function Dashboard() {
     setgrip(!grip);
   };
   /**/
+
 
   /*dropmenu*/
   const [drop, setDrop] = useState(true);

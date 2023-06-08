@@ -93,6 +93,20 @@
   cursor: pointer;
   width: 240px;
   height: 57px;
+  margin-top: 40px;
+}
+
+/*
+error
+*/
+
+.error{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: -30px;
+ 
+  
 }
 
 @media (max-width: 500px) {

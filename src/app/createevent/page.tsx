@@ -32,30 +32,35 @@ const page = () => {
                 placeholder="Title"
                 className={style.oneform}
               ></input>
+              <span className={style.error}>Title has to be filled up</span>
               <input
                 type="text"
                 name="fname"
                 placeholder="Description"
                 className={style.oneform}
-                
               ></input>
+              <span className={style.error}>Description has to be filled up</span>
               <input
+              type="date"
                 name="fname"
                 placeholder="Date"
                 className={style.oneform}
               ></input>
+              <span className={style.error}>Date has to be filled up</span>
               <input
-                type="text"
+                type="time"
                 name="fname"
                 placeholder="Time"
                 className={style.oneform}
               ></input>
+              <span className={style.error}>Time has to be filled up</span>
               <input
-                type="text"
+                type="pin"
                 name="fname"
                 placeholder="Capacity"
                 className={style.oneform}
               ></input>
+              <span className={style.error}>Capacity has to be filled up</span>
             </div>
             <button className={style.createbtn}>CREATE NEW EVENT</button>
           </div>
