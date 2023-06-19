@@ -23,7 +23,6 @@ export default function Dashboard() {
   };
   /**/
 
-
   /*dropmenu*/
   const [drop, setDrop] = useState(true);
   const Drop = () => {
@@ -31,7 +30,10 @@ export default function Dashboard() {
   };
   /**/
 
-  const[droplist,setdroplist] = useState(true)
+  const [droplist, setdroplist] = useState(true);
+ 
+
+ 
 
   return (
     <section className={styles.all}>
@@ -56,7 +58,7 @@ export default function Dashboard() {
             <li className={styles.categorisShow}>SHOW:</li>
             <li className={styles.alE}>
               ALL EVENTS
-              <a className={styles.show} onClick={()=>(setdroplist(!droplist))}>
+              <a className={styles.show} onClick={() => setdroplist(!droplist)}>
                 <WebD3WebD3></WebD3WebD3>
               </a>
             </li>
@@ -88,9 +90,7 @@ export default function Dashboard() {
             </li>
           </ul>
         </main>
-        {
-          (droplist === false)? <Droplist></Droplist>:droplist
-        }
+        {droplist === false ? <Droplist></Droplist> : droplist}
         {grip === true ? (
           <div className={styles.allBoxs}>
             {alldata.map((onebox) => {
@@ -110,7 +110,6 @@ export default function Dashboard() {
                     </div>
                     <div className={styles.boxbtn}>
                       <button
-                        key={id}
                         className={
                           status === "JOIN"
                             ? styles.statusJ
