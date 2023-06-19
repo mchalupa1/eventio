@@ -1,127 +1,31 @@
-.all {
+.app {
+  width: 70vh;
+  margin: 5rem auto;
+}
+
+.form {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+  width: 100%0;
 }
 
-/*menu*/
-.navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 39px;
-  margin-left: 59px;
-  margin-right: 40px;
-}
-.close {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.X {
-  margin-right: 8px;
-  color: #323c46;
-  font-size: 16px;
-  text-decoration: none;
-}
-
-.CloseL {
-  font-family: "Hind";
-  font-size: 16px;
-  color: #323c46;
-  text-decoration: none;
-}
-
-/*Box*/
-.allbox {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
-  margin: 60px auto;
-}
-
-.box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 608px;
-  background: #ffffff;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
-  border-radius: 2px;
-}
-
-.title {
-  margin-top: 41px;
-  font-family: "Hind";
-  font-size: 28px;
-  text-align: center;
-  color: #323c46;
-}
-
-.details {
-  margin-top: -25px;
-  font-family: "Hind";
-  font-size: 18px;
-  color: #949ea8;
-}
-
-.forms {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 40px;
-}
-
-.oneform {
-  margin-bottom: 35px;
-  border-bottom: 1px solid #dae1e7;
+.input {
+  padding: 7px;
+  height: 30px;
   outline: none;
-  height: 33px;
-  width: 416px;
-  border: none;
-  border-bottom: 1px solid rgba(218, 225, 231, 1);
+  border-radius: 5px;
+  border: 1px solid rgb(182, 182, 182);
+  margin-bottom: 0.3rem;
 }
 
-.createbtn {
-  align-self: center;
-  background: #22d486;
-  border-radius: 4px;
-  font-size: 16px;
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-  width: 240px;
-  height: 57px;
-  margin-top: 40px;
+.form p {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  color: red;
+  font-size: 12px;
 }
 
-/*
-error
-*/
-
-.error{
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  margin-top: -30px;
- 
-  
-}
-
-@media (max-width: 500px) {
-  .allbox {
-    grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
-    margin: 25px 8px 40px 8px;
-  }
-
-  .oneform {
-    width: 272px;
-  }
-  .CloseL{
-    display: none;
-  }
-  .X{
-    margin-right: 8px;
-  }
+.input:focus {
+  border: 1px solid rgb(0, 208, 255);
 }
