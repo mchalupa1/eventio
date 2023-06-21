@@ -5,7 +5,8 @@ import style from "./page.module.css";
 import { Logo } from "@/componens/svg/Logo";
 import { X } from "./svg/X";
 import alldata from "../data";
-import { compareAsc, format, startOfDay } from 'date-fns'
+import { compareAsc, format, isFuture, startOfDay } from "date-fns";
+import { addDays, isPast, formatISO9075   } from "date-fns";
 
 import { useForm } from "react-hook-form";
 
@@ -17,9 +18,14 @@ const page = () => {
   } = useForm({
     mode: "all",
   });
+  const currentDate = format(new Date(), 'yyyy-MM-dd') 
+  const currentTime = formatISO9075(new Date(), { representation: 'time' })
  
-  const 
- 
+  
+  
+  
+  
+
   return (
     <div className={style.app}>
       <ul className={style.footer}>
@@ -28,9 +34,9 @@ const page = () => {
         </li>
         <div className={style.leftfooter}>
           <li>
-           <X></X>
+            <Link href={"page"}><X></X></Link>
           </li>
-          <li className={style.close}>Close</li>
+          <li className={style.close}><Link href={"page"}>Close</Link></li>
         </div>
       </ul>
       <div className={style.box}>
@@ -45,11 +51,9 @@ const page = () => {
           </div>
 
           <div className={style.inputs}>
-            
             <input
-              className={(errors.title)? style.input : style.input2}
+              className={errors.title ? style.input : style.input2}
               {...register("title", {
-                
                 required: "Title is required",
                 minLength: {
                   value: 3,
@@ -62,10 +66,9 @@ const page = () => {
               })}
               placeholder="Title"
             ></input>
-          
             <p>{errors.title?.message}</p>
             <input
-              className={(errors.description)? style.input : style.input2}
+              className={errors.description ? style.input : style.input2}
               {...register("description", {
                 required: "Description is required",
                 minLength: {
@@ -81,26 +84,34 @@ const page = () => {
             ></input>
             <p>{errors.description?.message}</p>
             <input
-              onFocus={(e) => (e.target.type = "date")}
-              type="text"
-              className={(errors.date)? style.input : style.input2}
-              {...register("date")}
+              type="date"
+              className={errors.date ? style.input : style.input2}
               placeholder="Date"
+              {...register("date", {
+                required: "Date is required",
+               validate: (fieldValue) =>{ 
+                return(fieldValue < currentDate === false || "The date is in the past" )
+               }
+              })}
             ></input>
             <p>{errors.date?.message}</p>
             <input
-              onFocus={(e) => (e.target.type = "time")}
-              type="text"
-              className={(errors.time)? style.input : style.input2}
-              {...register("time")}
+              type="time"
+              className={errors.time ? style.input : style.input2}
+              {...register("time",{
+                required:"Time is required",
+                validate: (e) => {
+                  return(e > currentTime === true || "Wrong time")
+                }
+              })}
               placeholder="Time"
             ></input>
             <p>{errors.time?.message}</p>
             <input
-              className={(errors.capacity)? style.input : style.input2}
+              className={errors.capacity ? style.input : style.input2}
               type="number"
               {...register("capacity", {
-                required: "Capacity is reguired",
+                required: "Capacity is required",
                 min: { value: 1, message: "Minimum is 1" },
                 pattern: {
                   value: /^[0-9]*$/,
