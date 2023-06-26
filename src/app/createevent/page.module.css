@@ -34,13 +34,12 @@
   text-decoration: none;
 }
 
-
-
 .box {
   display: grid;
   align-items: center;
   justify-content: center;
   margin-top: 100px;
+  margin-bottom: 208PX;
 }
 
 .form {
@@ -56,10 +55,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 41px;
   margin-bottom: 40px;
 }
-.Create, .info {
+.Create,
+.info {
   font-family: "Hind";
   font-style: normal;
   font-weight: 400;
@@ -70,6 +70,7 @@
 .info {
   font-size: 18px;
   color: #949ea8;
+  margin-top: -calc(87px - 41px);
 }
 
 .inputs {
@@ -78,9 +79,8 @@
   align-items: center;
   margin-top: -50px;
   gap: 1rem;
+  padding: 0px;
 }
-
-
 
 .input,
 .input2 {
@@ -89,9 +89,10 @@
   border: none;
   border-bottom: 1px solid #dae1e7;
   outline: none;
+  padding: 0px;
 }
 
-.input{
+.input {
   border-bottom: 1px solid red;
 }
 
@@ -114,11 +115,38 @@
 }
 .form p {
   color: red;
-  font-size: 12px;
+  font-size: 14px;
   margin: 0px;
   padding: 0px;
   width: 80%;
   line-height: 1px;
 }
 
+@media (max-width: 500px) {
+  .form {
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    margin-top: -70px;
+  }
+  .close {
+    display: none;
+  }
+  .footer {
+    margin-left: 0px;
+  }
+}
 
+@media (max-width: 380px) {
+  .form {
+    grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
+    margin-top: -70px;
+  }
+
+  .footer {
+    margin-left: 24px;
+  }
+
+  .leftfooter {
+    margin-right: 19px;
+    gap: 0px;
+  }
+}

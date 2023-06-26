@@ -34,9 +34,12 @@ const page = () => {
         </li>
         <div className={style.leftfooter}>
           <li>
-            <Link href={"page"}><X></X></Link>
+            <X></X>
           </li>
-          <li className={style.close}><Link href={"page"}>Close</Link></li>
+          <li className={style.close}>
+          Close
+          </li>
+          
         </div>
       </ul>
       <div className={style.box}>
@@ -87,6 +90,7 @@ const page = () => {
               type="date"
               className={errors.date ? style.input : style.input2}
               placeholder="Date"
+              
               {...register("date", {
                 required: "Date is required",
                validate: (fieldValue) =>{ 
