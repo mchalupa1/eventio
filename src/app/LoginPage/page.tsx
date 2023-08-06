@@ -7,7 +7,7 @@ import image from "./svg/image.jpg";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 
-const page = () => {
+const Page = () => {
   const {
     formState: { errors },
     register,
@@ -45,4 +45,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
