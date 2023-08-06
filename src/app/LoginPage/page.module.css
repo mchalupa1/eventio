@@ -1,0 +1,80 @@
+.all {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+/*Footer*/
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-right: 39px;
+  margin-left: 61px;
+}
+
+.dont {
+  display: inline;
+  color: #c9ced3;
+  font-family: Hind;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.singup {
+  color: #949ea8;
+  font-family: Hind;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-decoration-line: none;
+  margin-left: 4px;
+}
+
+.img {
+  width: 683px;
+  height: 1025px;
+  border: 1px solid black;
+}
+
+/*middle part*/
+
+.middlePart {
+  display: flex;
+  align-items: center;
+}
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  padding-left: 170px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+  margin-right: 20px;
+}
+.INEmail,
+.INPassword {
+}
+
+.title {
+  color: #323c46;
+  font-family: Hind;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.undertitle {
+  color: #949ea8;
+  font-family: Hind;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+}

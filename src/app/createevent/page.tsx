@@ -10,7 +10,7 @@ import { addDays, isPast, formatISO9075   } from "date-fns";
 
 import { useForm } from "react-hook-form";
 
-const page = () => {
+const Page = () => {
   const {
     formState: { errors },
     register,
@@ -18,6 +18,7 @@ const page = () => {
   } = useForm({
     mode: "all",
   });
+
   const currentDate = format(new Date(), 'yyyy-MM-dd') 
   const currentTime = formatISO9075(new Date(), { representation: 'time' })
  
@@ -69,7 +70,7 @@ const page = () => {
               })}
               placeholder="Title"
             ></input>
-            <p>{errors.title?.message}</p>
+            <p>{errors.title?.message?.toString()}</p>
             <input
               className={errors.description ? style.input : style.input2}
               {...register("description", {
@@ -85,7 +86,7 @@ const page = () => {
               })}
               placeholder="Description"
             ></input>
-            <p>{errors.description?.message}</p>
+            <p>{errors.description?.message?.toString()}</p>
             <input
               type="date"
               className={errors.date ? style.input : style.input2}
@@ -98,7 +99,7 @@ const page = () => {
                }
               })}
             ></input>
-            <p>{errors.date?.message}</p>
+            <p>{errors.date?.message?.toString()}</p>
             <input
               type="time"
               className={errors.time ? style.input : style.input2}
@@ -110,7 +111,7 @@ const page = () => {
               })}
               placeholder="Time"
             ></input>
-            <p>{errors.time?.message}</p>
+            <p>{errors.time?.message?.toString()}</p>
             <input
               className={errors.capacity ? style.input : style.input2}
               type="number"
@@ -124,7 +125,7 @@ const page = () => {
               })}
               placeholder="Capacity"
             ></input>
-            <p>{errors.capacity?.message}</p>
+            <p>{errors.capacity?.message?.toString()}</p>
             <input
               type="Submit"
               className={style.submit}
@@ -137,4 +138,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
