@@ -1,4 +1,7 @@
 "use client";
+import { useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/services/firebase/db";
 import Link from "next/link";
 import styles from "./page.module.css";
 import alldata from "./data";
@@ -16,6 +19,7 @@ import { Person } from "@/componens/svg/Person";
 import { Logo } from "@/componens/svg/Logo";
 
 export default function Dashboard() {
+  const [data, setData] = useState([]);
   /*list grip changig color*/
   const [grip, setgrip] = useState(true);
   const changeGripColor = () => {
@@ -31,9 +35,30 @@ export default function Dashboard() {
   /**/
 
   const [droplist, setdroplist] = useState(true);
- 
 
- 
+  const fetchData = async () => {
+    const snapshot = await getDocs(collection(db, "events"));
+
+    setData(() => {
+      const data = [];
+
+      snapshot.forEach((document) => {
+        data.push(document.data());
+      });
+
+      return data;
+    });
+
+    snapshot.forEach((document) => {
+      // console.log(document.data());
+    });
+  };
+
+  useEffect(() => {
+    void fetchData();
+  }, []);
+
+  console.log(data);
 
   return (
     <section className={styles.all}>
@@ -93,7 +118,7 @@ export default function Dashboard() {
         {droplist === false ? <Droplist></Droplist> : droplist}
         {grip === true ? (
           <div className={styles.allBoxs}>
-            {alldata.map((onebox) => {
+            {data?.map((onebox) => {
               const { id, date, title, mentor, description, capacity, status } =
                 onebox;
               return (
