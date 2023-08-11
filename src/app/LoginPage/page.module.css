@@ -36,31 +36,64 @@
 }
 
 .img {
-  width: 683px;
+  width: 89%;
   height: 1025px;
-  border: 1px solid black;
+  margin-top: -68px;
 }
 
 /*middle part*/
 
 .middlePart {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   align-items: center;
 }
 .loginBox {
   display: flex;
   flex-direction: column;
-  padding-left: 170px;
+  margin-left: 170px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   width: 480px;
-  margin-right: 20px;
+  margin-right: 60px;
 }
-.INEmail,
+.INEmail {
+  border: none;
+  border-bottom: 1px solid #dae1e7;
+  outline: none;
+  background: #f2f2f2;
+  height: 33px;
+  color: #323c46;
+}
 .INPassword {
+  margin-top: 39px;
+  border: none;
+  border-bottom: 1px solid #dae1e7;
+  outline: none;
+  background: #f2f2f2;
+  height: 33px;
+  color: mk#323c46;
+}
+
+
+.eye{
+  cursor: pointer;
+  display: flex;
+  margin-top: -30px;
+  margin-left: 450px;
+  
+}
+.INPassword::placeholder,
+.INEmail::placeholder {
+  color: #c9ced3;
+}
+
+.INEmail:focus,
+.INPassword:focus {
+  border-bottom: 1px solid #22d486;
 }
 
 .title {
@@ -69,6 +102,7 @@
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
+  margin-bottom: -12px;
 }
 
 .undertitle {
@@ -77,4 +111,31 @@
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
+  margin-bottom: 64px;
 }
+
+.undertitleE {
+  color: #ff4081;
+  font-family: Hind;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 64px;
+}
+
+.btn {
+  margin-top: 64px;
+  width: 240px;
+  height: 57px;
+  border-radius: 4px;
+  border: none;
+  background: #22d486;
+  color: #fff;
+  font-family: Hind;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
