@@ -1,0 +1,40 @@
+.all {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.upperpart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 124px;
+}
+
+.iconborder {
+  background-color: rgba(217, 220, 225, 1);
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.icon {
+  color: rgba(148, 158, 168, 1);
+  font-size: 25px;
+  font-family: Hind;
+  overflow: hidden;
+}
+
+.undericon {
+  width: 1200px;
+  height: 187px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.11);
+  margin-top: -60px;
+  
+}

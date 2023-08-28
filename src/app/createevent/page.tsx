@@ -9,6 +9,7 @@ import { compareAsc, format, isFuture, startOfDay } from "date-fns";
 import { addDays, isPast, formatISO9075   } from "date-fns";
 
 import { useForm } from "react-hook-form";
+import { FieldValue } from "firebase/firestore";
 
 const Page = () => {
   const {
@@ -21,7 +22,7 @@ const Page = () => {
 
   const currentDate = format(new Date(), 'yyyy-MM-dd') 
   const currentTime = formatISO9075(new Date(), { representation: 'time' })
- 
+ const [timevalid, settimevalid] = useState(false)
   
   
   
@@ -35,10 +36,10 @@ const Page = () => {
         </li>
         <div className={style.leftfooter}>
           <li>
-            <X></X>
+            <Link href={""}><X></X></Link>
           </li>
           <li className={style.close}>
-          Close
+          <Link href={""} style={{textDecoration: 'none', color:"#323c46"}}>Close</Link>
           </li>
           
         </div>
@@ -95,7 +96,7 @@ const Page = () => {
               {...register("date", {
                 required: "Date is required",
                validate: (fieldValue) =>{ 
-                return(fieldValue < currentDate === false || "The date is in the past" )
+                return(fieldValue < currentDate? "The date is in the past": settimevalid(true) )
                }
               })}
             ></input>
@@ -106,7 +107,7 @@ const Page = () => {
               {...register("time",{
                 required:"Time is required",
                 validate: (e) => {
-                  return(e > currentTime === true || "Wrong time")
+                  return(timevalid? true: e > currentTime?true:"Wrong time")
                 }
               })}
               placeholder="Time"

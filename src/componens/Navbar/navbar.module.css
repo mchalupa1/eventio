@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 39px;
+}
+
+.logo {
+  text-decoration: none;
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 59px;
+  color: #323c46;
+}
+
+.Icon {
+  height: 40px;
+  width: 40px;
+  background-color: #d9dce1;
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  color: #949ea8;
+  cursor: pointer;
+}
+.client {
+  text-decoration: none;
+  color: #949ea8;
+  margin-left: 8px;
+}
+.user {
+  margin-right: 50px;
+}
+
+.scroll {
+  display: inline;
+  margin-left: 8px;
+  cursor: pointer;
+}

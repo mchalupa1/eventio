@@ -5,7 +5,6 @@ import { db } from "@/services/firebase/db";
 import Link from "next/link";
 import styles from "./page.module.css";
 import alldata from "./data";
-import Dropmenu from "./Dropdownmenu/index";
 import Droplist from "./Droplist/index";
 import { use, useRef, useState } from "react";
 import { WebDevelopment } from "@/componens/svg";
@@ -17,6 +16,7 @@ import { WebD3WebD3 } from "@/componens/svg2/WebD3";
 import Allboxgrip from "./AllBoxGrip/AllboxGrip";
 import { Person } from "@/componens/svg/Person";
 import { Logo } from "@/componens/svg/Logo";
+import Navbar from "@/componens/Navbar/navbar";
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
@@ -27,11 +27,6 @@ export default function Dashboard() {
   };
   /**/
 
-  /*dropmenu*/
-  const [drop, setDrop] = useState(true);
-  const Drop = () => {
-    setDrop(!drop);
-  };
   /**/
 
   const [droplist, setdroplist] = useState(true);
@@ -62,21 +57,7 @@ export default function Dashboard() {
 
   return (
     <section className={styles.all}>
-      <div className={styles.navbar}>
-        <a href="/" className={styles.logo}>
-          <Logo></Logo>
-        </a>
-        <div className={styles.user}>
-          <button className={styles.Icon}>TW</button>
-          <a href="/" className={styles.client}>
-            Tom Watts
-          </a>
-          <a className={styles.scroll} onClick={Drop}>
-            <WebDevelopment></WebDevelopment>
-          </a>
-        </div>
-      </div>
-      {drop === false ? <Dropmenu></Dropmenu> : drop}
+      <Navbar></Navbar>
       <div className={styles.middlePart}>
         <main className={styles.categories}>
           <ul className={styles.allEV}>

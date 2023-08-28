@@ -20,7 +20,7 @@ const Page = () => {
 
 
   const [eye, seteye] = useState(true)
-const [LoginBox, setLoginBox] = useState(true)
+  const [LoginBox, setLoginBox] = useState(true)
 
 
   return (
@@ -29,8 +29,8 @@ const [LoginBox, setLoginBox] = useState(true)
         <WhiteLogo></WhiteLogo>
         <div className={style.Account}>
           {LoginBox? <p className={style.dont}>Don’t have account?</p>: <p className={style.already}>Already have an account?</p>}
-          <p className={style.singup} onClick={() => setLoginBox(!LoginBox)}>
-            SIGN UP
+           <p className={style.singup} onClick={() => setLoginBox(!LoginBox)}>
+            {LoginBox? "SIGN UP" : "SING IN"}
           </p>
         </div>
       </div>
