@@ -25,9 +25,6 @@ export default function Dashboard() {
   const changeGripColor = () => {
     setgrip(!grip);
   };
-  /**/
-
-  /**/
 
   const [droplist, setdroplist] = useState(true);
 

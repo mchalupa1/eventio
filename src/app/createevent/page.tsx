@@ -6,7 +6,9 @@ import { Logo } from "@/componens/svg/Logo";
 import { X } from "./svg/X";
 import alldata from "../data";
 import { compareAsc, format, isFuture, startOfDay } from "date-fns";
-import { addDays, isPast, formatISO9075   } from "date-fns";
+import { addDays, isPast, formatISO9075 } from "date-fns";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/services/firebase/db";
 
 import { useForm } from "react-hook-form";
 import { FieldValue } from "firebase/firestore";
@@ -20,13 +22,14 @@ const Page = () => {
     mode: "all",
   });
 
-  const currentDate = format(new Date(), 'yyyy-MM-dd') 
-  const currentTime = formatISO9075(new Date(), { representation: 'time' })
- const [timevalid, settimevalid] = useState(false)
-  
-  
-  
-  
+  const currentDate = format(new Date(), "yyyy-MM-dd");
+  const currentTime = formatISO9075(new Date(), { representation: "time" });
+  const [timevalid, settimevalid] = useState(false);
+
+  const handle = handleSubmit(async (data) => {
+    console.log(data);
+    await setDoc(doc(db, "events", "2"), data);
+  });
 
   return (
     <div className={style.app}>
@@ -36,20 +39,22 @@ const Page = () => {
         </li>
         <div className={style.leftfooter}>
           <li>
-            <Link href={""}><X></X></Link>
+            <Link href={""}>
+              <X></X>
+            </Link>
           </li>
           <li className={style.close}>
-          <Link href={""} style={{textDecoration: 'none', color:"#323c46"}}>Close</Link>
+            <Link
+              href={""}
+              style={{ textDecoration: "none", color: "#323c46" }}
+            >
+              Close
+            </Link>
           </li>
-          
         </div>
       </ul>
       <div className={style.box}>
-        <form
-          className={style.form}
-          autoComplete="off"
-          onSubmit={handleSubmit((date) => console.log(date))}
-        >
+        <form className={style.form} autoComplete="off" onSubmit={handle}>
           <div className={style.boxfooter}>
             <span className={style.Create}>Create an account</span>
             <span className={style.info}>Enter details below</span>
@@ -92,23 +97,28 @@ const Page = () => {
               type="date"
               className={errors.date ? style.input : style.input2}
               placeholder="Date"
-              
               {...register("date", {
                 required: "Date is required",
-               validate: (fieldValue) =>{ 
-                return(fieldValue < currentDate? "The date is in the past": settimevalid(true) )
-               }
+                validate: (fieldValue) => {
+                  return fieldValue < currentDate
+                    ? "The date is in the past"
+                    : settimevalid(true);
+                },
               })}
             ></input>
             <p>{errors.date?.message?.toString()}</p>
             <input
               type="time"
               className={errors.time ? style.input : style.input2}
-              {...register("time",{
-                required:"Time is required",
+              {...register("time", {
+                required: "Time is required",
                 validate: (e) => {
-                  return(timevalid? true: e > currentTime?true:"Wrong time")
-                }
+                  return timevalid
+                    ? true
+                    : e > currentTime
+                    ? true
+                    : "Wrong time";
+                },
               })}
               placeholder="Time"
             ></input>
