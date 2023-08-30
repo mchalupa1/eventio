@@ -24,7 +24,8 @@ const Page = () => {
 
   const currentDate = format(new Date(), "yyyy-MM-dd");
   const currentTime = formatISO9075(new Date(), { representation: "time" });
-  const [timevalid, settimevalid] = useState(false);
+  const [timevalid, setTimevalid] = useState(false);
+  
 
   const handle = handleSubmit(async (data) => {
     console.log(data);
@@ -102,7 +103,7 @@ const Page = () => {
                 validate: (fieldValue) => {
                   return fieldValue < currentDate
                     ? "The date is in the past"
-                    : settimevalid(true);
+                    : setTimevalid(true);
                 },
               })}
             ></input>

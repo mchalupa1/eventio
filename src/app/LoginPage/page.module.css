@@ -98,7 +98,13 @@
 }
 
 .INEmail:focus,
-.INPassword:focus {
+.INPassword:focus,
+.INPassword:focus,
+.INRepeatPassword:focus,
+.INfirstname:focus,
+.INlastname:focus
+
+ {
   border-bottom: 1px solid #22d486;
 }
 
