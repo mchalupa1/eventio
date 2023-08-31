@@ -9,6 +9,7 @@ import { auth } from "@/services/firebase/auth";
 import { getDocs, collection,  } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 
+
 const useAuthorization = () => {
   const [user, setUser] = useState<User | undefined>();
 
@@ -24,7 +25,6 @@ const useAuthorization = () => {
 };
 
 export default function Navbar() {
-
   const [drop, setDrop] = useState(false);
   const Drop = () => {
     setDrop(!drop);
