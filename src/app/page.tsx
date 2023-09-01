@@ -5,7 +5,7 @@ import { db } from "@/services/firebase/db";
 import Link from "next/link";
 import styles from "./page.module.css";
 import alldata from "./data";
-import Droplist from "./Droplist/index";
+import Droplist from "../componens/Droplist/index";
 import { use, useRef, useState } from "react";
 import { WebDevelopment } from "@/componens/svg";
 import { WebDevelopment2 } from "@/componens/svg/index2-darkgrip";
@@ -18,7 +18,16 @@ import { Person } from "@/componens/svg/Person";
 import { Logo } from "@/componens/svg/Logo";
 import Navbar from "@/componens/Navbar/navbar";
 
-type Event = {title:String, date:String, id:Key, mentor:String,description:String,capacity:String, status:String}
+type Event = {
+  title: String;
+  date: String;
+  id: Key;
+  mentor: String;
+  description: String;
+  capacity: String;
+  status: String;
+  joiners: String;
+};
 export default function Dashboard() {
   const [data, setData] = useState<Event[]>([]);
   /*list grip changig color*/
@@ -30,13 +39,13 @@ export default function Dashboard() {
   const [droplist, setdroplist] = useState(true);
 
   const fetchData = async () => {
-    const snapshot = await getDocs(collection(db, "events"));
+    const snapshot = await getDocs(collection(db, "eventss"));
 
     setData(() => {
-      const data:Event[] = [];
+      const data: Event[] = [];
 
       snapshot.forEach((document) => {
-      // @ts-ignore
+        // @ts-ignore
         data.push(document.data());
       });
 
@@ -71,14 +80,22 @@ export default function Dashboard() {
             <li className={styles.pE}>PAST EVENTS</li>
           </ul>
           <ul className={styles.allGrip}>
-            <li role="button" className={styles.grip1} onClick={changeGripColor}>
+            <li
+              role="button"
+              className={styles.grip1}
+              onClick={changeGripColor}
+            >
               {grip === true ? (
                 <WebDevelopment2></WebDevelopment2>
               ) : (
                 <WebD1></WebD1>
               )}
             </li>
-            <li role="button" className={styles.grip2} onClick={changeGripColor}>
+            <li
+              role="button"
+              className={styles.grip2}
+              onClick={changeGripColor}
+            >
               {grip === false ? (
                 <WebD2></WebD2>
               ) : (
@@ -91,8 +108,16 @@ export default function Dashboard() {
         {grip === true ? (
           <div className={styles.allBoxs}>
             {data?.map((onebox) => {
-              const { id, date, title, mentor, description, capacity, status } =
-                onebox;
+              const {
+                id,
+                date,
+                title,
+                mentor,
+                description,
+                capacity,
+                status,
+                joiners,
+              } = onebox;
               return (
                 <div className={styles.onebox} key={id}>
                   <p className={styles.date}>{date}</p>
@@ -103,7 +128,10 @@ export default function Dashboard() {
                     <div className={styles.PesronCapacity}>
                       {" "}
                       <Person></Person>
-                      <p className={styles.capacity}>{capacity}</p>
+                      <p className={styles.capacity}>
+                        {joiners} of {capacity}
+                      </p>
+                      <p></p>
                     </div>
                     <div className={styles.boxbtn}>
                       <button

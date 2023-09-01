@@ -8,7 +8,7 @@ import Dropmenu from "../Dropdownmenu/index";
 import { auth } from "@/services/firebase/auth";
 import { getDoc, collection, doc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
-type User = {fname:String, lname:String}
+type User = {fname:String, lname:String, email:String}
 const useAuthorization = () => {
   const [user, setUser] = useState<User | undefined>();
 
@@ -17,7 +17,8 @@ const useAuthorization = () => {
       if (userData) {
         // @ts-ignore
         setUser(userData);
-        fetchuser();
+        fetchuser()
+        console.log(user?.email)
       } else {
         setUser(undefined);
       }

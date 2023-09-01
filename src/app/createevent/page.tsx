@@ -7,8 +7,8 @@ import { X } from "./svg/X";
 import alldata from "../data";
 import { compareAsc, format, isFuture, startOfDay } from "date-fns";
 import { addDays, isPast, formatISO9075 } from "date-fns";
-import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
+import { doc, setDoc, collection, getDoc, addDoc } from "firebase/firestore";
 
 import { useForm } from "react-hook-form";
 import { FieldValue } from "firebase/firestore";
@@ -25,11 +25,12 @@ const Page = () => {
   const currentDate = format(new Date(), "yyyy-MM-dd");
   const currentTime = formatISO9075(new Date(), { representation: "time" });
   const [timevalid, setTimevalid] = useState(false);
+  const usersCollectionRef  = collection(db,"eventss")
   
 
-  const handle = handleSubmit(async (data) => {
-    console.log(data);
-    await setDoc(doc(db, "events", "2"), data);
+  const handle = handleSubmit(async ({title,description,date,time,capacity}) => {
+    
+    await addDoc(usersCollectionRef, {title:title, description:description,date:date, time:time,capacity:capacity, status:"EDIT", id :1})
   });
 
   return (
@@ -100,6 +101,7 @@ const Page = () => {
               placeholder="Date"
               {...register("date", {
                 required: "Date is required",
+                // @ts-ignore
                 validate: (fieldValue) => {
                   return fieldValue < currentDate
                     ? "The date is in the past"
