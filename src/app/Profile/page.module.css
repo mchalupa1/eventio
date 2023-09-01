@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  
 }
 
 .upperpart {
@@ -10,7 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 124px;
+  margin-top: 50px;
 }
 
 .iconborder {
@@ -26,15 +27,68 @@
   color: rgba(148, 158, 168, 1);
   font-size: 25px;
   font-family: Hind;
-  overflow: hidden;
 }
 
 .undericon {
-  width: 1200px;
+  width: 80%;
   height: 187px;
   border-radius: 2px;
   background: #fff;
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.11);
   margin-top: -60px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 23px;
+  line-height: 2px;
+  overflow: hidden;
+}
+
+.mid {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 0px;
+  margin-top: 37px;
+}
+
+.events {
+  color: #323c46;
+  font-family: Hind;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  padding-top: 0px;
+}
+
+.grid {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.allGrip {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.allbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  max-width: 1500px;
+  width: 90%;
+  padding: 20px;
+  flex: 1;
+  margin: 50px 60px 16px 180px;
   
 }

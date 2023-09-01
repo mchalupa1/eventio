@@ -8,7 +8,6 @@ All on page
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  
 }
 
 /*
@@ -53,13 +52,7 @@ Categories
 .pE:hover {
   color: #323c46;
 }
-.allGrip {
-  display: flex;
-  flex-direction: row;
-  list-style-type: none;
-  gap: 2rem;
-  cursor: pointer;
-}
+
 .categorisShow {
   display: none;
   font-family: "Hind";
@@ -70,6 +63,14 @@ Categories
 
 .show {
   display: none;
+}
+
+.allGrip {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  gap: 1rem;
+  cursor: pointer;
 }
 /*
 All boxs
@@ -257,16 +258,14 @@ Create
   }
   .scroll {
     padding-left: 1px;
-    
   }
   .show {
     padding-left: 1px;
-    
   }
-  .user{
+  .user {
     margin-right: 35.5px;
   }
-  .description{
+  .description {
     padding-right: 65px;
   }
 
@@ -288,9 +287,8 @@ Create
   .categories {
     margin-left: 35px;
   }
-  .alE{
+  .alE {
     display: flex;
-    
   }
   .show {
     display: inline;

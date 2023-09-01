@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { Key, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import Link from "next/link";
@@ -18,8 +18,9 @@ import { Person } from "@/componens/svg/Person";
 import { Logo } from "@/componens/svg/Logo";
 import Navbar from "@/componens/Navbar/navbar";
 
+type Event = {title:String, date:String, id:Key, mentor:String,description:String,capacity:String, status:String}
 export default function Dashboard() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Event[]>([]);
   /*list grip changig color*/
   const [grip, setgrip] = useState(true);
   const changeGripColor = () => {
@@ -32,9 +33,10 @@ export default function Dashboard() {
     const snapshot = await getDocs(collection(db, "events"));
 
     setData(() => {
-      const data = [];
+      const data:Event[] = [];
 
       snapshot.forEach((document) => {
+      // @ts-ignore
         data.push(document.data());
       });
 
@@ -69,22 +71,14 @@ export default function Dashboard() {
             <li className={styles.pE}>PAST EVENTS</li>
           </ul>
           <ul className={styles.allGrip}>
-            <li
-              role="button"
-              className={styles.grip1}
-              onClick={changeGripColor}
-            >
+            <li role="button" className={styles.grip1} onClick={changeGripColor}>
               {grip === true ? (
                 <WebDevelopment2></WebDevelopment2>
               ) : (
                 <WebD1></WebD1>
               )}
             </li>
-            <li
-              role="button"
-              className={styles.grip2}
-              onClick={changeGripColor}
-            >
+            <li role="button" className={styles.grip2} onClick={changeGripColor}>
               {grip === false ? (
                 <WebD2></WebD2>
               ) : (
