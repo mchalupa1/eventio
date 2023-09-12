@@ -25,7 +25,7 @@ const Page = () => {
   const currentDate = format(new Date(), "yyyy-MM-dd");
   const currentTime = formatISO9075(new Date(), { representation: "time" });
   const [timevalid, setTimevalid] = useState(false);
-  const usersCollectionRef  = collection(db,"eventss")
+  const usersCollectionRef  = collection(db,"events")
   
 
   const handle = handleSubmit(async ({title,description,date,time,capacity}) => {

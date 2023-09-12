@@ -8,10 +8,8 @@ import { auth } from "@/services/firebase/auth";
 import { doc, setDoc, collection, getDoc, addDoc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 
-
-
-
 const Page = () => {
+
   const {
     formState: { errors },
     register,
@@ -22,24 +20,24 @@ const Page = () => {
     mode: "all",
   });
   const { push } = useRouter();
-  const usersCollectionRef  = collection(db,"users")
-  const singin = handleSubmit(async ({ email, password , firstName , lastName}) => {
-    try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      push("/");
-    } catch (error) {
-      console.log("foo");
+  const usersCollectionRef = collection(db, "users");
+  const singin = handleSubmit(
+    async ({ email, password, firstName, lastName }) => {
+      try {
+        const user = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        push("/");
+      } catch (error) {
+        console.log("foo");
+      }
+
+      await addDoc(usersCollectionRef, { fname: firstName, lname: lastName });
+     
     }
-
-    await addDoc(usersCollectionRef, {fname:firstName, lname: lastName})
-  });
-
-  
-
+  );
   return (
     <div className={style.cscc}>
       <p className={style.title}>Get started absolutely free.</p>

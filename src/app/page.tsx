@@ -39,7 +39,7 @@ export default function Dashboard() {
   const [droplist, setdroplist] = useState(true);
 
   const fetchData = async () => {
-    const snapshot = await getDocs(collection(db, "eventss"));
+    const snapshot = await getDocs(collection(db, "events"));
 
     setData(() => {
       const data: Event[] = [];

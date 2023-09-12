@@ -18,14 +18,13 @@ const useAuthorization = () => {
         // @ts-ignore
         setUser(userData);
         fetchuser()
-        console.log(user?.email)
       } else {
         setUser(undefined);
       }
     });
 
     const fetchuser = async () => {
-      const docRef = doc(db, "users", "3CZiJKSmQPCtaRfAiNIT");
+      const docRef = doc(db, "users","yUnJL7iLviz4loicaTnW");
       const docSnap = await getDoc(docRef);
       // @ts-ignore
       setUser(docSnap.data())

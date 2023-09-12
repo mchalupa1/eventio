@@ -3,7 +3,6 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  
 }
 
 .upperpart {
@@ -11,7 +10,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
 }
 
 .iconborder {
@@ -22,6 +20,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  z-index: 1;
 }
 .icon {
   color: rgba(148, 158, 168, 1);
@@ -30,7 +29,7 @@
 }
 
 .undericon {
-  width: 80%;
+  width: 100%;
   height: 187px;
   border-radius: 2px;
   background: #fff;
@@ -47,13 +46,14 @@
 }
 
 .mid {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   height: 0px;
-  margin-top: 37px;
+  margin-top: 48px;
+  margin-bottom: 48px;
 }
 
 .events {
@@ -80,15 +80,4 @@
   cursor: pointer;
 }
 
-.allbox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: center;
-  max-width: 1500px;
-  width: 90%;
-  padding: 20px;
-  flex: 1;
-  margin: 50px 60px 16px 180px;
-  
-}
+

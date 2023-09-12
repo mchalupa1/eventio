@@ -11,20 +11,36 @@ import Allbox from "../AllBoxGrip/AllboxGrip";
 import { Person } from "@/componens/svg/Person";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
+import { auth } from "@/services/firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 
+type Event = {
+  title: String;
+  date: String;
+  // @ts-ignore
+  id: Key;
+  mentor: String;
+  description: String;
+  capacity: String;
+  status: String;
+  joiners: String;
+};
+
+type User = {fname:String, lname:String, email:String}
 const Profile = () => {
   const [grip, setgrip] = useState(true);
   const changeGripColor = () => {
     setgrip(!grip);
   };
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Event[]>([]);
   const fetchData = async () => {
-    const snapshot = await getDocs(collection(db, "events"));
+    const snapshot = await getDocs(collection(db, "eventss"));
 
     setData(() => {
-      const data = [];
+      const data: Event[] = [];
 
       snapshot.forEach((document) => {
+        // @ts-ignore
         data.push(document.data());
       });
 
@@ -36,21 +52,30 @@ const Profile = () => {
     });
   };
 
+  const [user,setUser] = useState<User | undefined>()
   useEffect(() => {
     void fetchData();
+    onAuthStateChanged(auth, (userData) => {
+      if (userData) {
+        // @ts-ignore
+        setUser(userData);
+      } else {
+        setUser(undefined);
+      }
+    });
   }, []);
 
   return (
     <div className={style.all}>
       <Navbar></Navbar>
-      <div className={style.allmid}>
+      <div className={styles.middlePart}>
         <div className={style.upperpart}>
           <div className={style.iconborder}>
             <p className={style.icon}>TW</p>
           </div>
           <div className={style.undericon}>
             <p className={style.name}>Tom Watts</p>
-            <p className={style.email}>tomwatts@strv.com</p>
+            <p className={style.email}>{user?.email}</p>
           </div>
           <div className={style.mid}>
             <p className={style.events}>My Events</p>
@@ -79,54 +104,45 @@ const Profile = () => {
               </li>
             </ul>
           </div>
-          </div>
-            <div className={style.allbox}>
-              {grip === true ? (
-                <div className={styles.allBoxs}>
-                  {data?.map((onebox) => {
-                    const {
-                      id,
-                      date,
-                      title,
-                      mentor,
-                      description,
-                      capacity,
-                      status,
-                    } = onebox;
-                    return (
-                      <div className={styles.onebox} key={id}>
-                        <p className={styles.date}>{date}</p>
-                        <h1 className={styles.title}>{title}</h1>
-                        <p className={styles.mentor}>{mentor}</p>
-                        <p className={styles.description}>{description}</p>
-                        <div className={styles.lower}>
-                          <div className={styles.PesronCapacity}>
-                            {" "}
-                            <Person></Person>
-                            <p className={styles.capacity}>{capacity}</p>
-                          </div>
-                          <div className={styles.boxbtn}>
-                            <button
-                              className={
-                                status === "JOIN"
-                                  ? styles.statusJ
-                                  : status === "LEAVE"
-                                  ? styles.statsuL
-                                  : styles.statusE
-                              }
-                            >
-                              {status}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+        </div>
+        {grip === true ? (
+          <div className={styles.allBoxs}>
+            {data?.map((onebox) => {
+              const { id, date, title, mentor, description, capacity, status } =
+                onebox;
+              return (
+                <div className={styles.onebox} key={id}>
+                  <p className={styles.date}>{date}</p>
+                  <h1 className={styles.title}>{title}</h1>
+                  <p className={styles.mentor}>{mentor}</p>
+                  <p className={styles.description}>{description}</p>
+                  <div className={styles.lower}>
+                    <div className={styles.PesronCapacity}>
+                      {" "}
+                      <Person></Person>
+                      <p className={styles.capacity}>{capacity}</p>
+                    </div>
+                    <div className={styles.boxbtn}>
+                      <button
+                        className={
+                          status === "JOIN"
+                            ? styles.statusJ
+                            : status === "LEAVE"
+                            ? styles.statsuL
+                            : styles.statusE
+                        }
+                      >
+                        {status}
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              ) : (
-                <Allbox></Allbox>
-              )}
-            </div>
+              );
+            })}
+          </div>
+        ) : (
+          <Allbox></Allbox>
+        )}
       </div>
     </div>
   );
