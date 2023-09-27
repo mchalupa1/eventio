@@ -5,11 +5,13 @@ import { useForm } from "react-hook-form";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { auth } from "@/services/firebase/auth";
-import { doc, setDoc, collection, getDoc, addDoc } from "firebase/firestore";
+import { doc, setDoc, collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
+import firebase from "firebase/app";
+import { getStorage, ref } from "firebase/storage";
 
 const Page = () => {
-
+  const auth = getAuth();
   const {
     formState: { errors },
     register,
@@ -20,8 +22,8 @@ const Page = () => {
     mode: "all",
   });
   const { push } = useRouter();
-  const usersCollectionRef = collection(db, "users");
   const singin = handleSubmit(
+    
     async ({ email, password, firstName, lastName }) => {
       try {
         const user = await createUserWithEmailAndPassword(
@@ -29,14 +31,15 @@ const Page = () => {
           email,
           password
         );
+        const uid = user.user.uid
+        console.log(uid)
+        const create = await setDoc(doc(db,"users",uid), {fname:firstName, lname:lastName})
         push("/");
       } catch (error) {
-        console.log("foo");
+        console.log(error);
       }
-
-      await addDoc(usersCollectionRef, { fname: firstName, lname: lastName });
-     
     }
+     
   );
   return (
     <div className={style.cscc}>

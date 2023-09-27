@@ -24,7 +24,7 @@ const useAuthorization = () => {
     });
 
     const fetchuser = async () => {
-      const docRef = doc(db, "users","yUnJL7iLviz4loicaTnW");
+      const docRef = doc(db, "users","");
       const docSnap = await getDoc(docRef);
       // @ts-ignore
       setUser(docSnap.data())
