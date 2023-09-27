@@ -1,6 +1,6 @@
 "use client";
 import styles from "./navbar.module.css";
-import { onAuthStateChanged} from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { WebDevelopment } from "@/componens/svg";
 import { Logo } from "@/componens/svg/Logo";
 import { use, useRef, useState, useEffect, cloneElement } from "react";
@@ -8,7 +8,8 @@ import Dropmenu from "../Dropdownmenu/index";
 import { auth } from "@/services/firebase/auth";
 import { getDoc, collection, doc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
-type User = {fname:String, lname:String, email:String}
+
+type User = { fname: String; lname: String; email: String};
 const useAuthorization = () => {
   const [user, setUser] = useState<User | undefined>();
 
@@ -17,17 +18,19 @@ const useAuthorization = () => {
       if (userData) {
         // @ts-ignore
         setUser(userData);
-        fetchuser()
+        fetchuser(userData.uid);
+        console.log(userData);
       } else {
         setUser(undefined);
       }
     });
 
-    const fetchuser = async () => {
-      const docRef = doc(db, "users","");
+    const fetchuser = async (uid:string):Promise<User | undefined> => {
+      const docRef = doc(db, "users", uid);
       const docSnap = await getDoc(docRef);
       // @ts-ignore
-      setUser(docSnap.data())
+      setUser(docSnap.data());
+      return docSnap.data() as User
     };
   }, []);
 
@@ -51,7 +54,8 @@ export default function Navbar() {
         <div className={styles.user}>
           <button className={styles.Icon}>tw</button>
           <a href="/" className={styles.client}>
-            {user?.fname + " "}{user?.lname}
+            {user?.fname + " "}
+            {user?.lname}
           </a>
           <a className={styles.scroll} onClick={Drop}>
             <WebDevelopment></WebDevelopment>

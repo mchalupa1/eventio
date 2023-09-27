@@ -40,7 +40,7 @@ export default function Dashboard() {
 
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, "events"));
-
+  
     setData(() => {
       const data: Event[] = [];
 
@@ -53,7 +53,7 @@ export default function Dashboard() {
     });
 
     snapshot.forEach((document) => {
-      // console.log(document.data());
+      console.log(document.data().title);
     });
   };
 
@@ -61,7 +61,7 @@ export default function Dashboard() {
     void fetchData();
   }, []);
 
-  console.log(data);
+  
 
   return (
     <section className={styles.all}>
