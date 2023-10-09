@@ -1,6 +1,6 @@
 "use client";
-import { Key, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { Key, cloneElement, useEffect, useId } from "react";
+import { collection, getDocs, onSnapshot, query,where } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import Link from "next/link";
 import styles from "./page.module.css";
@@ -17,6 +17,7 @@ import Allboxgrip from "./AllBoxGrip/AllboxGrip";
 import { Person } from "@/componens/svg/Person";
 import { Logo } from "@/componens/svg/Logo";
 import Navbar from "@/componens/Navbar/navbar";
+import { format } from "date-fns";
 
 type Event = {
   title: String;
@@ -27,6 +28,13 @@ type Event = {
   capacity: String;
   status: String;
   joiners: String;
+  time: String;
+  author: String;
+};
+
+type User = {
+  fname: String;
+  lname: String;
 };
 export default function Dashboard() {
   const [data, setData] = useState<Event[]>([]);
@@ -39,30 +47,45 @@ export default function Dashboard() {
   const [droplist, setdroplist] = useState(true);
 
   const fetchData = async () => {
-    const snapshot = await getDocs(collection(db, "events"));
-  
-    setData(() => {
-      const data: Event[] = [];
+    const colRef = collection(db, "events");
+    onSnapshot(colRef, (snapshot) => {
+      setData(() => {
+        const data: Event[] = [];
 
-      snapshot.forEach((document) => {
-        // @ts-ignore
-        data.push(document.data());
+        snapshot.forEach((document) => {
+          // @ts-ignore
+          data.push(document.data());
+        });
+
+        return data;
       });
-
-      return data;
-    });
-
-    snapshot.forEach((document) => {
-      console.log(document.data().title);
     });
   };
+  const [name, setName] = useState<User[]>([]);
+  const Getmentor = async () => {
+    const colRef = collection(db, "users");
+    const snapshots = await getDocs(colRef);
 
+    const all:User[] = [];
+    snapshots.forEach((doc) => all.push())
+    all.forEach((doc) => console.log(doc))
+    for (let i = 1; i <= snapshots.size; i++){
+      
+    }
+      snapshots.forEach((doc) => console.log(doc.id));
+    const docs = snapshots.docs.forEach((doc) => {
+      const data = doc.data();
+      return data;
+      
+    });
+    console.log(docs)
+  };
   useEffect(() => {
     void fetchData();
+    Getmentor();
   }, []);
 
   
-
   return (
     <section className={styles.all}>
       <Navbar></Navbar>
@@ -117,19 +140,25 @@ export default function Dashboard() {
                 capacity,
                 status,
                 joiners,
+                time,
+                author,
               } = onebox;
               return (
                 <div className={styles.onebox} key={id}>
-                  <p className={styles.date}>{date}</p>
+                  <div className={styles.alltime}>
+                    <p className={styles.date}>
+                      {date} – {time}
+                    </p>
+                  </div>
                   <h1 className={styles.title}>{title}</h1>
-                  <p className={styles.mentor}>{mentor}</p>
+                  <p className={styles.mentor}>{author}</p>
                   <p className={styles.description}>{description}</p>
                   <div className={styles.lower}>
                     <div className={styles.PesronCapacity}>
                       {" "}
                       <Person></Person>
                       <p className={styles.capacity}>
-                        {joiners} of {capacity}
+                        {"0"} of {capacity}
                       </p>
                       <p></p>
                     </div>

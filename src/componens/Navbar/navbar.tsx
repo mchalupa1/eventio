@@ -9,7 +9,7 @@ import { auth } from "@/services/firebase/auth";
 import { getDoc, collection, doc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 
-type User = { fname: String; lname: String; email: String};
+type User = { fname: String; lname: String; email: String , a:String};
 const useAuthorization = () => {
   const [user, setUser] = useState<User | undefined>();
 
@@ -24,13 +24,12 @@ const useAuthorization = () => {
         setUser(undefined);
       }
     });
-
-    const fetchuser = async (uid:string):Promise<User | undefined> => {
+    const fetchuser = async (uid: string): Promise<User | undefined> => {
       const docRef = doc(db, "users", uid);
       const docSnap = await getDoc(docRef);
       // @ts-ignore
       setUser(docSnap.data());
-      return docSnap.data() as User
+      return docSnap.data() as User;
     };
   }, []);
 
@@ -52,7 +51,7 @@ export default function Navbar() {
           <Logo></Logo>
         </a>
         <div className={styles.user}>
-          <button className={styles.Icon}>tw</button>
+          <button className={styles.Icon}>{"nwm"}</button>
           <a href="/" className={styles.client}>
             {user?.fname + " "}
             {user?.lname}

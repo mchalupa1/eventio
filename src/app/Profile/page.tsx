@@ -34,7 +34,7 @@ const Profile = () => {
   };
   const [data, setData] = useState<Event[]>([]);
   const fetchData = async () => {
-    const snapshot = await getDocs(collection(db, "eventss"));
+    const snapshot = await getDocs(collection(db, "events"));
 
     setData(() => {
       const data: Event[] = [];
@@ -65,6 +65,8 @@ const Profile = () => {
     });
   }, []);
 
+  
+
   return (
     <div className={style.all}>
       <Navbar></Navbar>
@@ -74,7 +76,8 @@ const Profile = () => {
             <p className={style.icon}>TW</p>
           </div>
           <div className={style.undericon}>
-            <p className={style.name}>Tom Watts</p>
+            <p className={style.name}>{user?.fname + " "}
+            {user?.lname}</p>
             <p className={style.email}>{user?.email}</p>
           </div>
           <div className={style.mid}>

@@ -33,7 +33,7 @@ const Page = () => {
         );
         const uid = user.user.uid
         console.log(uid)
-        const create = await setDoc(doc(db,"users",uid), {fname:firstName, lname:lastName})
+        const create = await setDoc(doc(db,"users",uid), {fname:firstName, lname:lastName, email:email})
         push("/");
       } catch (error) {
         console.log(error);

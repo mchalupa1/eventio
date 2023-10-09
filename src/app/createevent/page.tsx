@@ -1,5 +1,6 @@
 "use client";
-import { use, useState } from "react";
+import { use, useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
 import style from "./page.module.css";
 import { Logo } from "@/componens/svg/Logo";
@@ -8,10 +9,31 @@ import alldata from "../data";
 import { compareAsc, format, isFuture, startOfDay } from "date-fns";
 import { addDays, isPast, formatISO9075 } from "date-fns";
 import { db } from "@/services/firebase/db";
-import { doc, setDoc, collection, getDoc, addDoc } from "firebase/firestore";
-
+import { doc, setDoc, collection, getDocs, addDoc } from "firebase/firestore";
+import { auth } from "@/services/firebase/auth";
 import { useForm } from "react-hook-form";
 import { FieldValue } from "firebase/firestore";
+
+
+type User = {uid:String};
+const useAuthorization = () => {
+  const [user, setUser] = useState<User | undefined>();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (userData) => {
+      if (userData) {
+        // @ts-ignore
+        setUser(userData);
+        console.log(userData);
+      } else {
+        setUser(undefined);
+      }
+    });
+  }, [])
+  return user;
+};
+
+
 
 const Page = () => {
   const {
@@ -21,16 +43,18 @@ const Page = () => {
   } = useForm({
     mode: "all",
   });
+  const user = useAuthorization();
 
   const currentDate = format(new Date(), "yyyy-MM-dd");
   const currentTime = formatISO9075(new Date(), { representation: "time" });
   const [timevalid, setTimevalid] = useState(false);
-  const usersCollectionRef  = collection(db,"events")
-  
 
+  const usersCollectionRef  = collection(db,"events")
   const handle = handleSubmit(async ({title,description,date,time,capacity}) => {
     
-    await addDoc(usersCollectionRef, {title:title, description:description,date:date, time:time,capacity:capacity, status:"EDIT", id :1})
+
+    await addDoc(usersCollectionRef, {
+      author: user?.uid,title:title, description:description,date:date, time:time,capacity:capacity})
   });
 
   return (
