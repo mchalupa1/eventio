@@ -51,7 +51,7 @@ export default function Navbar() {
           <Logo></Logo>
         </a>
         <div className={styles.user}>
-          <button className={styles.Icon}>{"nwm"}</button>
+          <button className={styles.Icon}>{user?.fname?.charAt(0)}{user?.lname?.charAt(0)}</button>
           <a href="/" className={styles.client}>
             {user?.fname + " "}
             {user?.lname}

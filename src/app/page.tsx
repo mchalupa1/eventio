@@ -1,6 +1,14 @@
 "use client";
 import { Key, cloneElement, useEffect, useId } from "react";
-import { collection, getDocs, onSnapshot, query,where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+  getDoc,
+  doc
+} from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import Link from "next/link";
 import styles from "./page.module.css";
@@ -18,23 +26,25 @@ import { Person } from "@/componens/svg/Person";
 import { Logo } from "@/componens/svg/Logo";
 import Navbar from "@/componens/Navbar/navbar";
 import { format } from "date-fns";
+import { auth } from "@/services/firebase/auth";
 
 type Event = {
-  title: String;
-  date: String;
+  title: string;
+  date: string;
   id: Key;
-  mentor: String;
-  description: String;
-  capacity: String;
-  status: String;
-  joiners: String;
-  time: String;
-  author: String;
+  mentor: string;
+  description: string;
+  capacity: string;
+  status: string;
+  joiners: string;
+  time: string;
+  author: string;
 };
 
 type User = {
   fname: String;
   lname: String;
+  id: String;
 };
 export default function Dashboard() {
   const [data, setData] = useState<Event[]>([]);
@@ -61,31 +71,30 @@ export default function Dashboard() {
       });
     });
   };
-  const [name, setName] = useState<User[]>([]);
-  const Getmentor = async () => {
-    const colRef = collection(db, "users");
-    const snapshots = await getDocs(colRef);
 
-    const all:User[] = [];
-    snapshots.forEach((doc) => all.push())
-    all.forEach((doc) => console.log(doc))
-    for (let i = 1; i <= snapshots.size; i++){
-      
-    }
-      snapshots.forEach((doc) => console.log(doc.id));
-    const docs = snapshots.docs.forEach((doc) => {
-      const data = doc.data();
-      return data;
+  const [name, setName] = useState<User[]>([]);
+  
+  const Getmentor = async () => {
+    const snapshots = await getDocs(collection(db, "users"));
+    data.forEach( async(item) => {
+      const docRef = doc(db, "users", item.author);
+      const docSnap = await getDoc(docRef);
+      const user = docSnap.data();
+      console.log(user)
       
     });
-    console.log(docs)
+
+    const datas = [];
+    snapshots.forEach((doc) => {
+      datas.push({ id: doc.id, ...doc.data() });
+    });
   };
   useEffect(() => {
     void fetchData();
     Getmentor();
   }, []);
 
-  
+
   return (
     <section className={styles.all}>
       <Navbar></Navbar>
