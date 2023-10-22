@@ -9,13 +9,13 @@ import alldata from "../data";
 import { compareAsc, format, isFuture, startOfDay } from "date-fns";
 import { addDays, isPast, formatISO9075 } from "date-fns";
 import { db } from "@/services/firebase/db";
-import { doc, setDoc, collection, getDocs, addDoc } from "firebase/firestore";
+import { doc, setDoc, collection, getDocs, addDoc,updateDoc  } from "firebase/firestore";
 import { auth } from "@/services/firebase/auth";
 import { useForm } from "react-hook-form";
 import { FieldValue } from "firebase/firestore";
 
 
-type User = {uid:String};
+type User = {uid:string};
 const useAuthorization = () => {
   const [user, setUser] = useState<User | undefined>();
 
@@ -48,17 +48,23 @@ const Page = () => {
   const currentDate = format(new Date(), "yyyy-MM-dd");
   const currentTime = formatISO9075(new Date(), { representation: "time" });
   const [timevalid, setTimevalid] = useState(false);
-
-  const usersCollectionRef  = collection(db,"events")
-  const handle = handleSubmit(async ({title,description,date,time,capacity}) => {
+ 
+    
     
 
-    await addDoc(usersCollectionRef, {
-      author: user?.uid,title:title, description:description,date:date, time:time,capacity:capacity, joiners:[]})
+ 
+    const usersCollectionRef  = collection(db,"events")
 
-      
-  });
 
+const handle = handleSubmit(async ({title,description,date,time,capacity}) => {
+    
+
+    const colRef = await addDoc(usersCollectionRef, {
+      author: user?.uid,title:title, description:description,date:date, time:time,capacity:capacity, joiners:[], status:""})
+    const docRef = doc(usersCollectionRef, colRef.id);
+    console.log(docRef)
+    await updateDoc(docRef, { id: colRef.id });
+ })
   return (
     <div className={style.app}>
       <ul className={style.footer}>
@@ -160,7 +166,7 @@ const Page = () => {
                 min: { value: 1, message: "Minimum is 1" },
                 pattern: {
                   value: /^[0-9]*$/,
-                  message: "Only numbers are allwed",
+                  message: "Only numbers are allowed",
                 },
               })}
               placeholder="Capacity"

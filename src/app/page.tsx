@@ -7,8 +7,7 @@ import {
   query,
   where,
   getDoc,
-  doc
-  
+  doc,
 } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import Link from "next/link";
@@ -27,7 +26,7 @@ import { Person } from "@/componens/svg/Person";
 import { Logo } from "@/componens/svg/Logo";
 import Navbar from "@/componens/Navbar/navbar";
 import { format } from "date-fns";
-import { auth} from "@/services/firebase/auth";
+import { auth } from "@/services/firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 
 type Event = {
@@ -49,18 +48,17 @@ type User = {
   id: string;
 };
 export default function Dashboard() {
-  const [data, setData] = useState<Event[]>([]);
+  const [droplist, setdroplist] = useState(true);
+
   /*list grip changig color*/
   const [grip, setgrip] = useState(true);
   const changeGripColor = () => {
     setgrip(!grip);
   };
 
-  const [droplist, setdroplist] = useState(true);
-
+  const [data, setData] = useState<Event[]>([]);
   const fetchData = async () => {
     const colRef = collection(db, "events");
-    
     onSnapshot(colRef, (snapshot) => {
       setData(() => {
         const data: Event[] = [];
@@ -73,58 +71,61 @@ export default function Dashboard() {
         return data;
       });
     });
+    
   };
 
   const [name, setName] = useState<User[]>([]);
-
   const Getmentor = async () => {
-    data.forEach( async(item) => {
+    data.forEach(async (item) => {
       const docRef = doc(db, "users", item.author);
       const docSnap = await getDoc(docRef);
     });
   };
-  
 
-type User = {uid:String};
-const useAuthorization = () => {
-  const [user, setUser] = useState<User | undefined>();
+  type User = { uid: string };
+  const useAuthorization = () => {
+    const [user, setUser] = useState<User | undefined>();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (userData) => {
-      if (userData) {
-        // @ts-ignore
-        setUser(userData);
-        console.log(userData);
+    useEffect(() => {
+      onAuthStateChanged(auth, (userData) => {
+        if (userData) {
+          // @ts-ignore
+          setUser(userData);
+          console.log(userData);
+        } else {
+          setUser(undefined);
+        }
+      });
+    }, []);
+    return user;
+  };
+  const user = useAuthorization();
+
+  const status = () => {
+    data.forEach((item) => {
+      if (item.author == user?.uid) {
+        return (item.status = "EDIT");
+      } else if (user?.uid.includes(item.joiners) === false) {
+        return (item.status = "LEAVE");
       } else {
-        setUser(undefined);
+        return (item.status = "JOIN");
       }
     });
-  }, [])
-  return user;
-};
-const user = useAuthorization();
+  };
+  status()
 
- data.forEach((item) => {
-  
-  if(item.author == user?.uid){
-    return item.status = "EDIT"
-
-  }else if(user?.uid.includes(item.joiners) === true){
-    return item.status = "LEAVE"
-  }else{
-    return item.status = "JOIN"
-  }
- })
-
-
-
-
+  const ButtonChangeStatus = () => {
+    console.log()
+  };
 
   useEffect(() => {
     void fetchData();
-   Getmentor() ;
-   
-  }, []);
+    Getmentor();
+    
+  },[]);
+
+
+  
 
   return (
     <section className={styles.all}>
@@ -204,6 +205,7 @@ const user = useAuthorization();
                     </div>
                     <div className={styles.boxbtn}>
                       <button
+                        onClick={() => ButtonChangeStatus()}
                         className={
                           status === "JOIN"
                             ? styles.statusJ
