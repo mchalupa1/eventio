@@ -54,7 +54,9 @@ const Page = () => {
     
 
     await addDoc(usersCollectionRef, {
-      author: user?.uid,title:title, description:description,date:date, time:time,capacity:capacity})
+      author: user?.uid,title:title, description:description,date:date, time:time,capacity:capacity, joiners:[]})
+
+      
   });
 
   return (

@@ -8,6 +8,7 @@ import {
   where,
   getDoc,
   doc
+  
 } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import Link from "next/link";
@@ -26,7 +27,8 @@ import { Person } from "@/componens/svg/Person";
 import { Logo } from "@/componens/svg/Logo";
 import Navbar from "@/componens/Navbar/navbar";
 import { format } from "date-fns";
-import { auth } from "@/services/firebase/auth";
+import { auth} from "@/services/firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 
 type Event = {
   title: string;
@@ -42,9 +44,9 @@ type Event = {
 };
 
 type User = {
-  fname: String;
-  lname: String;
-  id: String;
+  fname: string;
+  lname: string;
+  id: string;
 };
 export default function Dashboard() {
   const [data, setData] = useState<Event[]>([]);
@@ -58,6 +60,7 @@ export default function Dashboard() {
 
   const fetchData = async () => {
     const colRef = collection(db, "events");
+    
     onSnapshot(colRef, (snapshot) => {
       setData(() => {
         const data: Event[] = [];
@@ -73,27 +76,55 @@ export default function Dashboard() {
   };
 
   const [name, setName] = useState<User[]>([]);
-  
+
   const Getmentor = async () => {
-    const snapshots = await getDocs(collection(db, "users"));
     data.forEach( async(item) => {
       const docRef = doc(db, "users", item.author);
       const docSnap = await getDoc(docRef);
-      const user = docSnap.data();
-      console.log(user)
-      
-    });
-
-    const datas = [];
-    snapshots.forEach((doc) => {
-      datas.push({ id: doc.id, ...doc.data() });
     });
   };
+  
+
+type User = {uid:String};
+const useAuthorization = () => {
+  const [user, setUser] = useState<User | undefined>();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (userData) => {
+      if (userData) {
+        // @ts-ignore
+        setUser(userData);
+        console.log(userData);
+      } else {
+        setUser(undefined);
+      }
+    });
+  }, [])
+  return user;
+};
+const user = useAuthorization();
+
+ data.forEach((item) => {
+  
+  if(item.author == user?.uid){
+    return item.status = "EDIT"
+
+  }else if(user?.uid.includes(item.joiners) === true){
+    return item.status = "LEAVE"
+  }else{
+    return item.status = "JOIN"
+  }
+ })
+
+
+
+
+
   useEffect(() => {
     void fetchData();
-    Getmentor();
+   Getmentor() ;
+   
   }, []);
-
 
   return (
     <section className={styles.all}>
