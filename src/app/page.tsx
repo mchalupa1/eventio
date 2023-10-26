@@ -8,6 +8,9 @@ import {
   where,
   getDoc,
   doc,
+  updateDoc,
+  setDoc,
+  runTransaction,
 } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import Link from "next/link";
@@ -28,11 +31,12 @@ import Navbar from "@/componens/Navbar/navbar";
 import { format } from "date-fns";
 import { auth } from "@/services/firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
+import { number } from "yup";
 
 type Event = {
   title: string;
   date: string;
-  id: Key;
+  id: string;
   mentor: string;
   description: string;
   capacity: string;
@@ -40,9 +44,10 @@ type Event = {
   joiners: string;
   time: string;
   author: string;
+  NumberOfJoiners:number;
 };
 
-type User = {
+type User1 = {
   fname: string;
   lname: string;
   id: string;
@@ -71,14 +76,14 @@ export default function Dashboard() {
         return data;
       });
     });
-    
   };
 
-  const [name, setName] = useState<User[]>([]);
-  const Getmentor = async () => {
+  const Mentor = async () => {
     data.forEach(async (item) => {
       const docRef = doc(db, "users", item.author);
       const docSnap = await getDoc(docRef);
+      const data = docSnap.data() as User1;
+
     });
   };
 
@@ -91,7 +96,7 @@ export default function Dashboard() {
         if (userData) {
           // @ts-ignore
           setUser(userData);
-          console.log(userData);
+          
         } else {
           setUser(undefined);
         }
@@ -105,27 +110,52 @@ export default function Dashboard() {
     data.forEach((item) => {
       if (item.author == user?.uid) {
         return (item.status = "EDIT");
-      } else if (user?.uid.includes(item.joiners) === false) {
+      } else if (user?.uid.includes(item.joiners)) {
         return (item.status = "LEAVE");
       } else {
         return (item.status = "JOIN");
+        
       }
     });
   };
-  status()
+ status()
 
-  const ButtonChangeStatus = () => {
-    console.log()
+  const ButtonChangeStatus = async (id: string) => {
+    const docRef = doc(db, "events", id);
+    const docSnap = await getDoc(docRef);
+    const data = docSnap.data() as Event;
+    if(data.status === "JOIN"){
+      if (data?.joiners && user?.uid) {
+      
+        let updatedJoiners = [...data.joiners]; 
+       
+        if (!data.joiners.includes(user.uid)) {
+          updatedJoiners = [...updatedJoiners, user.uid]; 
+        }
+        if (docRef) {
+          await updateDoc(docRef, { joiners: updatedJoiners });
+        }
+        status();
+      }
+    }else{
+      
+    }
+   
   };
+
+  
+  
+   
+
+
+
+
 
   useEffect(() => {
     void fetchData();
-    Getmentor();
+    void Mentor();
     
-  },[]);
-
-
-  
+  }, []);
 
   return (
     <section className={styles.all}>
@@ -183,6 +213,7 @@ export default function Dashboard() {
                 joiners,
                 time,
                 author,
+                NumberOfJoiners
               } = onebox;
               return (
                 <div className={styles.onebox} key={id}>
@@ -199,13 +230,14 @@ export default function Dashboard() {
                       {" "}
                       <Person></Person>
                       <p className={styles.capacity}>
-                        {"0"} of {capacity}
+                        {NumberOfJoiners} of {capacity}
                       </p>
                       <p></p>
                     </div>
                     <div className={styles.boxbtn}>
                       <button
-                        onClick={() => ButtonChangeStatus()}
+                        onClick={() => ButtonChangeStatus(id)}
+                       
                         className={
                           status === "JOIN"
                             ? styles.statusJ

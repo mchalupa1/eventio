@@ -9,13 +9,19 @@ import alldata from "../data";
 import { compareAsc, format, isFuture, startOfDay } from "date-fns";
 import { addDays, isPast, formatISO9075 } from "date-fns";
 import { db } from "@/services/firebase/db";
-import { doc, setDoc, collection, getDocs, addDoc,updateDoc  } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { auth } from "@/services/firebase/auth";
 import { useForm } from "react-hook-form";
 import { FieldValue } from "firebase/firestore";
 
-
-type User = {uid:string};
+type User = { uid: string };
 const useAuthorization = () => {
   const [user, setUser] = useState<User | undefined>();
 
@@ -29,11 +35,9 @@ const useAuthorization = () => {
         setUser(undefined);
       }
     });
-  }, [])
+  }, []);
   return user;
 };
-
-
 
 const Page = () => {
   const {
@@ -48,23 +52,27 @@ const Page = () => {
   const currentDate = format(new Date(), "yyyy-MM-dd");
   const currentTime = formatISO9075(new Date(), { representation: "time" });
   const [timevalid, setTimevalid] = useState(false);
- 
-    
-    
 
- 
-    const usersCollectionRef  = collection(db,"events")
+  const usersCollectionRef = collection(db, "events");
 
-
-const handle = handleSubmit(async ({title,description,date,time,capacity}) => {
-    
-
-    const colRef = await addDoc(usersCollectionRef, {
-      author: user?.uid,title:title, description:description,date:date, time:time,capacity:capacity, joiners:[], status:""})
-    const docRef = doc(usersCollectionRef, colRef.id);
-    console.log(docRef)
-    await updateDoc(docRef, { id: colRef.id });
- })
+  const handle = handleSubmit(
+    async ({ title, description, date, time, capacity }) => {
+      const colRef = await addDoc(usersCollectionRef, {
+        author: user?.uid,
+        title: title,
+        description: description,
+        date: date,
+        time: time,
+        capacity: capacity,
+        joiners: [],
+        status: "",
+        NumberOfJoiners:0,
+      });
+      const docRef = doc(usersCollectionRef, colRef.id);
+      console.log(docRef);
+      await updateDoc(docRef, { id: colRef.id });
+    }
+  );
   return (
     <div className={style.app}>
       <ul className={style.footer}>
