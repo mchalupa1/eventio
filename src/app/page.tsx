@@ -11,6 +11,7 @@ import {
   updateDoc,
   setDoc,
   runTransaction,
+  DocumentReference,
 } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import Link from "next/link";
@@ -28,10 +29,11 @@ import Allboxgrip from "./AllBoxGrip/AllboxGrip";
 import { Person } from "@/componens/svg/Person";
 import { Logo } from "@/componens/svg/Logo";
 import Navbar from "@/componens/Navbar/navbar";
-import { format } from "date-fns";
+import { format, formatISO9075 } from "date-fns";
 import { auth } from "@/services/firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { number } from "yup";
+import { useRouter } from "next/navigation";
 
 type Event = {
   title: string;
@@ -43,8 +45,9 @@ type Event = {
   status: string;
   joiners: string;
   time: string;
-  author: string;
-  NumberOfJoiners:number;
+  author: DocumentReference;
+  NumberOfJoiners: number;
+  authorUID:string,
 };
 
 type User1 = {
@@ -53,6 +56,10 @@ type User1 = {
   id: string;
 };
 export default function Dashboard() {
+  const currentDate = format(new Date(), "yyyy-MM-dd");
+  const currentTime = formatISO9075(new Date(), { representation: "time" });
+  const { push } = useRouter();
+
   const [droplist, setdroplist] = useState(true);
 
   /*list grip changig color*/
@@ -64,6 +71,36 @@ export default function Dashboard() {
   const [data, setData] = useState<Event[]>([]);
   const fetchData = async () => {
     const colRef = collection(db, "events");
+    onSnapshot(colRef, async (snapshot) => {
+
+        const data: Event[] = [];
+        const data2: Event[] = [];
+
+         snapshot.forEach((document) => {
+          // @ts-ignore
+
+          const foo = document.data();
+          /*
+          if (foo.author) {
+             const foo2 = await getDoc(foo.author)
+             console.log(foo2.data())
+          }
+          */
+          data.push(foo);
+        });
+
+        for await (const foo3 of data){
+            const foo2 = await getDoc(foo3.author) 
+            data2.push({...foo3, author:foo2.data()})
+        }
+
+        setData(data2)
+    });
+
+  };
+
+  const FutureEvents = () => {
+    const colRef = collection(db, "events");
     onSnapshot(colRef, (snapshot) => {
       setData(() => {
         const data: Event[] = [];
@@ -73,19 +110,33 @@ export default function Dashboard() {
           data.push(document.data());
         });
 
-        return data;
+        const result = data.filter((item) => item.date > currentDate);
+        console.log(data.forEach((item) => item.date));
+
+        return result;
       });
     });
   };
 
-  const Mentor = async () => {
-    data.forEach(async (item) => {
-      const docRef = doc(db, "users", item.author);
-      const docSnap = await getDoc(docRef);
-      const data = docSnap.data() as User1;
+  const PastEvents = () => {
+    const colRef = collection(db, "events");
+    onSnapshot(colRef, (snapshot) => {
+      setData(() => {
+        const data: Event[] = [];
 
+        snapshot.forEach((document) => {
+          // @ts-ignore
+          data.push(document.data());
+        });
+
+        const result = data.filter((item) => item.date < currentDate);
+
+        return result;
+      });
     });
   };
+
+  console.log(data);
 
   type User = { uid: string };
   const useAuthorization = () => {
@@ -96,7 +147,6 @@ export default function Dashboard() {
         if (userData) {
           // @ts-ignore
           setUser(userData);
-          
         } else {
           setUser(undefined);
         }
@@ -107,56 +157,44 @@ export default function Dashboard() {
   const user = useAuthorization();
 
   const status = () => {
-    data.forEach((item) => {
-      if (item.author == user?.uid) {
-        return (item.status = "EDIT");
+    data.forEach(async(item) => {
+      const docRef = doc(db, "events", item.id);
+      if (item.authorUID == user?.uid) {
+        await updateDoc(docRef, { status:"EDIT" });
       } else if (user?.uid.includes(item.joiners)) {
-        return (item.status = "LEAVE");
+        await updateDoc(docRef, { status:"LEAVE" });
       } else {
-        return (item.status = "JOIN");
-        
+        await updateDoc(docRef, { status:"JOIN" });
       }
     });
   };
- status()
+  status();
 
   const ButtonChangeStatus = async (id: string) => {
     const docRef = doc(db, "events", id);
     const docSnap = await getDoc(docRef);
     const data = docSnap.data() as Event;
-    if(data.status === "JOIN"){
+    if (data.status === "JOIN") {
       if (data?.joiners && user?.uid) {
-      
-        let updatedJoiners = [...data.joiners]; 
-       
+        let updatedJoiners = [...data.joiners];
+
         if (!data.joiners.includes(user.uid)) {
-          updatedJoiners = [...updatedJoiners, user.uid]; 
+          updatedJoiners = [...updatedJoiners, user.uid];
         }
         if (docRef) {
           await updateDoc(docRef, { joiners: updatedJoiners });
         }
-        status();
+        
       }
-    }else{
-      
+      status();
+    } else {
     }
-   
   };
-
-  
-  
-   
-
-
-
-
 
   useEffect(() => {
     void fetchData();
-    void Mentor();
-    
   }, []);
-
+  console.log(data[0]?.author);
   return (
     <section className={styles.all}>
       <Navbar></Navbar>
@@ -164,14 +202,18 @@ export default function Dashboard() {
         <main className={styles.categories}>
           <ul className={styles.allEV}>
             <li className={styles.categorisShow}>SHOW:</li>
-            <li className={styles.alE}>
+            <li className={styles.alE} onClick={fetchData}>
               ALL EVENTS
               <a className={styles.show} onClick={() => setdroplist(!droplist)}>
                 <WebD3WebD3></WebD3WebD3>
               </a>
             </li>
-            <li className={styles.fE}>FUTURE EVENTS</li>
-            <li className={styles.pE}>PAST EVENTS</li>
+            <li className={styles.fE} onClick={FutureEvents}>
+              FUTURE EVENTS
+            </li>
+            <li className={styles.pE} onClick={PastEvents}>
+              PAST EVENTS
+            </li>
           </ul>
           <ul className={styles.allGrip}>
             <li
@@ -213,17 +255,21 @@ export default function Dashboard() {
                 joiners,
                 time,
                 author,
-                NumberOfJoiners
+                NumberOfJoiners,
               } = onebox;
               return (
-                <div className={styles.onebox} key={id}>
+                <div
+                  className={styles.onebox}
+                  key={id}
+                 
+                >
                   <div className={styles.alltime}>
                     <p className={styles.date}>
                       {date} – {time}
                     </p>
                   </div>
                   <h1 className={styles.title}>{title}</h1>
-                  <p className={styles.mentor}>{author}</p>
+                  <p className={styles.mentor}>{author.fname +  " "  + author.lname}</p>
                   <p className={styles.description}>{description}</p>
                   <div className={styles.lower}>
                     <div className={styles.PesronCapacity}>
@@ -237,7 +283,6 @@ export default function Dashboard() {
                     <div className={styles.boxbtn}>
                       <button
                         onClick={() => ButtonChangeStatus(id)}
-                       
                         className={
                           status === "JOIN"
                             ? styles.statusJ

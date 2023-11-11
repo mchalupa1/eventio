@@ -32,9 +32,9 @@ Categories
 
 .alE {
   color: #323c46;
-
   letter-spacing: 1px;
 }
+
 .alE:hover {
   color: #323c46;
 }
@@ -103,6 +103,7 @@ middle part
   gap: 1rem;
 }
 .onebox {
+  cursor: pointer;
   display: grid;
   padding-left: 32px;
   padding-right: 35px;

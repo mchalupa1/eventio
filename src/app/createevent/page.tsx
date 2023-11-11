@@ -16,10 +16,12 @@ import {
   getDocs,
   addDoc,
   updateDoc,
+  DocumentReference,
 } from "firebase/firestore";
 import { auth } from "@/services/firebase/auth";
 import { useForm } from "react-hook-form";
 import { FieldValue } from "firebase/firestore";
+import firebase from "@/services/firebase/app";
 
 type User = { uid: string };
 const useAuthorization = () => {
@@ -58,7 +60,10 @@ const Page = () => {
   const handle = handleSubmit(
     async ({ title, description, date, time, capacity }) => {
       const colRef = await addDoc(usersCollectionRef, {
-        author: user?.uid,
+       //author: {
+       // author: db.doc('users/' + firebase.auth().currentUser.uid),
+     // },
+        authorUID: user?.uid,
         title: title,
         description: description,
         date: date,
