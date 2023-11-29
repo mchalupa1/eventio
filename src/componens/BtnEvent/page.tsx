@@ -2,8 +2,9 @@
 import { auth } from "@/services/firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import BtnJoin from "../Btns/joinbtn";
-import BtnLeave from "../Btns/leavebtn";
+import BtnJoin from "./Btns/joinbtn";
+import BtnLeave from "./Btns/leavebtn";
+import style from "./style.module.css"
 
 type Btn = {
   props: {
@@ -11,7 +12,7 @@ type Btn = {
   };
 };
 
-const BtnEvent = (props: { author: string; joiners: string, idecko:string }) => {
+const BtnEvent = (props: { author: string; joiners: string, idecko:string,capac:string }) => {
   type User = { uid: string };
   const useAuthorization = () => {
     const [user, setUser] = useState<User | undefined>();
@@ -34,11 +35,11 @@ const BtnEvent = (props: { author: string; joiners: string, idecko:string }) => 
   return (
     <div>
       {user?.uid === props.author ? (
-        <button>Edit</button>
+        <button className={style.statusE}>EDIT</button>
       ) : props.joiners.includes(user?.uid as string) ? (
          <BtnLeave uid={user?.uid as string} joiners={props.joiners} id={props.idecko}></BtnLeave>
       ) : (
-        <BtnJoin uid={user?.uid as string} joiners={props.joiners} id={props.idecko}></BtnJoin>
+        <BtnJoin uid={user?.uid as string} joiners={props.joiners} id={props.idecko} capac={props.capac}></BtnJoin>
       )}
     </div>
   );

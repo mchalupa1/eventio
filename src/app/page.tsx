@@ -154,44 +154,14 @@ export default function Dashboard() {
   };
   const user = useAuthorization();
 
-  const status = () => {
-    data.forEach(async (item) => {
-      const docRef = doc(db, "events", item.id);
-      if (item.authorUID == user?.uid) {
-        await updateDoc(docRef, { status: "EDIT" });
-      } else if (user?.uid.includes(item.joiners)) {
-        await updateDoc(docRef, { status: "LEAVE" });
-      } else {
-        await updateDoc(docRef, { status: "JOIN" });
-      }
-    });
-  };
-  status();
-
-  const ButtonChangeStatus = async (id: string) => {
-    const docRef = doc(db, "events", id);
-    const docSnap = await getDoc(docRef);
-    const data = docSnap.data() as Event;
-    if (data.status === "JOIN") {
-      if (data?.joiners && user?.uid) {
-        let updatedJoiners = [...data.joiners];
-
-        if (!data.joiners.includes(user.uid)) {
-          updatedJoiners = [...updatedJoiners, user.uid];
-        }
-        if (docRef) {
-          await updateDoc(docRef, { joiners: updatedJoiners });
-        }
-      }
-      status();
-    } else {
-    }
-  };
-
+ 
   useEffect(() => {
     void fetchData();
   }, []);
   console.log(data[0]?.author);
+
+
+  
   return (
     <section className={styles.all}>
       <Navbar></Navbar>
@@ -279,7 +249,7 @@ export default function Dashboard() {
                       <BtnEvent author={authorUID}
                       joiners={joiners}
                       idecko ={id}
-                      
+                      capac = {capacity}
                       ></BtnEvent>
                     </div>
                   </div>
