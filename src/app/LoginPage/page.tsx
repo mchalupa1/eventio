@@ -35,11 +35,9 @@ const Page = () => {
         </div>
       </div>
       <div className={style.middlePart}>
-        <div className={style.loginBox}>
           {
             LoginBox?<Login></Login>:<Register></Register>
           }
-        </div>
       </div>
     </div>
   );

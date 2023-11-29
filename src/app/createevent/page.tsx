@@ -60,9 +60,9 @@ const Page = () => {
   const handle = handleSubmit(
     async ({ title, description, date, time, capacity }) => {
       const colRef = await addDoc(usersCollectionRef, {
-       //author: {
-       // author: db.doc('users/' + firebase.auth().currentUser.uid),
-     // },
+       author: {
+        author: db.doc('users/' + firebase.auth().currentUser.uid),
+     },
         authorUID: user?.uid,
         title: title,
         description: description,
@@ -71,7 +71,6 @@ const Page = () => {
         capacity: capacity,
         joiners: [],
         status: "",
-        NumberOfJoiners:0,
       });
       const docRef = doc(usersCollectionRef, colRef.id);
       console.log(docRef);

@@ -36,7 +36,7 @@ const Page = () => {
   });
 
   return (
-    <div>
+    <div className={style.box}>
       <p className={style.title}>Sign in to Eventio.</p>
       {errors.email || errors.password ? (
         <p className={style.undertitleE}>
@@ -71,9 +71,6 @@ const Page = () => {
             },
           })}
         ></input>
-        <label className={style.eye} onClick={() => seteye(!eye)}>
-          <Eye></Eye>
-        </label>
         <input type="submit" className={style.btn} value="SIGN IN"></input>
       </form>
     </div>

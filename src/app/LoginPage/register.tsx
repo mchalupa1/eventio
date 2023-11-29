@@ -42,7 +42,7 @@ const Page = () => {
      
   );
   return (
-    <div className={style.cscc}>
+    <div className={style.box}>
       <p className={style.title}>Get started absolutely free.</p>
       {errors.email ||
       errors.repeatPassword ||

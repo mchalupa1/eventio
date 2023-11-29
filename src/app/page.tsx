@@ -32,8 +32,9 @@ import Navbar from "@/componens/Navbar/navbar";
 import { format, formatISO9075 } from "date-fns";
 import { auth } from "@/services/firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
-import { number } from "yup";
+import { number, string } from "yup";
 import { useRouter } from "next/navigation";
+import BtnEvent from "@/componens/BtnEvent/page";
 
 type Event = {
   title: string;
@@ -46,8 +47,7 @@ type Event = {
   joiners: string;
   time: string;
   author: DocumentReference;
-  NumberOfJoiners: number;
-  authorUID:string,
+  authorUID: string;
 };
 
 type User1 = {
@@ -72,31 +72,29 @@ export default function Dashboard() {
   const fetchData = async () => {
     const colRef = collection(db, "events");
     onSnapshot(colRef, async (snapshot) => {
+      const data: Event[] = [];
+      const data2: Event[] = [];
 
-        const data: Event[] = [];
-        const data2: Event[] = [];
+      snapshot.forEach((document) => {
+        // @ts-ignore
 
-         snapshot.forEach((document) => {
-          // @ts-ignore
-
-          const foo = document.data();
-          /*
+        const foo = document.data();
+        /*
           if (foo.author) {
              const foo2 = await getDoc(foo.author)
              console.log(foo2.data())
           }
           */
-          data.push(foo);
-        });
+        data.push(foo);
+      });
 
-        for await (const foo3 of data){
-            const foo2 = await getDoc(foo3.author) 
-            data2.push({...foo3, author:foo2.data()})
-        }
+      for await (const foo3 of data) {
+        const foo2 = await getDoc(foo3.author);
+        data2.push({ ...foo3, author: foo2.data() });
+      }
 
-        setData(data2)
+      setData(data2);
     });
-
   };
 
   const FutureEvents = () => {
@@ -157,14 +155,14 @@ export default function Dashboard() {
   const user = useAuthorization();
 
   const status = () => {
-    data.forEach(async(item) => {
+    data.forEach(async (item) => {
       const docRef = doc(db, "events", item.id);
       if (item.authorUID == user?.uid) {
-        await updateDoc(docRef, { status:"EDIT" });
+        await updateDoc(docRef, { status: "EDIT" });
       } else if (user?.uid.includes(item.joiners)) {
-        await updateDoc(docRef, { status:"LEAVE" });
+        await updateDoc(docRef, { status: "LEAVE" });
       } else {
-        await updateDoc(docRef, { status:"JOIN" });
+        await updateDoc(docRef, { status: "JOIN" });
       }
     });
   };
@@ -184,7 +182,6 @@ export default function Dashboard() {
         if (docRef) {
           await updateDoc(docRef, { joiners: updatedJoiners });
         }
-        
       }
       status();
     } else {
@@ -255,44 +252,35 @@ export default function Dashboard() {
                 joiners,
                 time,
                 author,
-                NumberOfJoiners,
+                authorUID,
               } = onebox;
               return (
-                <div
-                  className={styles.onebox}
-                  key={id}
-                 
-                >
+                <div className={styles.onebox} key={id}>
                   <div className={styles.alltime}>
                     <p className={styles.date}>
-                      {date} – {time}
+                      {format(new Date(date), "LLLL d, y ")} – {time}
                     </p>
                   </div>
                   <h1 className={styles.title}>{title}</h1>
-                  <p className={styles.mentor}>{author.fname +  " "  + author.lname}</p>
+                  <p className={styles.mentor}>
+                    {author.fname + " " + author.lname}
+                  </p>
                   <p className={styles.description}>{description}</p>
                   <div className={styles.lower}>
                     <div className={styles.PesronCapacity}>
                       {" "}
                       <Person></Person>
                       <p className={styles.capacity}>
-                        {NumberOfJoiners} of {capacity}
+                        {joiners.length} of {capacity}
                       </p>
-                      <p></p>
+                      
                     </div>
                     <div className={styles.boxbtn}>
-                      <button
-                        onClick={() => ButtonChangeStatus(id)}
-                        className={
-                          status === "JOIN"
-                            ? styles.statusJ
-                            : status === "LEAVE"
-                            ? styles.statsuL
-                            : styles.statusE
-                        }
-                      >
-                        {status}
-                      </button>
+                      <BtnEvent author={authorUID}
+                      joiners={joiners}
+                      idecko ={id}
+                      
+                      ></BtnEvent>
                     </div>
                   </div>
                 </div>

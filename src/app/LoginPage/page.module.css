@@ -41,21 +41,27 @@
 /*middle part*/
 
 .middlePart {
-  
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
 }
-.loginBox {
-  display: flex;
+.box {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
   flex-direction: column;
-  margin-left: 170px;
+  justify-content: center;
 }
+
 
 .form {
   display: flex;
   flex-direction: column;
-  width: 480px;
-  margin-right: 60px;
-  gap:2rem
+  width: 100%;
+  gap:2rem;
 }
+
+
 .INEmail, .INfirstname ,.INlastname , .INRepeatPassword {
   border: none;
   border-bottom: 1px solid #dae1e7;
@@ -63,6 +69,7 @@
   background: #f2f2f2;
   height: 33px;
   color: #323c46;
+  width: auto;
 }
 .INPassword {
   
@@ -75,19 +82,13 @@
 }
 
 
-.eye{
-  cursor: pointer;
-  display: flex;
-  margin-top: -60px;
-  margin-left: 450px;
-  
-}
 .INPassword::placeholder,
 .INEmail::placeholder
 .INfirstname::placeholder
 .INlastname ::placeholder
 .INRepeatPassword::placeholder {
   color: #c9ced3;
+  
 }
 
 .INEmail:focus,
@@ -108,6 +109,7 @@
   font-style: normal;
   font-weight: 400;
   margin-bottom: -12px;
+  text-align: center;
 }
 
 .undertitle {
@@ -117,6 +119,7 @@
   font-style: normal;
   font-weight: 400;
   margin-bottom: 64px;
+  text-align: center;
 }
 
 .undertitleE {
@@ -126,10 +129,11 @@
   font-style: normal;
   font-weight: 400;
   margin-bottom: 64px;
+  text-align: center;
 }
 
 .btn {
-  margin-top: 64px;
+  margin-top: 20px;
   width: 240px;
   height: 57px;
   border-radius: 4px;
@@ -142,5 +146,14 @@
   font-weight: 600;
   letter-spacing: 1px;
   cursor: pointer;
+  align-items: center;
+  margin: auto;
 }
 
+@media (max-width: 600px) {
+  .box {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    margin-left: 5px;
+  }
+
+}

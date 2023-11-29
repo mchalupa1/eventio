@@ -115,13 +115,13 @@ middle part
   margin: 0px;
 }
 
-.alltime{
+.alltime {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-top: 32px;
 }
-.date{
+.date {
   font-family: "Hind";
   font-style: normal;
   font-size: 14px;
@@ -129,9 +129,8 @@ middle part
   align-items: center;
 }
 
-.time{
+.time {
   padding: 0;
-
 }
 .title {
   font-family: "Hind";
