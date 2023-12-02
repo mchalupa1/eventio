@@ -23,8 +23,10 @@
   border-radius: 50%;
   color: #949ea8;
   cursor: pointer;
+  font-family: "Hind";
 }
 .client {
+  font-family: "Hind";
   text-decoration: none;
   color: #949ea8;
   margin-left: 8px;
@@ -37,4 +39,11 @@
   display: inline;
   margin-left: 8px;
   cursor: pointer;
+}
+
+@media (max-width: 500px) {
+.client{
+  display: none;
+}
+
 }
