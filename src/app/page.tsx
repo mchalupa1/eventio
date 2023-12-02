@@ -1,25 +1,10 @@
 "use client";
-import { Key, cloneElement, useEffect, useId } from "react";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  query,
-  where,
-  getDoc,
-  doc,
-  updateDoc,
-  setDoc,
-  runTransaction,
-  DocumentReference,
-} from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { collection, onSnapshot, getDoc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import Link from "next/link";
 import styles from "./page.module.css";
-import alldata from "./data";
 import Droplist from "../componens/Droplist/index";
-import { use, useRef, useState } from "react";
-import { WebDevelopment } from "@/componens/svg";
 import { WebDevelopment2 } from "@/componens/svg/index2-darkgrip";
 import { WebDevelopment3 } from "@/componens/svg/index3";
 import { WebD1 } from "@/componens/svg2/WebD1";
@@ -27,12 +12,10 @@ import { WebD2 } from "@/componens/svg2/WebD2";
 import { WebD3WebD3 } from "@/componens/svg2/WebD3";
 import Allboxgrip from "./AllBoxGrip/AllboxGrip";
 import { Person } from "@/componens/svg/Person";
-import { Logo } from "@/componens/svg/Logo";
 import Navbar from "@/componens/Navbar/navbar";
 import { format, formatISO9075 } from "date-fns";
 import { auth } from "@/services/firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
-import { number, string } from "yup";
 import { useRouter } from "next/navigation";
 import BtnEvent from "@/componens/BtnEvent/page";
 import Mentor from "@/componens/Mentor";
@@ -41,26 +24,17 @@ type Event = {
   title: string;
   date: string;
   id: string;
-  mentor: string;
   description: string;
   capacity: string;
-  status: string;
   joiners: string;
   time: string;
-  author: DocumentReference;
   authorUID: string;
 };
 
-type User1 = {
-  fname: string;
-  lname: string;
-  id: string;
-};
 export default function Dashboard() {
-  const currentDate = format(new Date(), "yyyy-MM-dd");
-  const currentTime = formatISO9075(new Date(), { representation: "time" });
   const { push } = useRouter();
 
+  /*droplist*/
   const [droplist, setdroplist] = useState(true);
 
   /*list grip changig color*/
@@ -71,71 +45,17 @@ export default function Dashboard() {
 
   const [data, setData] = useState<Event[]>([]);
   const fetchData = async () => {
-    const colRef = collection(db, "events");
-    onSnapshot(colRef, async (snapshot) => {
-      const data: Event[] = [];
-      const data2: Event[] = [];
+    const colRef = collection(db, 'events');
 
-      snapshot.forEach((document) => {
-        // @ts-ignore
-
-        const foo = document.data();
-        /*
-          if (foo.author) {
-             const foo2 = await getDoc(foo.author)
-             console.log(foo2.data())
-          }
-          */
-        data.push(foo);
-      });
-
-      for await (const foo3 of data) {
-        const foo2 = await getDoc(foo3.author);
-        data2.push({ ...foo3, author: foo2.data() });
-      }
-
-      setData(data2);
-    });
-  };
-
-  const FutureEvents = () => {
-    const colRef = collection(db, "events");
     onSnapshot(colRef, (snapshot) => {
-      setData(() => {
-        const data: Event[] = [];
+      const newData: Event[] = [];
 
-        snapshot.forEach((document) => {
-          // @ts-ignore
-          data.push(document.data());
-        });
-
-        const result = data.filter((item) => item.date > currentDate);
-        console.log(data.forEach((item) => item.date));
-
-        return result;
+      snapshot.forEach((doc) => {
+        newData.push(doc.data() as Event);
       });
+      setData(newData);
     });
   };
-
-  const PastEvents = () => {
-    const colRef = collection(db, "events");
-    onSnapshot(colRef, (snapshot) => {
-      setData(() => {
-        const data: Event[] = [];
-
-        snapshot.forEach((document) => {
-          // @ts-ignore
-          data.push(document.data());
-        });
-
-        const result = data.filter((item) => item.date < currentDate);
-
-        return result;
-      });
-    });
-  };
-
-  console.log(data);
 
   type User = { uid: string };
   const useAuthorization = () => {
@@ -144,7 +64,6 @@ export default function Dashboard() {
     useEffect(() => {
       onAuthStateChanged(auth, (userData) => {
         if (userData) {
-          // @ts-ignore
           setUser(userData);
         } else {
           setUser(undefined);
@@ -155,14 +74,10 @@ export default function Dashboard() {
   };
   const user = useAuthorization();
 
- 
   useEffect(() => {
     void fetchData();
   }, []);
-  console.log(data[0]?.author);
 
-
-  
   return (
     <section className={styles.all}>
       <Navbar></Navbar>
@@ -176,10 +91,10 @@ export default function Dashboard() {
                 <WebD3WebD3></WebD3WebD3>
               </a>
             </li>
-            <li className={styles.fE} onClick={FutureEvents}>
+            <li className={styles.fE} >
               FUTURE EVENTS
             </li>
-            <li className={styles.pE} onClick={PastEvents}>
+            <li className={styles.pE} >
               PAST EVENTS
             </li>
           </ul>
@@ -216,13 +131,10 @@ export default function Dashboard() {
                 id,
                 date,
                 title,
-                mentor,
                 description,
                 capacity,
-                status,
                 joiners,
                 time,
-                author,
                 authorUID,
               } = onebox;
               return (
@@ -233,9 +145,6 @@ export default function Dashboard() {
                     </p>
                   </div>
                   <h1 className={styles.title}>{title}</h1>
-                  <p className={styles.mentor}>
-                    {author.fname + " " + author.lname}
-                  </p>
                   <Mentor uid={authorUID}></Mentor>
                   <p className={styles.description}>{description}</p>
                   <div className={styles.lower}>
@@ -245,13 +154,13 @@ export default function Dashboard() {
                       <p className={styles.capacity}>
                         {joiners.length} of {capacity}
                       </p>
-                      
                     </div>
                     <div className={styles.boxbtn}>
-                      <BtnEvent author={authorUID}
-                      joiners={joiners}
-                      idecko ={id}
-                      capac = {capacity}
+                      <BtnEvent
+                        author={authorUID}
+                        joiners={joiners}
+                        idecko={id}
+                        capac={capacity}
                       ></BtnEvent>
                     </div>
                   </div>

@@ -2,7 +2,7 @@
 import { db } from "@/services/firebase/db";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-
+import style from "./style.module.css"
 type User = {
     fname: string;
     lname: string;
@@ -34,7 +34,7 @@ type User = {
 
   return (
     <>
-      <p>{data?.fname} {data?.lname}</p>
+      <p className={style.mentor}>{data?.fname} {data?.lname}</p>
     </>
   );
 }
