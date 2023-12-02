@@ -35,6 +35,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { number, string } from "yup";
 import { useRouter } from "next/navigation";
 import BtnEvent from "@/componens/BtnEvent/page";
+import Mentor from "@/componens/Mentor";
 
 type Event = {
   title: string;
@@ -235,6 +236,7 @@ export default function Dashboard() {
                   <p className={styles.mentor}>
                     {author.fname + " " + author.lname}
                   </p>
+                  <Mentor uid={authorUID}></Mentor>
                   <p className={styles.description}>{description}</p>
                   <div className={styles.lower}>
                     <div className={styles.PesronCapacity}>
