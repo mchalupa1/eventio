@@ -18,7 +18,7 @@ import { auth } from "@/services/firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import BtnEvent from "@/componens/BtnEvent/page";
-import Mentor from "@/componens/Mentor";
+import Mentor from "@/app/Dashboard/even/component/Mentor";
 
 type Event = {
   title: string;
@@ -45,7 +45,7 @@ export default function Dashboard() {
 
   const [data, setData] = useState<Event[]>([]);
   const fetchData = async () => {
-    const colRef = collection(db, 'events');
+    const colRef = collection(db, "events");
 
     onSnapshot(colRef, (snapshot) => {
       const newData: Event[] = [];
@@ -91,12 +91,8 @@ export default function Dashboard() {
                 <WebD3WebD3></WebD3WebD3>
               </a>
             </li>
-            <li className={styles.fE} >
-              FUTURE EVENTS
-            </li>
-            <li className={styles.pE} >
-              PAST EVENTS
-            </li>
+            <li className={styles.fE}>FUTURE EVENTS</li>
+            <li className={styles.pE}>PAST EVENTS</li>
           </ul>
           <ul className={styles.allGrip}>
             <li
