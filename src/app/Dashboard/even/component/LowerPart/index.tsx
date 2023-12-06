@@ -13,7 +13,7 @@ export default function LowerPart(props:{joiners:string, capacity:string, author
           {props.joiners.length} of {props.capacity}
         </p>
       </div>
-      <div className={style.boxbtn}>
+      <div>
         <BtnEvent
           author={props.authorUID}
           joiners={props.joiners}

@@ -1,266 +1,28 @@
-/*
+.allBoxs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+  flex: 1;
+  gap: 1rem;
+}
+.onebox {
+  cursor: pointer;
+  display: grid;
+  padding-left: 32px;
+  padding-right: 35px;
+  background: #ffffff;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
+  border-radius: 2px;
+  height: 296px;
+  grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
+  margin: 0px;
+}
 
-/*
-All on page
-*/
-.all {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-  }
-  
-  /*
-  Categories
-  */
-  .categories {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-  
-  .allEV {
-    display: flex;
-    list-style-type: none;
-    gap: 1rem;
-    font-family: "Hind";
-    font-size: 12px;
-    padding: 0;
-    cursor: pointer;
-  }
-  
-  .alE {
-    color: #323c46;
-    letter-spacing: 1px;
-  }
-  
-  .alE:hover {
-    color: #323c46;
-  }
-  
-  .fE {
-    color: #a9aeb4;
-  }
-  .fE:hover {
-    color: #323c46;
-  }
-  
-  .pE {
-    color: #a9aeb4;
-  }
-  .pE:hover {
-    color: #323c46;
-  }
-  
-  .categorisShow {
-    display: none;
-    font-family: "Hind";
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: #a9aeb4;
-  }
-  
-  .show {
-    display: none;
-  }
-  
-  .allGrip {
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    gap: 1rem;
-    cursor: pointer;
-  }
-  /*
-  All boxs
-  /*
-  middle part
-  */
-  
-  .middlePart {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    max-width: 1500px;
-    width: 80%;
-    padding: 20px;
-    flex: 1;
-    margin: 50px 60px 16px 60px;
-  }
-  
-  /*@media (min-width: 1500px) {
-    .middlePart {
-      max-width: 1500px;
-    }
-  }
-  
-  */
+/*media*/
+@media (max-width: 500px) {
   .allBoxs {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
-    flex: 1;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
   }
   .onebox {
-    cursor: pointer;
-    display: grid;
-    padding-left: 32px;
-    padding-right: 35px;
-    background: #ffffff;
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
-    border-radius: 2px;
-    height: 296px;
-    grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
-    margin: 0px;
+    padding-left: 35px;
   }
-  
-  .alltime {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 32px;
-  }
-  .date {
-    font-family: "Hind";
-    font-style: normal;
-    font-size: 14px;
-    color: #cacdd0;
-    align-items: center;
-  }
-  
-  .time {
-    padding: 0;
-  }
-  .title {
-    font-family: "Hind";
-    font-style: normal;
-    font-size: 22px;
-    color: #323c46;
-    margin: 10px 0px 0px;
-  }
-  
-  
-  .description {
-    font-family: "Hind";
-    font-style: normal;
-    font-size: 16px;
-    color: #949ea8;
-    margin: 32px 0px 0px;
-    padding-right: 130px;
-  }
-  
-  /*
-  LowerPart in box
-  */
-  
-  .lower {
-    display: flex;
-    margin: 0px 0px 32px;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: 5px;
-  }
-  .capacity {
-    color: #949ea8;
-    font-family: "Hind";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    margin-left: 5px;
-  }
-  
-  
-  .PesronCapacity {
-    display: flex;
-    align-items: center;
-  }
-  /*
-  Create
-  */
-  
-  .create {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .plus {
-    margin-right: 32px;
-    margin-bottom: 35px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    height: 56px;
-    width: 56px;
-    background: #323c46;
-    box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.15);
-    border-radius: 50%;
-    color: #ffffff;
-  
-    font-size: 40px;
-    font-weight: bold;
-  }
-  
-  .plus:hover {
-    background-color: #565d5a;
-  }
-  
-  /*media*/
-  @media (max-width: 500px) {
-  
-    
-    .allBoxs {
-      grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
-    }
-    .onebox {
-      padding-left: 35px;
-    }
-    .plus {
-      margin-bottom: 16px;
-    }
-    .client {
-      display: none;
-    }
-    .scroll {
-      padding-left: 1px;
-    }
-    .show {
-      padding-left: 1px;
-    }
-    .user {
-      margin-right: 35.5px;
-    }
-    .description {
-      padding-right: 65px;
-    }
-  
-    /*Categoris*/
-    .fE {
-      color: #a9aeb4;
-      display: none;
-    }
-  
-    .pE {
-      color: #a9aeb4;
-      display: none;
-    }
-    .categorisShow {
-      display: flex;
-      margin-right: -11px;
-    }
-  
-    .categories {
-      margin-left: 35px;
-    }
-    .alE {
-      display: flex;
-    }
-    .show {
-      display: inline;
-      align-content: center;
-      margin-left: 3px;
-    }
-  }
-  
+}
