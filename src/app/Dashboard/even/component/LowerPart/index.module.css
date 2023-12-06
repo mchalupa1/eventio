@@ -1,0 +1,21 @@
+.lower {
+  display: flex;
+  margin: 0px 0px 32px;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 5px;
+}
+
+.capacity {
+  color: #949ea8;
+  font-family: "Hind";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.PesronCapacity {
+  display: flex;
+  align-items: center;
+}

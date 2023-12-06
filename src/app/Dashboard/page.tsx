@@ -1,10 +1,12 @@
 "use client";
-
+import EventsList from "./even";
 
 const Page = () => {
 
   return (
-    <h1>test</h1>
+     <>
+     <EventsList></EventsList>
+     </>
   );
 };
 

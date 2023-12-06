@@ -1,14 +1,17 @@
 "use client";
 import BtnEvent from "@/componens/BtnEvent/page";
 import Mentor from "@/app/Dashboard/even/component/Mentor";
-import { Person } from "@/componens/svg/Person";
-import styles from "./page.module.css";
+import DateTime from "./component/DateTime"
+import Title from "./component/Title"
+import styles from "./index.module.css";
 import { auth } from "@/services/firebase/auth";
 import { db } from "@/services/firebase/db";
-import { format } from "date-fns";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import Description from "./component/Description";
+import LowerPart from "./component/LowerPart";
+
 type Event = {
   title: string;
   date: string;
@@ -20,7 +23,11 @@ type Event = {
   authorUID: string;
 };
 
-export default function Dashboard() {
+type User = { uid: string };
+
+export default function EventsList() {
+
+  /*Data fetching*/ 
   const [data, setData] = useState<Event[]>([]);
   const fetchData = async () => {
     const colRef = collection(db, "events");
@@ -35,7 +42,7 @@ export default function Dashboard() {
     });
   };
 
-  type User = { uid: string };
+ /*Authorizace*/
   const useAuthorization = () => {
     const [user, setUser] = useState<User | undefined>();
 
@@ -52,6 +59,7 @@ export default function Dashboard() {
   };
   const user = useAuthorization();
 
+  /*--*/ 
   useEffect(() => {
     void fetchData();
   }, []);
@@ -73,31 +81,11 @@ export default function Dashboard() {
             } = onebox;
             return (
               <div className={styles.onebox} key={id}>
-                <div className={styles.alltime}>
-                  <p className={styles.date}>
-                    {format(new Date(date), "LLLL d, y ")} – {time}
-                  </p>
-                </div>
-                <h1 className={styles.title}>{title}</h1>
+                <DateTime date={date} time={time}></DateTime>
+                <Title title={title}></Title>
                 <Mentor uid={authorUID}></Mentor>
-                <p className={styles.description}>{description}</p>
-                <div className={styles.lower}>
-                  <div className={styles.PesronCapacity}>
-                    {" "}
-                    <Person></Person>
-                    <p className={styles.capacity}>
-                      {joiners.length} of {capacity}
-                    </p>
-                  </div>
-                  <div className={styles.boxbtn}>
-                    <BtnEvent
-                      author={authorUID}
-                      joiners={joiners}
-                      idecko={id}
-                      capac={capacity}
-                    ></BtnEvent>
-                  </div>
-                </div>
+                <Description description={description}></Description>
+                <LowerPart joiners={joiners} capacity={capacity} authorUID={authorUID} idecko={id} ></LowerPart>
               </div>
             );
           })}

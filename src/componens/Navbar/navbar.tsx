@@ -6,31 +6,34 @@ import { Logo } from "@/componens/svg/Logo";
 import { use, useRef, useState, useEffect, cloneElement } from "react";
 import Dropmenu from "../Dropdownmenu/index";
 import { auth } from "@/services/firebase/auth";
-import { getDoc, collection, doc } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 
-type User = { fname: String; lname: String; email: String , a:String};
+type User = { fname: String; lname: String; email: String; a: String };
 const useAuthorization = () => {
   const [user, setUser] = useState<User | undefined>();
 
+  const fetchuser = async (uid: string): Promise<User | undefined> => {
+    const docRef = doc(db, "users", uid);
+    const docSnap = await getDoc(docRef);
+
+    return docSnap.data() as User;
+  };
+
   useEffect(() => {
-    onAuthStateChanged(auth, (userData) => {
-      if (userData) {
-        // @ts-ignore
-        setUser(userData);
-        fetchuser(userData.uid);
-        console.log(userData);
-      } else {
-        setUser(undefined);
-      }
-    });
-    const fetchuser = async (uid: string): Promise<User | undefined> => {
-      const docRef = doc(db, "users", uid);
-      const docSnap = await getDoc(docRef);
-      // @ts-ignore
-      setUser(docSnap.data());
-      return docSnap.data() as User;
+    const fetchData = async () => {
+      onAuthStateChanged(auth, async (userData) => {
+        if (userData) {
+          const userFromFetch = await fetchuser(userData.uid);
+          setUser(userFromFetch);
+          console.log(userFromFetch);
+        } else {
+          setUser(undefined);
+        }
+      });
     };
+
+    fetchData();
   }, []);
 
   return user;
@@ -51,10 +54,11 @@ export default function Navbar() {
           <Logo></Logo>
         </a>
         <div className={styles.user}>
-          <button className={styles.Icon}>{user?.fname?.charAt(0)}{user?.lname?.charAt(0)}</button>
+          <button className={styles.Icon}>
+            {user ? user.fname.charAt(0) + user.lname.charAt(0) : "..."}
+          </button>
           <a href="/" className={styles.client}>
-            {user?.fname + " "}
-            {user?.lname}
+            {user ? user.fname + " " + user.lname : "Loading..."}
           </a>
           <a className={styles.scroll} onClick={Drop}>
             <WebDevelopment></WebDevelopment>
