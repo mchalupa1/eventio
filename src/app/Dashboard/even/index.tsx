@@ -1,5 +1,4 @@
 "use client";
-import BtnEvent from "@/componens/BtnEvent/page";
 import Mentor from "@/app/Dashboard/even/component/Mentor";
 import DateTime from "./component/DateTime"
 import Title from "./component/Title"
@@ -11,7 +10,6 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Description from "./component/Description";
 import LowerPart from "./component/LowerPart";
-
 type Event = {
   title: string;
   date: string;
@@ -25,8 +23,8 @@ type Event = {
 
 type User = { uid: string };
 
-export default function EventsList() {
-
+export default function EventsList(props:{grip:boolean}) {
+ 
   /*Data fetching*/ 
   const [data, setData] = useState<Event[]>([]);
   const fetchData = async () => {
@@ -63,10 +61,8 @@ export default function EventsList() {
   useEffect(() => {
     void fetchData();
   }, []);
-
+  
   return (
-    <div className={styles.all}>
-      <div className={styles.middlePart}>
         <div className={styles.allBoxs}>
           {data?.map((onebox) => {
             const {
@@ -80,7 +76,7 @@ export default function EventsList() {
               authorUID,
             } = onebox;
             return (
-              <div className={styles.onebox} key={id}>
+              <div className={(styles.onebox)} key={id}>
                 <DateTime date={date} time={time}></DateTime>
                 <Title title={title}></Title>
                 <Mentor uid={authorUID}></Mentor>
@@ -90,7 +86,6 @@ export default function EventsList() {
             );
           })}
         </div>
-      </div>
-    </div>
+      
   );
 }
