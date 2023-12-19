@@ -20,8 +20,6 @@ import {
 } from "firebase/firestore";
 import { auth } from "@/services/firebase/auth";
 import { useForm } from "react-hook-form";
-import { FieldValue } from "firebase/firestore";
-import firebase from "@/services/firebase/app";
 
 type User = { uid: string };
 const useAuthorization = () => {
