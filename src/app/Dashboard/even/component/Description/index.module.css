@@ -6,3 +6,11 @@
     margin: 32px 0px 0px;
     padding-right: 130px;
   }
+
+  @media (max-width: 500px) {
+    .description {
+      padding-right: 65px;
+    }
+  
+  }
+  

@@ -32,12 +32,5 @@ export function Data2({}) {
     };
 
     void fetchData(); 
-
-    
-    return () => {
-      
-    };
   }, []); 
-
-  return data;
 }
