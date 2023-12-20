@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import BtnJoin from "./Btns/joinbtn";
 import BtnLeave from "./Btns/leavebtn";
-import style from "./style.module.css";
+import style from "./page.module.css";
 
 const BtnEvent = (props: {
   author: string;

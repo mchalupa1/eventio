@@ -4,32 +4,18 @@ import DateTime from "./component/GridCard/DateTime";
 import Title from "./component/GridCard/Title";
 import styles from "./index.module.css";
 import { auth } from "@/services/firebase/auth";
-import { db } from "@/services/firebase/db";
 import { onAuthStateChanged } from "firebase/auth";
-import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Description from "./component/GridCard/Description";
 import LowerPart from "./component/GridCard/LowerPart";
-import { Event } from "../page";
-
+import { CardContext } from "../componens/Context/Data";
+import { useThemeContext } from "../componens/Context/Filter/index";
+import GridCard from "./component/GridCard/page";
 type User = { uid: string };
 
 export default function EventsList(props: { grip: boolean }) {
-  /*Data fetching*/
-  const [data, setData] = useState<Event[]>([]);
-  const fetchData = async () => {
-    const colRef = collection(db, "events");
-
-    onSnapshot(colRef, (snapshot) => {
-      const newData: Event[] = [];
-
-      snapshot.forEach((doc) => {
-        newData.push(doc.data() as Event);
-      });
-      setData(newData);
-    });
-  };
-
+  /*Data providing*/
+  const {grip} = useThemeContext();
   /*Authorizace*/
   const useAuthorization = () => {
     const [user, setUser] = useState<User | undefined>();
@@ -47,39 +33,11 @@ export default function EventsList(props: { grip: boolean }) {
   };
   const user = useAuthorization();
 
-  /*--*/
-  useEffect(() => {
-    void fetchData();
-  }, []);
-
   return (
     <div className={styles.allBoxs}>
-      {data?.map((onebox) => {
-        const {
-          id,
-          date,
-          title,
-          description,
-          capacity,
-          joiners,
-          time,
-          authorUID,
-        } = onebox;
-        return (
-          <div className={styles.onebox} key={id}>
-            <DateTime date={date} time={time}></DateTime>
-            <Title title={title}></Title>
-            <Mentor uid={authorUID}></Mentor>
-            <Description description={description}></Description>
-            <LowerPart
-              joiners={joiners}
-              capacity={capacity}
-              authorUID={authorUID}
-              idecko={id}
-            ></LowerPart>
-          </div>
-        );
-      })}
+      {
+        grip? <GridCard></GridCard>:undefined
+      }
     </div>
   );
 }

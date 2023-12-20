@@ -8,7 +8,7 @@ import CreateBtn from "./componens/CreateBtn";
 import Head from "./componens/Head";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
-import { ThemeContext } from "./componens/Context/Data";
+import { ThemeContext } from "./componens/Context/Filter";
 
 export type Event = {
   title: string;
@@ -22,7 +22,7 @@ export type Event = {
 };
 
 export default function Page() {
-  /*Data fetching*/ 
+  /*Data fetching*/
   const [data, setData] = useState<Event[]>([]);
   const [OriginalData, setoRData] = useState<Event[]>([]);
   useEffect(() => {
