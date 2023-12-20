@@ -7,7 +7,7 @@ import { WebD1 } from "@/componens/svg2/WebD1";
 import { WebD2 } from "@/componens/svg2/WebD2";
 import { WebDevelopment3 } from "@/componens/svg/index3";
 import Droplist from "@/componens/Droplist";
-import { useThemeContext } from "../../page";
+import { useThemeContext } from "../Context/Data/index";
 import { format } from "date-fns";
 
 export default function Head() {

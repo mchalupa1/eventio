@@ -3,20 +3,12 @@ import Allboxgrip from "../AllBoxGrip/AllboxGrip";
 import Navbar from "@/componens/Navbar/navbar";
 import EventsList from "./even";
 import style from "./page.module.css";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CreateBtn from "./componens/CreateBtn";
 import Head from "./componens/Head";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
-
-type ThemeContext = {
-  data: Event[];
-  setData: React.Dispatch<React.SetStateAction<Event[]>>;
-  OriginalData: Event[];
-  setoRData: React.Dispatch<React.SetStateAction<Event[]>>;
-  grip: boolean;
-  setgrip: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import { ThemeContext } from "./componens/Context/Data";
 
 export type Event = {
   title: string;
@@ -28,17 +20,6 @@ export type Event = {
   time: string;
   authorUID: string;
 };
-
-/*ContextProviding for Data*/
-export const ThemeContext = createContext<ThemeContext | undefined>(undefined);
-
-export function useThemeContext() {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error("useThemeContext must be used within a ThemeProvider");
-  }
-  return context;
-}
 
 export default function Page() {
   const [data, setData] = useState<Event[]>([]);
