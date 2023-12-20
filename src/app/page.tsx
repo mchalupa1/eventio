@@ -18,7 +18,7 @@ import { auth } from "@/services/firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import BtnEvent from "@/componens/BtnEvent/page";
-import Mentor from "@/app/Dashboard/even/component/Mentor";
+import Mentor from "@/app/Dashboard/even/component/GridCard/Mentor";
 
 type Event = {
   title: string;

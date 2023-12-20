@@ -1,31 +1,21 @@
 "use client";
-import Mentor from "@/app/Dashboard/even/component/Mentor";
-import DateTime from "./component/DateTime"
-import Title from "./component/Title"
+import Mentor from "@/app/Dashboard/even/component/GridCard/Mentor";
+import DateTime from "./component/GridCard/DateTime";
+import Title from "./component/GridCard/Title";
 import styles from "./index.module.css";
 import { auth } from "@/services/firebase/auth";
 import { db } from "@/services/firebase/db";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import Description from "./component/Description";
-import LowerPart from "./component/LowerPart";
-type Event = {
-  title: string;
-  date: string;
-  id: string;
-  description: string;
-  capacity: string;
-  joiners: string;
-  time: string;
-  authorUID: string;
-};
+import Description from "./component/GridCard/Description";
+import LowerPart from "./component/GridCard/LowerPart";
+import { Event } from "../page";
 
 type User = { uid: string };
 
-export default function EventsList(props:{grip:boolean}) {
- 
-  /*Data fetching*/ 
+export default function EventsList(props: { grip: boolean }) {
+  /*Data fetching*/
   const [data, setData] = useState<Event[]>([]);
   const fetchData = async () => {
     const colRef = collection(db, "events");
@@ -40,7 +30,7 @@ export default function EventsList(props:{grip:boolean}) {
     });
   };
 
- /*Authorizace*/
+  /*Authorizace*/
   const useAuthorization = () => {
     const [user, setUser] = useState<User | undefined>();
 
@@ -57,35 +47,39 @@ export default function EventsList(props:{grip:boolean}) {
   };
   const user = useAuthorization();
 
-  /*--*/ 
+  /*--*/
   useEffect(() => {
     void fetchData();
   }, []);
-  
+
   return (
-        <div className={styles.allBoxs}>
-          {data?.map((onebox) => {
-            const {
-              id,
-              date,
-              title,
-              description,
-              capacity,
-              joiners,
-              time,
-              authorUID,
-            } = onebox;
-            return (
-              <div className={(styles.onebox)} key={id}>
-                <DateTime date={date} time={time}></DateTime>
-                <Title title={title}></Title>
-                <Mentor uid={authorUID}></Mentor>
-                <Description description={description}></Description>
-                <LowerPart joiners={joiners} capacity={capacity} authorUID={authorUID} idecko={id} ></LowerPart>
-              </div>
-            );
-          })}
-        </div>
-      
+    <div className={styles.allBoxs}>
+      {data?.map((onebox) => {
+        const {
+          id,
+          date,
+          title,
+          description,
+          capacity,
+          joiners,
+          time,
+          authorUID,
+        } = onebox;
+        return (
+          <div className={styles.onebox} key={id}>
+            <DateTime date={date} time={time}></DateTime>
+            <Title title={title}></Title>
+            <Mentor uid={authorUID}></Mentor>
+            <Description description={description}></Description>
+            <LowerPart
+              joiners={joiners}
+              capacity={capacity}
+              authorUID={authorUID}
+              idecko={id}
+            ></LowerPart>
+          </div>
+        );
+      })}
+    </div>
   );
 }

@@ -22,6 +22,7 @@ export type Event = {
 };
 
 export default function Page() {
+  /*Data fetching*/ 
   const [data, setData] = useState<Event[]>([]);
   const [OriginalData, setoRData] = useState<Event[]>([]);
   useEffect(() => {
