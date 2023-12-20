@@ -1,7 +1,7 @@
 "use client";
 import { db } from "@/services/firebase/db";
 import { doc, updateDoc } from "firebase/firestore";
-import style from "../style.module.css";
+import style from "../page.module.css";
 
 const BtnJoin = (props: {
   uid: string;

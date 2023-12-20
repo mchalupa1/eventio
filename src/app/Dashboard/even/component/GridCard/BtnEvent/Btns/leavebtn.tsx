@@ -1,7 +1,7 @@
 "use client";
 import { db } from "@/services/firebase/db";
 import { doc, updateDoc } from "firebase/firestore";
-import style from "../style.module.css"
+import style from "../page.module.css"
 
 const BtnLeave = (props: { uid: string; joiners: string; id: string }) => {
   const ButtonChange = async () => {
