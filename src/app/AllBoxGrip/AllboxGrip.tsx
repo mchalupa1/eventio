@@ -11,13 +11,11 @@ const Allbox = () => {
             onebox;
           return (
             <div className={style.onebox} key={id}>
-              <h1 className={style.title}>{title}</h1>
-              <p className={style.description}>{description}</p>
-              <p className={style.mentor}>{mentor}</p>
               <p className={style.date}>{date}</p>
-              <div className={style.lower}>
+              <h1 className={style.title}>{title}</h1>
+              <p className={style.mentor}>{mentor}</p>
+              <p className={style.description}>{description}</p>
                 <p className={style.capacity}>{capacity}</p>
-              </div>
                 <div className={style.boxbtn}>
                   <button
                     key={id}

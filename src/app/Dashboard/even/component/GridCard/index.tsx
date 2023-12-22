@@ -1,18 +1,17 @@
 "use client";
-import style from "./page.module.css";
+import style from "./index.module.css";
 import DateTime from "./DateTime";
 import Description from "./Description";
 import LowerPart from "./LowerPart";
 import Mentor from "./Mentor";
 import Title from "./Title";
-import { useThemeContext } from "@/app/Dashboard/componens/Context/Filter";
+import { Event } from "@/app/Dashboard/page";
 
-export default function GridCard() {
-  const { data } = useThemeContext();
+export default function GridCard(props:{data:Event[]}) {
   
   return (
     <>
-      {data.map((item) => {
+      {props.data.map((item) => {
         const {
           id,
           date,

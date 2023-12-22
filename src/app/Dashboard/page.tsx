@@ -55,11 +55,7 @@ export default function Page() {
         <Navbar></Navbar>
         <div className={style.middlePart}>
           <Head></Head>
-          {grip ? (
-            <EventsList grip={grip}></EventsList>
-          ) : (
-            <Allboxgrip></Allboxgrip>
-          )}
+            <EventsList></EventsList>  
         </div>
         <CreateBtn></CreateBtn>
       </ThemeContext.Provider>
