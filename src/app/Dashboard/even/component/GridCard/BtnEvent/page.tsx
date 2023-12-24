@@ -6,7 +6,7 @@ import BtnJoin from "./Btns/joinbtn";
 import BtnLeave from "./Btns/leavebtn";
 import style from "./page.module.css";
 
-const BtnEvent = (props: {
+const BtnEvent= (props: {
   author: string;
   joiners: string;
   idecko: string;

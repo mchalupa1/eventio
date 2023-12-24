@@ -7,6 +7,17 @@
     padding-right: 130px;
   }
 
+  .description2 {
+    font-family: "Hind";
+    font-style: normal;
+    font-size: 16px;
+    color: #949ea8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    order: 2;
+    
+  }
   @media (max-width: 500px) {
     .description {
       padding-right: 65px;
@@ -14,3 +25,17 @@
   
   }
   
+  @media (max-width:1090px){  
+    .description2{
+      grid-area: main;
+      margin-top: 1px;
+      
+    }
+  }
+
+  @media (max-width:420px){
+    .description2{
+      margin-right: 87px;
+    }
+   
+  }

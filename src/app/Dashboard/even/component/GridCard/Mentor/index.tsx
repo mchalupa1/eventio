@@ -8,7 +8,7 @@ type User = {
     lname: string;
   };
   
-  export default function Mentor(props: { uid: string }) {
+  export default function Mentor(props: { uid: string,grip:boolean }) {
     const [data, setData] = useState<User | null>(null); 
     const fetchData = async () => {
       try {
@@ -34,7 +34,7 @@ type User = {
 
   return (
     <>
-      <p className={style.mentor}>{data?.fname} {data?.lname}</p>
+      <p className={props.grip? style.mentor:style.mentor2}>{data?.fname} {data?.lname}</p>
     </>
   );
 }

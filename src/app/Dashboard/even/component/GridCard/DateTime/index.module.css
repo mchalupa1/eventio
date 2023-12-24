@@ -1,14 +1,42 @@
 .alltime {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 32px;
 }
 
 .date {
-    font-family: "Hind";
-    font-style: normal;
-    font-size: 14px;
-    color: #cacdd0;
-    align-items: center;
+  font-family: "Hind";
+  font-style: normal;
+  font-size: 14px;
+  color: #cacdd0;
+  align-items: center;
+}
+
+.date2 {
+  font-family: "Hind";
+  font-style: normal;
+  font-size: 14px;
+  color: #cacdd0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alltime2 {
+  order: 4;
+}
+
+@media (max-width: 1250px) {
+  .date2 {
+    padding-left: 25px;
   }
+}
+
+@media (max-width: 1090px) {
+  .date2 {
+    grid-area: date;
+    margin-top: 20px;
+    padding-left: 0px;
+  }
+}

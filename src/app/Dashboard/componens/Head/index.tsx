@@ -70,7 +70,7 @@ export default function Head() {
 
   return (
     <>
-      <main className={style.categories}>
+      <div className={style.categories}>
         <ul className={style.allEV}>
           <li className={style.categorisShow}>SHOW:</li>
           <li className={style.alE} onClick={handleAllEvents}>
@@ -114,7 +114,7 @@ export default function Head() {
             )}
           </li>
         </ul>
-      </main>
+      </div>
       {droplist === false ? <Droplist></Droplist> : droplist}
     </>
   );

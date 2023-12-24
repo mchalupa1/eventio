@@ -1,8 +1,23 @@
 .title {
-    font-family: "Hind";
-    font-style: normal;
-    font-size: 22px;
-    color: #323c46;
-    margin: 10px 0px 0px;
+  font-family: "Hind";
+  font-style: normal;
+  font-size: 22px;
+  color: #323c46;
+  margin: 10px 0px 0px;
+}
+
+.title2 {
+  font-family: "Hind";
+  font-style: normal;
+  font-size: 18px;
+  color: #323c46;
+  padding-left: 32px;
+  order: 1;
+}
+
+@media (max-width: 1090px) {
+  .title2 {
+    grid-area: header;
+    padding-left: 0px;
   }
-  
+}

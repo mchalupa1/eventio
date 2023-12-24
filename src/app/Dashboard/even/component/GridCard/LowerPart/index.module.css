@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: space-between;
   padding-right: 5px;
+  order: 4 ;
 }
 
 .capacity {

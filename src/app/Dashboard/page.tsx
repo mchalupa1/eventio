@@ -48,7 +48,7 @@ export default function Page() {
   const [grip, setgrip] = useState(true);
 
   return (
-    <div className={style.all}>
+    <main className={style.all}>
       <ThemeContext.Provider
         value={{ data, setData, OriginalData, setoRData, grip, setgrip }}
       >
@@ -59,6 +59,6 @@ export default function Page() {
         </div>
         <CreateBtn></CreateBtn>
       </ThemeContext.Provider>
-    </div>
+    </main>
   );
 }

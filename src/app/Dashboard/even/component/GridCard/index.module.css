@@ -1,19 +1,64 @@
-.onebox {
-    cursor: pointer;
+.allBoxs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+  flex: 1;
+  gap: 1rem;
+}
+
+
+.GridOneBox {
+  cursor: pointer;
+  display: grid;
+  padding-left: 32px;
+  padding-right: 35px;
+  background: #ffffff;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
+  border-radius: 2px;
+  height: 296px;
+  grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
+  margin: 0px;
+}
+
+.RowOneBox {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 0.7fr 0.8fr 0.5fr 0.45fr;
+  align-items: center;
+  background: #ffffff;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
+  border-radius: 2px;
+  height: 72px;
+  margin-bottom: 16px;
+  align-content: center;
+}
+
+/*media*/
+@media (max-width: 500px) {
+  .GridOneBox {
+    padding-left: 35px;
+  }
+  .allBoxs {
+    grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
+  }
+}
+
+@media (max-width: 1250px) {
+  .RowOneBox {
+    grid-template-columns: 1.5fr 1.5fr 1fr 0.5fr 0.55fr;
+  }
+}
+
+@media (max-width: 1090px) {
+  .RowOneBox {
     display: grid;
-    padding-left: 32px;
-    padding-right: 35px;
-    background: #ffffff;
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
-    border-radius: 2px;
-    height: 296px;
-    grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
-    margin: 0px;
+    height: 136px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 1fr;
+    padding: 8px;
+    padding-left: 35px;
+    grid-template-areas:
+      "header header"
+      "main main"
+      "date sidebar"
+      "capacity sidebar";
   }
-  
-  /*media*/
-  @media (max-width: 500px) {
-    .onebox {
-      padding-left: 35px;
-    }
-  }
+}
