@@ -2,13 +2,14 @@
 import style from "./index.module.css";
 import DateTime from "./DateTime";
 import Description from "./Description";
-import LowerPart from "./LowerPart";
+import LowerPartGrip from "./LowerPart";
 import Mentor from "./Mentor";
 import Title from "./Title";
 import { Event } from "@/app/Dashboard/page";
+import LowerPartRow from "./LowerPart/LowerPartRow";
 export default function GridCard(props: { data: Event[]; grip: boolean }) {
   return (
-    <div className={props.grip === false ? style.allBoxsgrip:style.allBoxs}>
+    <div className={props.grip === false ? style.allBoxsgrip : style.allBoxs}>
       {props.data.map((item) => {
         const {
           id,
@@ -32,13 +33,23 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
               grip={props.grip}
               description={description}
             ></Description>
-            <LowerPart
-              grip={props.grip}
-              joiners={joiners}
-              capacity={capacity}
-              authorUID={authorUID}
-              idecko={id}
-            ></LowerPart>
+            {props.grip ? (
+              <LowerPartGrip
+                grip={props.grip}
+                joiners={joiners}
+                capacity={capacity}
+                authorUID={authorUID}
+                idecko={id}
+              ></LowerPartGrip>
+            ) : (
+              <LowerPartRow
+                grip={props.grip}
+                joiners={joiners}
+                capacity={capacity}
+                authorUID={authorUID}
+                idecko={id}
+              ></LowerPartRow>
+            )}
           </div>
         );
       })}

@@ -2,6 +2,7 @@
     display: flex;
     justify-content: flex-end;
   }
+
   
   .plus {
     margin-right: 32px;
@@ -19,4 +20,8 @@
     color: #ffffff;
     font-size: 40px;
     font-weight: bold;
+  }
+
+  .plus:hover{
+    background-color:rgba(86, 93, 90, 1);
   }

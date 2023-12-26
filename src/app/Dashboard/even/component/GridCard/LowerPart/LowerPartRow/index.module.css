@@ -1,0 +1,38 @@
+.capacity {
+  color: #949ea8;
+  font-family: "Hind";
+  font-style: normal;
+  font-size: 14px;
+  order: 5;
+}
+.boxbtn {
+  padding-right: 30px;
+  order: 6;
+}
+
+@media (max-width: 1250px) {
+  .capacity {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 1090px) {
+  .capacity {
+    grid-area: capacity;
+    margin-top: 1px;
+  }
+  .boxbtn{
+    grid-area: sidebar;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width:420px){
+    .boxbtn{
+    margin-right: -29px;
+    }
+  }
+

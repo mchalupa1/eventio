@@ -1,3 +1,64 @@
-.allEv{
-    
+.categories {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.allEV {
+  display: flex;
+  list-style-type: none;
+  gap: 1rem;
+  font-family: "Hind";
+  font-size: 12px;
+  padding: 0;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.alE {
+  color: #a9aeb4;
+}¨
+.fEpcik{
+  color:#323c46;
+}
+.alEpick{
+  color:#323c46
+}
+.pEpick{
+  color:#323c46;
+}
+
+.alE:hover {
+  color: #323c46;
+}
+
+.fE {
+  color: #a9aeb4;
+}
+.fE:hover {
+  color: #323c46;
+}
+
+.pE {
+  color: #a9aeb4;
+}
+.pE:hover {
+  color: #323c46;
+}
+
+.categorisShow {
+  display: none;
+  font-family: "Hind";
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #a9aeb4;
+}
+
+.allGrip {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  gap: 1rem;
+  cursor: pointer;
 }

@@ -46,7 +46,6 @@ export default function Navbar() {
   };
 
   const user = useAuthorization();
-
   return (
     <>
       <div className={styles.navbar}>

@@ -10,6 +10,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import { ThemeContext } from "./componens/Context/Filter";
 
+
 export type Event = {
   title: string;
   date: string;
@@ -23,8 +24,8 @@ export type Event = {
 
 export default function Page() {
   /*Data fetching*/
-  const [data, setData] = useState<Event[]>([]);
-  const [OriginalData, setoRData] = useState<Event[]>([]);
+  const [data, setData] = useState<Event[] >([]);
+  const [OriginalData, setoRData] = useState<Event[]  >([]);
   useEffect(() => {
     const fetchData = async () => {
       const colRef = collection(db, "events");
@@ -54,8 +55,8 @@ export default function Page() {
       >
         <Navbar></Navbar>
         <div className={style.middlePart}>
-          <Head></Head>
-            <EventsList></EventsList>  
+          <Head></Head> 
+            <EventsList></EventsList>
         </div>
         <CreateBtn></CreateBtn>
       </ThemeContext.Provider>

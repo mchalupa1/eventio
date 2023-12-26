@@ -37,6 +37,7 @@ export default function Head() {
   const handleFilterFutureEvents = () => {
     const futureEvents = FilterFutureEvents();
     setData(futureEvents);
+    setPick(() => ({ ...pick, all: false, past: false, future: true }));
   };
 
   /*Past filter*/
@@ -58,31 +59,37 @@ export default function Head() {
   const handleFilterPastEvents = () => {
     const pastEvents = FilterPastEvents();
     setData(pastEvents);
+    setPick(() => ({...pick, all:false, past:true, future:false}))
   };
 
   /*AllEvents Filter*/
   const handleAllEvents = () => {
     setData(OriginalData);
+    setPick(() => ({...pick, all:true, future:false, past:false}))
   };
 
-  /*pouští dropmenu kdyz je mala size*/
-  const [droplist, setdroplist] = useState(true);
+  /*color changing*/
+  const [pick, setPick] = useState({
+    all: true,
+    future: false,
+    past: false,
+  });
 
   return (
     <>
       <div className={style.categories}>
         <ul className={style.allEV}>
           <li className={style.categorisShow}>SHOW:</li>
-          <li className={style.alE} onClick={handleAllEvents}>
+          <li className={pick.all? style.alEpick:style.alE} onClick={handleAllEvents}>
             ALL EVENTS
-            <a className={style.show} onClick={() => setdroplist(!droplist)}>
-              <WebD3WebD3></WebD3WebD3>
-            </a>
           </li>
-          <li className={style.fE} onClick={handleFilterFutureEvents}>
+          <li
+            className={pick.future ? style.fEpcik : style.fE}
+            onClick={handleFilterFutureEvents}
+          >
             FUTURE EVENTS
           </li>
-          <li className={style.pE} onClick={handleFilterPastEvents}>
+          <li className={pick.past? style.pEpick: style.pE} onClick={handleFilterPastEvents}>
             PAST EVENTS
           </li>
         </ul>
@@ -115,7 +122,6 @@ export default function Head() {
           </li>
         </ul>
       </div>
-      {droplist === false ? <Droplist></Droplist> : droplist}
     </>
   );
 }
