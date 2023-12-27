@@ -24,8 +24,8 @@ export type Event = {
 
 export default function Page() {
   /*Data fetching*/
-  const [data, setData] = useState<Event[] >([]);
-  const [OriginalData, setoRData] = useState<Event[]  >([]);
+  const [data, setData] = useState<Event[] | undefined>();
+  const [OriginalData, setoRData] = useState<Event[]>([]);
   useEffect(() => {
     const fetchData = async () => {
       const colRef = collection(db, "events");

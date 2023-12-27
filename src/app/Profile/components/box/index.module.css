@@ -1,0 +1,53 @@
+.iconborder {
+  background-color: rgba(217, 220, 225, 1);
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.icon {
+  color: rgba(148, 158, 168, 1);
+  font-size: 25px;
+  font-family: Hind;
+  letter-spacing: -2px;
+}
+
+.undericon {
+  width: 100%;
+  height: 187px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.11);
+  margin-top: -60px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 23px;
+  line-height: 2px;
+  overflow: hidden;
+}
+
+.name {
+  color: #323c46;
+  text-align: center;
+  font-family: Hind;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 23px;
+}
+
+.email {
+  color: #949ea8;
+  text-align: center;
+  font-family: Hind;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  
+}

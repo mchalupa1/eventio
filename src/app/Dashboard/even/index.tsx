@@ -7,10 +7,10 @@ import GridCard from "./component/GridCard";
 export default function EventsList() {
   /*Data providing*/
   const { grip, data } = useThemeContext();
-console.log(data)
+
   return (
     <>
-      {data.length > 0? (
+      {data? (
         <GridCard data={data} grip={grip}></GridCard>
       ) : (
         <Loading></Loading>

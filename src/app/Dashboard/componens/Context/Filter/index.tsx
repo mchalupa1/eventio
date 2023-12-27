@@ -2,9 +2,9 @@ import { createContext, useContext } from "react";
 import { Event } from "@/app/Dashboard/page";
 
 type ThemeContext = {
-  data: Event[] ;
-  setData: React.Dispatch<React.SetStateAction<Event[] >>;
-  OriginalData: Event[] ;
+  data: Event[]| undefined ;
+  setData: React.Dispatch<React.SetStateAction<Event[]| undefined>>;
+  OriginalData: Event[];
   setoRData: React.Dispatch<React.SetStateAction<Event[] >>;
   grip: boolean;
   setgrip: React.Dispatch<React.SetStateAction<boolean>>;

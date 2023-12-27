@@ -5,6 +5,18 @@
   width: 100vw;
 }
 
+.middlePart {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  max-width: 1500px;
+  width: 80%;
+  padding: 20px;
+  flex: 1;
+  margin: 50px 60px 16px 60px;
+}
+
+
 .upperpart {
   display: flex;
   flex-direction: column;
@@ -26,6 +38,7 @@
   color: rgba(148, 158, 168, 1);
   font-size: 25px;
   font-family: Hind;
+  letter-spacing: 0px;
 }
 
 .undericon {
