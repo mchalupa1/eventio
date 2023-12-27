@@ -8,6 +8,7 @@ import Dropmenu from "../Dropdownmenu/index";
 import { auth } from "@/services/firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
+import Link from "next/link";
 
 type User = { fname: String; lname: String; email: String; a: String };
 const useAuthorization = () => {
@@ -49,9 +50,9 @@ export default function Navbar() {
   return (
     <>
       <div className={styles.navbar}>
-        <a href="/" className={styles.logo}>
+        <Link href="/Dashboard" className={styles.logo}>
           <Logo></Logo>
-        </a>
+        </Link>
         <div className={styles.user}>
           <button className={styles.Icon}>
             {user ? user.fname.charAt(0) + user.lname.charAt(0) : "..."}
