@@ -17,7 +17,6 @@ const useAuthorization = () => {
     const unsubscribe = onAuthStateChanged(auth, (userData) => {
       if (userData) {
         setUser(userData);
-        console.log(userData);
       } else {
         setUser(undefined);
       }
@@ -53,7 +52,6 @@ export default function EventsList(props: { grip: boolean }) {
           } 
         });
 
-        console.log(filterData);
         setData(filterData);
       });
     };
@@ -61,7 +59,6 @@ export default function EventsList(props: { grip: boolean }) {
     void fetchData();
   }, [user]); 
 
-  console.log(data);
 
   return (
     <>

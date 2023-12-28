@@ -24,7 +24,7 @@ const useAuthorization = () => {
         if (userData) {
           const userFromFetch = await fetchuser(userData.uid);
           setUser(userFromFetch);
-          console.log(userFromFetch);
+    
         } else {
           setUser(undefined);
         }

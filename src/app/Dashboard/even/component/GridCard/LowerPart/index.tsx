@@ -23,7 +23,7 @@ export default function LowerPart(props: {
         <BtnEvent
           author={props.authorUID}
           joiners={props.joiners}
-          idecko={props.idecko}
+          idec={props.idecko}
           capac={props.capacity}
         ></BtnEvent>
       </div>

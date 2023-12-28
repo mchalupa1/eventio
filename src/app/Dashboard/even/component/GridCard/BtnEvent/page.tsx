@@ -6,12 +6,12 @@ import BtnJoin from "./Btns/joinbtn";
 import BtnLeave from "./Btns/leavebtn";
 import style from "./page.module.css";
 
-const BtnEvent = (props: {
+export default function BtnEvent (props: {
   author: string;
   joiners: string;
-  idecko: string;
+  idec: string;
   capac: string;
-}) => {
+}) {
   type User = { uid: string };
   /*Authorizace*/
   const useAuthorization = () => {
@@ -38,13 +38,13 @@ const BtnEvent = (props: {
         <BtnLeave
           uid={user?.uid as string}
           joiners={props.joiners}
-          id={props.idecko}
+          id={props.idec}
         ></BtnLeave>
       ) : (
         <BtnJoin
           uid={user?.uid as string}
           joiners={props.joiners}
-          id={props.idecko}
+          id={props.idec}
           capac={props.capac}
         ></BtnJoin>
       )}
@@ -52,4 +52,4 @@ const BtnEvent = (props: {
   );
 };
 
-export default BtnEvent;
+
