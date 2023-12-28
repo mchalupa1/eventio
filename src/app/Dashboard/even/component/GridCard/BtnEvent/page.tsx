@@ -33,26 +33,24 @@ export default function BtnEvent(props: {
 
   return (
     <>
-      <Link href="/createevent">
-        <div>
-          {user?.uid === props.author ? (
-            <button className={style.statusE}>EDIT</button>
-          ) : props.joiners.includes(user?.uid as string) ? (
-            <BtnLeave
-              uid={user?.uid as string}
-              joiners={props.joiners}
-              id={props.idec}
-            ></BtnLeave>
-          ) : (
-            <BtnJoin
-              uid={user?.uid as string}
-              joiners={props.joiners}
-              id={props.idec}
-              capac={props.capac}
-            ></BtnJoin>
-          )}
-        </div>
-      </Link>
+      {user && user.uid === props.author ? (
+        <Link href="/createevent" style={{ textDecoration: "none" }}>
+          <button className={style.statusE}>EDIT</button>
+        </Link>
+      ) : props.joiners.includes(user?.uid as string) ? (
+        <BtnLeave
+          uid={user?.uid as string}
+          joiners={props.joiners}
+          id={props.idec}
+        />
+      ) : (
+        <BtnJoin
+          uid={user?.uid as string}
+          joiners={props.joiners}
+          id={props.idec}
+          capac={props.capac}
+        />
+      )}
     </>
   );
 }

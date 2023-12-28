@@ -1,5 +1,4 @@
 "use client";
-import Allboxgrip from "../AllBoxGrip/AllboxGrip";
 import Navbar from "@/componens/Navbar/navbar";
 import EventsList from "./even";
 import style from "./page.module.css";

@@ -24,36 +24,36 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
         } = item;
         return (
           <>
-            <Link href="/">
-              <div
-                className={props.grip ? style.GridOneBox : style.RowOneBox}
-                key={id}
-              >
-                <DateTime grip={props.grip} date={date} time={time}></DateTime>
-                <Title grip={props.grip} title={title}></Title>
-                <Mentor grip={props.grip} uid={authorUID}></Mentor>
-                <Description
+            <Link
+              href={`/EventDetail/${item.id}`}
+              style={{ textDecoration: "none" }}
+              className={props.grip ? style.GridOneBox : style.RowOneBox}
+              key={id}
+            >
+              <DateTime grip={props.grip} date={date} time={time}></DateTime>
+              <Title grip={props.grip} title={title}></Title>
+              <Mentor grip={props.grip} uid={authorUID}></Mentor>
+              <Description
+                grip={props.grip}
+                description={description}
+              ></Description>
+              {props.grip ? (
+                <LowerPartGrip
                   grip={props.grip}
-                  description={description}
-                ></Description>
-                {props.grip ? (
-                  <LowerPartGrip
-                    grip={props.grip}
-                    joiners={joiners}
-                    capacity={capacity}
-                    authorUID={authorUID}
-                    idecko={id}
-                  ></LowerPartGrip>
-                ) : (
-                  <LowerPartRow
-                    grip={props.grip}
-                    joiners={joiners}
-                    capacity={capacity}
-                    authorUID={authorUID}
-                    idecko={id}
-                  ></LowerPartRow>
-                )}
-              </div>
+                  joiners={joiners}
+                  capacity={capacity}
+                  authorUID={authorUID}
+                  idecko={id}
+                ></LowerPartGrip>
+              ) : (
+                <LowerPartRow
+                  grip={props.grip}
+                  joiners={joiners}
+                  capacity={capacity}
+                  authorUID={authorUID}
+                  idecko={id}
+                ></LowerPartRow>
+              )}
             </Link>
           </>
         );

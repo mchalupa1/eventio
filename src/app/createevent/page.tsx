@@ -96,7 +96,7 @@ const Page = () => {
       <div className={style.box}>
         <form className={style.form} autoComplete="off" onSubmit={handle}>
           <div className={style.boxfooter}>
-            <span className={style.Create}>Create an account</span>
+            <span className={style.Create}>Create new event</span>
             <span className={style.info}>Enter details below</span>
           </div>
 
