@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import BtnJoin from "./Btns/joinbtn";
 import BtnLeave from "./Btns/leavebtn";
 import style from "./page.module.css";
+import Link from "next/link";
 
-export default function BtnEvent (props: {
+export default function BtnEvent(props: {
   author: string;
   joiners: string;
   idec: string;
@@ -31,25 +32,27 @@ export default function BtnEvent (props: {
   const user = useAuthorization();
 
   return (
-    <div>
-      {user?.uid === props.author ? (
-        <button className={style.statusE}>EDIT</button>
-      ) : props.joiners.includes(user?.uid as string) ? (
-        <BtnLeave
-          uid={user?.uid as string}
-          joiners={props.joiners}
-          id={props.idec}
-        ></BtnLeave>
-      ) : (
-        <BtnJoin
-          uid={user?.uid as string}
-          joiners={props.joiners}
-          id={props.idec}
-          capac={props.capac}
-        ></BtnJoin>
-      )}
-    </div>
+    <>
+      <Link href="/createevent">
+        <div>
+          {user?.uid === props.author ? (
+            <button className={style.statusE}>EDIT</button>
+          ) : props.joiners.includes(user?.uid as string) ? (
+            <BtnLeave
+              uid={user?.uid as string}
+              joiners={props.joiners}
+              id={props.idec}
+            ></BtnLeave>
+          ) : (
+            <BtnJoin
+              uid={user?.uid as string}
+              joiners={props.joiners}
+              id={props.idec}
+              capac={props.capac}
+            ></BtnJoin>
+          )}
+        </div>
+      </Link>
+    </>
   );
-};
-
-
+}

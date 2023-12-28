@@ -126,8 +126,8 @@ const Page = () => {
                   message: "Description must be atlesat 3 characters long",
                 },
                 maxLength: {
-                  value: 30,
-                  message: "Description must be atmost 40 characters long",
+                  value: 60,
+                  message: "Description must be atmost 60 characters long",
                 },
               })}
               placeholder="Description"
