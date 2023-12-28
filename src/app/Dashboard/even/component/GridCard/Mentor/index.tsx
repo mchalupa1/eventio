@@ -8,11 +8,11 @@ type User = {
     lname: string;
   };
   
-  export default function Mentor(props: { uid: string,grip:boolean }) {
-    const [data, setData] = useState<User | null>(null); 
+  export default function Mentor(props: { authorUID: string,grip:boolean }) {
+    const [data, setData] = useState<User | undefined>(undefined); 
     const fetchData = async () => {
       try {
-        const docRef = doc(db, "users", props.uid);
+        const docRef = doc(db, "users", props.authorUID);
         const docSnap = await getDoc(docRef);
         
         if (docSnap.exists()) {

@@ -32,7 +32,7 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
             >
               <DateTime grip={props.grip} date={date} time={time}></DateTime>
               <Title grip={props.grip} title={title}></Title>
-              <Mentor grip={props.grip} uid={authorUID}></Mentor>
+              <Mentor grip={props.grip} authorUID={authorUID}></Mentor>
               <Description
                 grip={props.grip}
                 description={description}

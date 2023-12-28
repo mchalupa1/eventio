@@ -1,0 +1,10 @@
+.middlePart {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  max-width: 1500px;
+  width: 80%;
+  padding: 20px;
+  flex: 1;
+  margin: 50px 60px 16px 60px;
+}
