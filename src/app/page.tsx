@@ -141,7 +141,7 @@ export default function Dashboard() {
                     </p>
                   </div>
                   <h1 className={styles.title}>{title}</h1>
-                  <Mentor uid={authorUID}></Mentor>
+                  <Mentor grip={true} authorUID={authorUID}></Mentor>
                   <p className={styles.description}>{description}</p>
                   <div className={styles.lower}>
                     <div className={styles.PesronCapacity}>
