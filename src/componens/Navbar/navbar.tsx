@@ -57,7 +57,7 @@ export default function Navbar() {
           <button className={styles.Icon}>
             {user ? user.fname.charAt(0) + user.lname.charAt(0) : "..."}
           </button>
-          <a href="/" className={styles.client}>
+          <a className={styles.client}>
             {user ? user.fname + " " + user.lname : "Loading..."}
           </a>
           <a className={styles.scroll} onClick={Drop}>
