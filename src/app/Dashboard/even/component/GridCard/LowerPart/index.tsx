@@ -1,7 +1,7 @@
 "use client";
 import { Person } from "@/componens/svg/Person";
 import style from "./index.module.css";
-import BtnEvent from "../BtnEvent/page";
+import BtnEvent from "../BtnEvent";
 
 export default function LowerPart(props: {
   grip: boolean;

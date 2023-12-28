@@ -5,8 +5,6 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import { Event } from "@/app/Dashboard/page";
 import { useEffect, useState } from "react";
-import EventsList from "@/app/Dashboard/even";
-import GridCard from "@/app/Dashboard/even/component/GridCard";
 import DateTime from "@/app/Dashboard/even/component/GridCard/DateTime";
 import Mentor from "@/app/Dashboard/even/component/GridCard/Mentor";
 import Loading from "@/app/Dashboard/Loading/loading";
