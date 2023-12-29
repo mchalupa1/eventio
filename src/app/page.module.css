@@ -98,7 +98,7 @@ middle part
 */
 .allBoxs {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(395px, 1fr));
   flex: 1;
   gap: 1rem;
 }

@@ -9,7 +9,8 @@ const BtnJoin = (props: {
   id: string;
   capac: string;
 }) => {
-  const ButtonChange = async () => {
+  const ButtonChange = async (e:any) => {
+    e.preventDefault();
     if (Number(props.capac) === props.joiners.length) {
     } else {
       if (props.joiners.includes(props.uid) === false) {
@@ -26,7 +27,7 @@ const BtnJoin = (props: {
   return (
     <div>
       <button className={style.statusJ} onClick={ButtonChange}>
-        JOIN
+       JOIN
       </button>
     </div>
   );

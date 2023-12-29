@@ -2,6 +2,7 @@
 import { Person } from "@/componens/svg/Person";
 import style from "./index.module.css";
 import BtnEvent from "../BtnEvent";
+import Link from "next/link";
 
 export default function LowerPart(props: {
   grip: boolean;

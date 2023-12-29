@@ -6,6 +6,7 @@ import BtnJoin from "./Btns/joinbtn";
 import BtnLeave from "./Btns/leavebtn";
 import style from "./index.module.css";
 import Link from "next/link";
+import { useAuthContext } from "@/app/Context/auth";
 
 export default function BtnEvent(props: {
   author: string;
@@ -13,28 +14,12 @@ export default function BtnEvent(props: {
   idec: string;
   capac: string;
 }) {
-  type User = { uid: string };
-  /*Authorizace*/
-  const useAuthorization = () => {
-    const [user, setUser] = useState<User | undefined>();
-
-    useEffect(() => {
-      onAuthStateChanged(auth, (userData) => {
-        if (userData) {
-          setUser(userData);
-        } else {
-          setUser(undefined);
-        }
-      });
-    }, []);
-    return user;
-  };
-  const user = useAuthorization();
+  const { user } = useAuthContext();
 
   return (
     <>
       {user && user.uid === props.author ? (
-        <Link href="/createevent" style={{ textDecoration: "none" }}>
+        <Link href={"/createevent"}>
           <button className={style.statusE}>EDIT</button>
         </Link>
       ) : props.joiners.includes(user?.uid as string) ? (

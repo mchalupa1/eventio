@@ -4,7 +4,8 @@ import { doc, updateDoc } from "firebase/firestore";
 import style from "../index.module.css"
 
 const BtnLeave = (props: { uid: string; joiners: string; id: string }) => {
-  const ButtonChange = async () => {
+  const ButtonChange = async (e:any) => {
+    e.preventDefault();
     if (props.joiners.includes(props.uid)) {
       const docRef = doc(db, "events", props.id);
       let joiners = [...props.joiners];
@@ -20,7 +21,7 @@ const BtnLeave = (props: { uid: string; joiners: string; id: string }) => {
 
   return (
     <div>
-      <button className={style.statsuL} onClick={ButtonChange}>LEAVE</button>
+      <button   className={style.statsuL} onClick={ButtonChange}>LEAVE</button>
     </div>
   );
 };

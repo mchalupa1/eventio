@@ -12,8 +12,8 @@ import { useRouter } from "next/navigation";
 
 const Dropmenu = () => {
   const logout = async () => {
-    await signOut(auth);
     push("/LoginPage")
+    await signOut(auth);
   };
   const { push } = useRouter();
   return (

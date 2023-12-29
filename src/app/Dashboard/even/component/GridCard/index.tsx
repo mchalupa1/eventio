@@ -10,7 +10,9 @@ import LowerPartRow from "./LowerPart/LowerPartRow";
 import Link from "next/link";
 export default function GridCard(props: { data: Event[]; grip: boolean }) {
   return (
-    <div className={props.grip === false ? style.allBoxsgrip : style.allBoxs}>
+    <article
+      className={props.grip === false ? style.allBoxsgrip : style.allBoxs}
+    >
       {props.data.map((item) => {
         const {
           id,
@@ -58,6 +60,6 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
           </>
         );
       })}
-    </div>
+    </article>
   );
 }

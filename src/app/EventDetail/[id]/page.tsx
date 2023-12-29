@@ -11,6 +11,7 @@ import Loading from "@/app/Dashboard/Loading/loading";
 import Title from "@/app/Dashboard/even/component/GridCard/Title";
 import Description from "@/app/Dashboard/even/component/GridCard/Description";
 import LowerPart from "@/app/Dashboard/even/component/GridCard/LowerPart";
+import AttendeesList from "./components/Attendees";
 
 type DetailsProps = {
   params: {
@@ -36,28 +37,40 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
 
   useEffect(() => {
     void fetchData();
-  }, []);
+  }, [data]);
 
   return (
-    <>
-      <main>
-        <Navbar></Navbar>
-        <div className={style.middlePart}>
-            {
-                data? 
-                <div>
-                    <DateTime grip={true} date={data.date} time={data.time}/>
-                    <Mentor grip={true} authorUID={data.authorUID}/>
-                    <Title grip={true} title={data.title}/>
-                    <Description description={data.description} grip={true}/>
-                    <LowerPart grip={true} joiners={data.joiners} capacity={data.capacity} authorUID={data.authorUID} idecko={data.id} ></LowerPart>
-                
-                </div>
-                : <Loading></Loading>
-            }
-        </div>
-      </main>
-    </>
+    <main>
+      <Navbar></Navbar>
+      <div className={style.middlePart}>
+        <p className={style.idecko}>Detail event: {params.id}</p>
+        {data ? (
+          <div className={style.allBox}>
+            <div className={style.box}>
+              <DateTime grip={true} date={data.date} time={data.time} />
+              <Title grip={true} title={data.title} />
+              <Mentor grip={true} authorUID={data.authorUID} />
+              <Description description={data.description} grip={true} />
+              <LowerPart
+                grip={true}
+                joiners={data.joiners}
+                capacity={data.capacity}
+                authorUID={data.authorUID}
+                idecko={data.id}
+              ></LowerPart>
+            </div>
+            <div>
+              <AttendeesList
+                joiners={data.joiners}
+                authorUID={data.authorUID}
+              ></AttendeesList>
+            </div>
+          </div>
+        ) : (
+          <Loading></Loading>
+        )}
+      </div>
+    </main>
   );
 };
 
