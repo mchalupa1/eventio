@@ -4,33 +4,38 @@
   margin: 0;
   padding: 0;
 }
-
-.footer {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  list-style: none;
-  margin-left: 43.08px;
-  margin-top: 39.06px;
-  margin-right: 40px;
+  margin-top: 39px;
+  padding: 0 29px;
+}
+.logo {
+  display: inline;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 59px;
+  color: #323c46;
 }
 
-.leftfooter {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  text-align: center;
+.CloseX {
+  display: inline-flex;
+  gap: 1rem;
 }
 
 .close {
+  color: #323c46;
+display: inline;
   font-family: "Hind";
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  margin-top: 27px;
-  width: 38px;
-  height: 48px;
+  text-align: center;
+}
 
+.X{
+  display: inline;
 }
 
 .box {
@@ -38,7 +43,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 100px;
-  margin-bottom: 208PX;
+  margin-bottom: 208px;
 }
 
 .form {
@@ -129,8 +134,15 @@
   .close {
     display: none;
   }
-  .footer {
-    margin-left: 0px;
+  .navbar {
+    padding: 0px;
+  }
+  .logo {
+    margin-left: 24px;
+  }
+
+  .X {
+    margin-right: 19px;
   }
 }
 
@@ -138,14 +150,5 @@
   .form {
     grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
     margin-top: -70px;
-  }
-
-  .footer {
-    margin-left: 24px;
-  }
-
-  .leftfooter {
-    margin-right: 19px;
-    gap: 0px;
   }
 }

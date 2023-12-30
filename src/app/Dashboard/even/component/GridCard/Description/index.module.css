@@ -25,7 +25,7 @@
   
   }
   
-  @media (max-width:1090px){  
+  @media (max-width: 1170px){  
     .description2{
       grid-area: main;
       margin-top: 1px;
@@ -35,7 +35,7 @@
 
   @media (max-width:420px){
     .description2{
-      margin-right: 87px;
+      margin-right: 65px;
     }
    
   }

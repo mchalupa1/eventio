@@ -33,7 +33,7 @@
   }
 }
 
-@media (max-width: 1090px) {
+@media (max-width: 1170px) {
   .date2 {
     grid-area: date;
     margin-top: 20px;

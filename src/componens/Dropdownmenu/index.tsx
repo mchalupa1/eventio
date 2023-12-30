@@ -1,10 +1,7 @@
 "use client";
 import style from "./index.module.css";
-import { use, useState } from "react";
 import Link from "next/link";
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 import { auth } from "@/services/firebase/auth";

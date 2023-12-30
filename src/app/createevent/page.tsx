@@ -20,26 +20,11 @@ import {
 } from "firebase/firestore";
 import { auth } from "@/services/firebase/auth";
 import { useForm } from "react-hook-form";
-
-type User = { uid: string };
-const useAuthorization = () => {
-  const [user, setUser] = useState<User | undefined>();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (userData) => {
-      if (userData) {
-        // @ts-ignore
-        setUser(userData);
-        console.log(userData);
-      } else {
-        setUser(undefined);
-      }
-    });
-  }, []);
-  return user;
-};
+import { useAuthContext } from "../Context/auth";
+import Navbar from "@/componens/Navbar/navbar";
 
 const Page = () => {
+  const { user } = useAuthContext();
   const {
     formState: { errors },
     register,
@@ -47,7 +32,6 @@ const Page = () => {
   } = useForm({
     mode: "all",
   });
-  const user = useAuthorization();
 
   const currentDate = format(new Date(), "yyyy-MM-dd");
   const currentTime = formatISO9075(new Date(), { representation: "time" });
@@ -72,27 +56,16 @@ const Page = () => {
     }
   );
   return (
-    <div className={style.app}>
-      <ul className={style.footer}>
-        <li>
+    <main className={style.app}>
+      <nav className={style.navbar}>
+        <Link href="/Dashboard" className={style.logo}>
           <Logo></Logo>
-        </li>
-        <div className={style.leftfooter}>
-          <li>
-            <Link href={""}>
-              <X></X>
-            </Link>
-          </li>
-          <li className={style.close}>
-            <Link
-              href={""}
-              style={{ textDecoration: "none", color: "#323c46" }}
-            >
-              Close
-            </Link>
-          </li>
+        </Link>
+        <div className={style.CloseX}>
+          <Link href={"/Dashboard"} className={style.X}><X></X></Link>
+          <Link href={"/Dashboard"} style={{ textDecoration: "none" }} className={style.close}>Close</Link>
         </div>
-      </ul>
+      </nav>
       <div className={style.box}>
         <form className={style.form} autoComplete="off" onSubmit={handle}>
           <div className={style.boxfooter}>
@@ -186,7 +159,7 @@ const Page = () => {
           </div>
         </form>
       </div>
-    </div>
+    </main>
   );
 };
 

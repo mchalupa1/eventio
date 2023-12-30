@@ -3,5 +3,55 @@
   background: #fff;
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.11);
   height: 296px;
-  width: 395px;
+  margin: 0px;
+  max-width: 450px;
+}
+
+.attendees {
+  color: #323c46;
+  font-family: "Hind";
+  font-size: 22px;
+  margin: 0px;
+  margin-top: 32px;
+  margin-left: 32px;
+}
+
+.allJoiners {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 22px 31px 22px 31px;
+}
+
+.joinerBox {
+  display: flex;
+  margin: 0px;
+  border-radius: 100px;
+  background: #d9dce1;
+  padding: 6px;
+  height: 32px;
+  align-items: center;
+}
+
+.joiner {
+  color: #949ea8;
+  font-family: "Hind";
+  font-size: 13px;
+}
+
+.YouBox {
+  border-radius: 100px;
+  border: 2px solid #d9dce1;
+  height: 32px;
+  display: flex;
+  margin: 0px;
+  padding: 6px;
+  align-items: center;
+}
+
+.You {
+  color: #949ea8;
+  font-family: "Hind";
+  font-size: 13px;
 }

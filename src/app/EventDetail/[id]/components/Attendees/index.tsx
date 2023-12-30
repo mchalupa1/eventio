@@ -14,37 +14,42 @@ export default function AttendeesList(props: {
   const { user } = useAuthContext();
   const [users, setUsers] = useState<User[]>([]);
 
-  const getJoiners = async () => {
-    if (Array.isArray(props.joiners)) {
-      const joinersPromises = props.joiners.map(async (item) => {
-        if (user && item === user.uid) {
-          setUsers((prevUsers) => [...prevUsers, { fname: "You", lname: "" }]);
-        } else {
-          const docRef = doc(db, "users", item);
-          const docSnap = await getDoc(docRef);
-          const userData: User = docSnap.data() as User;
-          setUsers((prevUsers) => [...prevUsers, userData]);
-        }
-      });
-
-      await Promise.all(joinersPromises);
-    }
-  };
-
   useEffect(() => {
-    getJoiners();
-  }, []);
+    const fetchData = async () => {
+      
+      let usersData: User[] = [];
+
+      if (Array.isArray(props.joiners)) {
+        await Promise.all(
+          props.joiners.map(async (item) => {
+            if (user && item === user.uid) {
+              usersData.push({ fname: "You", lname: "" });
+            } else {
+              const docRef = doc(db, "users", item);
+              const docSnap = await getDoc(docRef);
+              const userData: User = docSnap.data() as User;
+              usersData.push(userData);
+            }
+          })
+        );
+
+        setUsers(usersData);
+      }
+    };
+
+    fetchData();
+  }, [props.joiners, user]);
 
   return (
     <div className={style.BoxJoiners}>
-      <p>Attendees</p>
-      <ul>
-        {users.map((user, index) => (
-          <li key={index}>
-            {`${user.fname} ${user.lname}`}
-          </li>
+      <p className={style.attendees}>Attendees</p>
+      <div className={style.allJoiners}>
+      {users.map((user, index) => (
+          <div key={index} className={user.fname === "You"? style.YouBox:style.joinerBox}>
+            <p className={user.fname ==="You"? style.You: style.joiner}>{`${user.fname} ${user.lname}`}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

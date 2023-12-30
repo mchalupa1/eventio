@@ -8,7 +8,8 @@ import { WebDevelopment3 } from "@/componens/svg/index3";
 import { WebD1 } from "@/componens/svg2/WebD1";
 import Box from "./components/box/index";
 import EventsList from "./components/Data";
-type User = { fname: String; lname: String; email: String; a: String };
+import { useAuthContext } from "../Context/auth";
+
 
 const Profile = () => {
   /*Grip*/

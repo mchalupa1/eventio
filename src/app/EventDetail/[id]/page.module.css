@@ -2,16 +2,15 @@
   display: flex;
   flex-direction: column;
   align-self: center;
-
   padding: 20px;
   flex: 1;
-  margin: 100px 0px 0px 120px;
+  margin: 50px 50px 0px 50px;
 }
-
 .allBox {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 3fr));
+  flex: 1;
+  gap:1rem;
 }
 
 .idecko {
@@ -32,6 +31,15 @@
   border-radius: 2px;
   height: 296px;
   grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
-  width: 795px;
+
+  margin: 0px;
+}
+
+
+@media (max-width: 680px) {
+
   
+  .allBox {
+    grid-template-columns: repeat(auto-fill, minmax(309px, 1fr));
+  }
 }

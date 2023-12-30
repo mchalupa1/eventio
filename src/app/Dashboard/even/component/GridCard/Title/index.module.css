@@ -15,7 +15,8 @@
   order: 1;
 }
 
-@media (max-width: 1090px) {
+
+@media (max-width: 1170px) {
   .title2 {
     grid-area: header;
     padding-left: 0px;

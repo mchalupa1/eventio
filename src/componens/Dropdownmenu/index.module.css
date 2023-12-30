@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: flex-end;
-  margin-right: 16.5px;
+  margin-right: 15px;
 }
 
 .all {
@@ -53,6 +53,6 @@
 
 @media (max-width: 500px) {
   .container {
-    margin-right: 17px;
+    margin-right: 14px;
   }
 }

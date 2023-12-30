@@ -8,7 +8,7 @@
 .GridOneBox {
   cursor: pointer;
   display: grid;
-  padding-left: 32px;
+  padding-left: 35px;
   padding-right: 35px;
   background: #ffffff;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
@@ -32,7 +32,7 @@
 /*media*/
 @media (max-width: 500px) {
   .GridOneBox {
-    padding-left: 35px;
+    padding-left: 24px;
   }
   .allBoxs {
     grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
@@ -45,14 +45,14 @@
   }
 }
 
-@media (max-width: 1090px) {
+@media (max-width: 1170px) {
   .RowOneBox {
     display: grid;
     height: 136px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 1fr 1fr 1fr;
     padding: 8px;
-    padding-left: 35px;
+    padding-left: 17px;
     grid-template-areas:
       "header header"
       "main main"

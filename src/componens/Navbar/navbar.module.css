@@ -1,12 +1,13 @@
 .navbar {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-top: 39px;
+  padding: 0 29px; 
 }
 
 .logo {
+  display: inline;
   text-decoration: none;
   font-weight: bold;
   margin-left: 59px;
@@ -31,18 +32,31 @@
   margin-left: 8px;
 }
 .user {
-  margin-right: 50px;
+  display: flex;
+  align-items: center; 
+  margin-right: 20px; 
 }
 
 .scroll {
-  display: inline;
   margin-left: 8px;
   cursor: pointer;
+  display: flex; 
+  align-items: center; 
 }
-
 @media (max-width: 500px) {
-.client{
-  display: none;
-}
+  .client {
+    display: none;
+  }
 
+  .scroll {
+    margin-left: 5px; 
+  }
+
+  .navbar{
+    padding: 0px;
+  }
+
+  .logo{
+    margin-left: 24px;
+  }
 }

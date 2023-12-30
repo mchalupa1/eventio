@@ -48,7 +48,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
           <div className={style.allBox}>
             <div className={style.box}>
               <DateTime grip={true} date={data.date} time={data.time} />
-              <Title grip={true} title={data.title} />
+              <Title grip={true} title={data.title}  />
               <Mentor grip={true} authorUID={data.authorUID} />
               <Description description={data.description} grip={true} />
               <LowerPart
@@ -59,12 +59,11 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                 idecko={data.id}
               ></LowerPart>
             </div>
-            <div>
               <AttendeesList
                 joiners={data.joiners}
                 authorUID={data.authorUID}
               ></AttendeesList>
-            </div>
+            
           </div>
         ) : (
           <Loading></Loading>

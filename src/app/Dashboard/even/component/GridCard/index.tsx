@@ -1,3 +1,4 @@
+
 "use client";
 import style from "./index.module.css";
 import DateTime from "./DateTime";
@@ -25,7 +26,7 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
           authorUID,
         } = item;
         return (
-          <>
+          
             <Link
               href={`/EventDetail/${item.id}`}
               style={{ textDecoration: "none" }}
@@ -57,7 +58,7 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
                 ></LowerPartRow>
               )}
             </Link>
-          </>
+          
         );
       })}
     </article>
