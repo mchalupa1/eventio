@@ -40,6 +40,9 @@ export default function AttendeesList(props: {
     fetchData();
   }, [props.joiners, user]);
 
+
+
+
   return (
     <div className={style.BoxJoiners}>
       <p className={style.attendees}>Attendees</p>

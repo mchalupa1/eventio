@@ -5,6 +5,7 @@
   height: 296px;
   margin: 0px;
   max-width: 450px;
+  overflow: auto;
 }
 
 .attendees {
@@ -32,6 +33,7 @@
   padding: 6px;
   height: 32px;
   align-items: center;
+  min-width: 55px;
 }
 
 .joiner {
@@ -43,10 +45,10 @@
 .YouBox {
   border-radius: 100px;
   border: 2px solid #d9dce1;
-  height: 32px;
   display: flex;
   margin: 0px;
-  padding: 6px;
+  padding: 4px;
+  height: 32px;
   align-items: center;
 }
 

@@ -37,7 +37,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
 
   useEffect(() => {
     void fetchData();
-  }, [data]);
+  }, []);
 
   return (
     <main>
