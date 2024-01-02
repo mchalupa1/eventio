@@ -1,7 +1,6 @@
-"use client";
 import style from "./index.module.css";
 import { useState, useEffect } from "react";
-import { getDoc, doc } from "firebase/firestore";
+import { getDocs, collection, query, where, doc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import { useAuthContext } from "@/app/Context/auth";
 
@@ -14,42 +13,60 @@ export default function AttendeesList(props: {
   const { user } = useAuthContext();
   const [users, setUsers] = useState<User[]>([]);
 
+  const fetchAllUsers = async () => {
+    const allUsersSnap = await getDocs(collection(db, "users"));
+    let allUsersData: Record<string, User> = {};
+
+    allUsersSnap.forEach((doc) => {
+      const userData = doc.data() as User;
+      allUsersData[doc.id] = userData;
+    });
+
+    return allUsersData;
+  };
+  console.log(users);
   useEffect(() => {
     const fetchData = async () => {
-      
-      let usersData: User[] = [];
+      try {
+        if (Array.isArray(props.joiners)) {
+          const userCache = await fetchAllUsers();
 
-      if (Array.isArray(props.joiners)) {
-        await Promise.all(
-          props.joiners.map(async (item) => {
+          let usersData: User[] = [];
+
+          props.joiners.forEach((item) => {
+            let userData: User;
+
             if (user && item === user.uid) {
-              usersData.push({ fname: "You", lname: "" });
+              userData = { fname: "You", lname: "" };
             } else {
-              const docRef = doc(db, "users", item);
-              const docSnap = await getDoc(docRef);
-              const userData: User = docSnap.data() as User;
-              usersData.push(userData);
+              userData = userCache[item];
             }
-          })
-        );
 
-        setUsers(usersData);
+            usersData.push(userData);
+          });
+
+          setUsers(usersData);
+        }
+      } catch (error) {
+        console.error(error);
       }
     };
 
     fetchData();
   }, [props.joiners, user]);
 
-
-
-
   return (
     <div className={style.BoxJoiners}>
       <p className={style.attendees}>Attendees</p>
       <div className={style.allJoiners}>
-      {users.map((user, index) => (
-          <div key={index} className={user.fname === "You"? style.YouBox:style.joinerBox}>
-            <p className={user.fname ==="You"? style.You: style.joiner}>{`${user.fname} ${user.lname}`}</p>
+        {users.map((user, index) => (
+          <div
+            key={index}
+            className={user?.fname === "You" ? style.YouBox : style.joinerBox}
+          >
+            <p
+              className={user?.fname === "You" ? style.You : style.joiner}
+            >{`${user?.fname} ${user?.lname}`}</p>
           </div>
         ))}
       </div>

@@ -5,6 +5,8 @@
     color: #949ea8;
     margin: 32px 0px 0px;
     padding-right: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .description2 {
@@ -25,7 +27,7 @@
   
   }
   
-  @media (max-width: 1170px){  
+  @media (max-width: 1280px){  
     .description2{
       grid-area: main;
       margin-top: 1px;
@@ -38,4 +40,10 @@
       margin-right: 65px;
     }
    
+  }
+
+  @media (max-width: 1450px) {
+    .description2{
+      margin-right: 20px;
+    }
   }

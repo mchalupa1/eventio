@@ -12,6 +12,7 @@ import Title from "@/app/Dashboard/even/component/GridCard/Title";
 import Description from "@/app/Dashboard/even/component/GridCard/Description";
 import LowerPart from "@/app/Dashboard/even/component/GridCard/LowerPart";
 import AttendeesList from "./components/Attendees";
+import CreateBtn from "@/app/Dashboard/componens/CreateBtn";
 
 type DetailsProps = {
   params: {
@@ -21,34 +22,43 @@ type DetailsProps = {
 
 const EventDetail: React.FC<DetailsProps> = ({ params }) => {
   const [data, setData] = useState<Event | undefined>(undefined);
-  const fetchData = async () => {
-    try {
-      const docRef = doc(db, "events", params.id);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const userData = docSnap.data() as Event;
-        setData(userData);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const docRef = doc(db, "events", params.id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const userData = docSnap.data() as Event;
+          setData((prevData) => {
+            // Update the joiners if it has changed
+            if (prevData?.joiners !== userData.joiners) {
+              return { ...prevData, ...userData };
+            }
+            return prevData;
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     void fetchData();
   }, []);
 
+
+
   return (
     <main>
-      <Navbar></Navbar>
+      <Navbar />
       <div className={style.middlePart}>
         <p className={style.idecko}>Detail event: {params.id}</p>
         {data ? (
           <div className={style.allBox}>
             <div className={style.box}>
               <DateTime grip={true} date={data.date} time={data.time} />
-              <Title grip={true} title={data.title}  />
+              <Title grip={true} title={data.title} />
               <Mentor grip={true} authorUID={data.authorUID} />
               <Description description={data.description} grip={true} />
               <LowerPart
@@ -57,18 +67,17 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                 capacity={data.capacity}
                 authorUID={data.authorUID}
                 idecko={data.id}
-              ></LowerPart>
+              />
             </div>
-              <AttendeesList
-                joiners={data.joiners}
-                authorUID={data.authorUID}
-              ></AttendeesList>
-            
+            <AttendeesList joiners={data.joiners} authorUID={data.authorUID}>
+
+            </AttendeesList>
           </div>
         ) : (
-          <Loading></Loading>
+          <Loading />
         )}
       </div>
+      <CreateBtn></CreateBtn>
     </main>
   );
 };

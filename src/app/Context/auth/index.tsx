@@ -41,6 +41,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       if (userData) {
         const userFromFetch = await fetchUser(userData.uid);
         setUser(userFromFetch);
+      
       } else {
         setUser(undefined);
       }
@@ -53,7 +54,6 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     user,
     setUser,
   };
-
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );

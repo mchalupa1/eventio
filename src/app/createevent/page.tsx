@@ -83,8 +83,8 @@ const Page = () => {
                   message: "Title must be atlesat 3 characters long",
                 },
                 maxLength: {
-                  value: 30,
-                  message: "Title must be atmost 30 characters long",
+                  value: 20,
+                  message: "Title must be atmost 20 characters long",
                 },
               })}
               placeholder="Title"
@@ -99,8 +99,8 @@ const Page = () => {
                   message: "Description must be atlesat 3 characters long",
                 },
                 maxLength: {
-                  value: 60,
-                  message: "Description must be atmost 60 characters long",
+                  value: 50,
+                  message: "Description must be atmost 50 characters long",
                 },
               })}
               placeholder="Description"

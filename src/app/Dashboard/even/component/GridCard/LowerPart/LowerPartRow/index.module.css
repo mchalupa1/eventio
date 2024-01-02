@@ -4,6 +4,7 @@
   font-style: normal;
   font-size: 14px;
   order: 5;
+  text-align: center;
 }
 .boxbtn {
   padding-right: 16px;
@@ -12,7 +13,18 @@
   order: 6;
 }
 
-@media (max-width: 1250px) {
+
+@media (max-width:1280px ) {
+  .capacity {
+    grid-area: capacity;
+    margin-top: 1px;
+    text-align: left;
+  }
+  .boxbtn{
+    grid-area: sidebar;
+    display: flex;
+    justify-content: flex-end;
+  }
   .capacity {
     white-space: nowrap;
     overflow: hidden;
@@ -20,21 +32,11 @@
   }
 }
 
-@media (max-width: 1170px) {
-  .capacity {
-    grid-area: capacity;
-    margin-top: 1px;
-  }
-  .boxbtn{
-    grid-area: sidebar;
-    display: flex;
-    justify-content: flex-end;
-  }
-}
-
 @media (max-width:420px){
     .boxbtn{
-    margin-right: -29px;
+   margin: 0px;
+   padding: 0px;
+   padding-left: 8px;
     }
   }
 

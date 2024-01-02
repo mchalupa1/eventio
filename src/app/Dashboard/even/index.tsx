@@ -1,5 +1,4 @@
 "use client";
-import { Suspense, use, useState } from "react";
 import { useThemeContext } from "../componens/Context/Filter/index";
 import Loading from "../Loading/loading";
 import GridCard from "./component/GridCard";

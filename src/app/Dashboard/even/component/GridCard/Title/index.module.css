@@ -16,7 +16,7 @@
 }
 
 
-@media (max-width: 1170px) {
+@media (max-width: 1280px) {
   .title2 {
     grid-area: header;
     padding-left: 0px;

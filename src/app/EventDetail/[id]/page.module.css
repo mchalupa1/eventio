@@ -20,6 +20,7 @@
   line-height: 24px;
   letter-spacing: 1px;
   text-transform: uppercase;
+  margin-bottom: 41px;
 }
 
 .box {
@@ -36,10 +37,24 @@
 }
 
 
-@media (max-width: 680px) {
-
+@media (max-width: 760px) {
   
   .allBox {
-    grid-template-columns: repeat(auto-fill, minmax(309px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
   }
+}
+
+@media (max-width: 580px) {
+  .allBox {
+    grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+  }
+  .middlePart {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    flex: 1;
+    margin: 50px 8px 16px 8px;
+    padding: 0px;
+  }
+  
 }

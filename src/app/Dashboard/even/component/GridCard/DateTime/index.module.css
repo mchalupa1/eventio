@@ -21,6 +21,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+ 
 }
 
 .alltime2 {
@@ -33,7 +34,7 @@
   }
 }
 
-@media (max-width: 1170px) {
+@media (max-width: 1280px) {
   .date2 {
     grid-area: date;
     margin-top: 20px;

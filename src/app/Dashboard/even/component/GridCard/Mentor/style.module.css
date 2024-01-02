@@ -18,9 +18,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   order: 3;
+  
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1450px) {
   .mentor2 {
     display: none;
   }
