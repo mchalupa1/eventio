@@ -32,7 +32,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
         if (docSnap.exists()) {
           const userData = docSnap.data() as Event;
           setData((prevData) => {
-            // Update the joiners if it has changed
+            
             if (prevData?.joiners !== userData.joiners) {
               return { ...prevData, ...userData };
             }

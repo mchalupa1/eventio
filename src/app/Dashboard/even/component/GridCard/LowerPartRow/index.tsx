@@ -1,7 +1,6 @@
 "use client";
-import { Person } from "@/componens/svg/Person";
 import style from "./index.module.css";
-import BtnEvent from "@/componens/BtnEvent/page";
+import BtnEvent from "../BtnEvent/index"
 
 export default function LowerPart(props: {
   grip: boolean;
@@ -19,7 +18,7 @@ export default function LowerPart(props: {
         <BtnEvent
           author={props.authorUID}
           joiners={props.joiners}
-          idecko={props.idecko}
+          idec={props.idecko}
           capac={props.capacity}
         ></BtnEvent>
       </div>

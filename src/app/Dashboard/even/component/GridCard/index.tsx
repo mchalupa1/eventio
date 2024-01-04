@@ -7,7 +7,7 @@ import LowerPartGrip from "./LowerPart";
 import Mentor from "./Mentor";
 import Title from "./Title";
 import { Event } from "@/app/Dashboard/page";
-import LowerPartRow from "./LowerPart/LowerPartRow";
+import LowerPartRow from "./LowerPartRow";
 import Link from "next/link";
 export default function GridCard(props: { data: Event[]; grip: boolean }) {
   return (

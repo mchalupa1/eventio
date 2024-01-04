@@ -1,6 +1,6 @@
 import style from "./index.module.css";
 import { useState, useEffect } from "react";
-import { getDocs, collection, query, where, doc } from "firebase/firestore";
+import { getDocs, collection,  } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import { useAuthContext } from "@/app/Context/auth";
 
