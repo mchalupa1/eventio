@@ -2,7 +2,7 @@
 import { useAuthContext } from "@/app/Context/auth";
 import Loading from "@/componens/Loading/loading";
 import GridCard from "@/app/Dashboard/even/component/GridCard";
-import { Event } from "@/app/Dashboard/page";
+import { Event } from "@/app/Dashboard";
 import { db } from "@/services/firebase/db";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";

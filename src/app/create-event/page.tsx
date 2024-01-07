@@ -5,7 +5,6 @@ import Link from "next/link";
 import style from "./page.module.css";
 import { Logo } from "@/componens/svg/Logo";
 import { X } from "./svg/X";
-import alldata from "../data";
 import { compareAsc, format, isFuture, isToday, startOfDay } from "date-fns";
 import { addDays, isPast, formatISO9075 } from "date-fns";
 import { db } from "@/services/firebase/db";

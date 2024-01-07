@@ -2,12 +2,11 @@
 import Navbar from "@/componens/Navbar/navbar";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
-import { Event } from "@/app/Dashboard/page";
+import { Event } from "@/app/Dashboard";
 import { useEffect, useState } from "react";
-import style from "./page.module.css"
+import style from "./page.module.css";
 import AttendeesList from "@/app/event-detail/[id]/components/Attendees";
 import Loading from "@/componens/Loading/loading";
-
 
 type DetailsProps = {
   params: {
@@ -45,12 +44,10 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
     <main>
       <Navbar />
       <div className={style.middlePart}>
-      <p className={style.idecko}>Detail event: {params.id}</p>
-      {data ? (
+        <p className={style.idecko}>Detail event: {params.id}</p>
+        {data ? (
           <div className={style.allBox}>
-            <div className={style.box}>
-
-            </div>
+            <div className={style.box}></div>
             <AttendeesList joiners={data.joiners} authorUID={data.authorUID} />
           </div>
         ) : (

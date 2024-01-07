@@ -3,7 +3,7 @@ import Navbar from "@/componens/Navbar/navbar";
 import style from "./page.module.css";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
-import { Event } from "@/app/Dashboard/page";
+import { Event } from "@/app/Dashboard";
 import { useEffect, useState } from "react";
 import DateTime from "@/app/Dashboard/even/component/GridCard/DateTime";
 import Mentor from "@/app/Dashboard/even/component/GridCard/Mentor";
