@@ -1,13 +1,11 @@
 'use client';
 
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { use, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { auth } from '@/services/firebase/auth';
-
+import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
 import Eye from './svg/Eye.svg';
 
@@ -21,13 +19,14 @@ const Page = () => {
         mode: 'all',
     });
     const { push } = useRouter();
+    const { login } = useAuthContext();
 
     const [eye, seteye] = useState(true);
     const [LoginBox, setLoginBox] = useState(true);
 
     const submit = handleSubmit(async ({ email, password }) => {
         try {
-            const user = await signInWithEmailAndPassword(auth, email, password);
+            const user = await login(email, password);
 
             push('/');
 

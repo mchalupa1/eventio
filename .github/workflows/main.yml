@@ -10,6 +10,6 @@ jobs:
               with:
                   node-version: 20
                   cache: 'npm'
-            - run: npm run ci
+            - run: npm ci
             - run: npm run lint
             - run: npm run ts:check

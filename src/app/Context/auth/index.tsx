@@ -2,9 +2,14 @@
 
 // Marking this file as a client entry
 import { deleteCookie, setCookie } from 'cookies-next';
-import { User as FirebaseAuthUser, onAuthStateChanged } from 'firebase/auth';
+import {
+    User as FirebaseAuthUser,
+    type UserCredential,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 import { AuthCookie } from '@/middleware';
 import { auth } from '@/services/firebase/auth';
@@ -15,12 +20,19 @@ type User = { uid: string; fname: string; lname: string; email: string };
 type AuthContextType = {
     user: User | undefined;
     setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+    login: (email: string, password: string) => Promise<UserCredential>;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<User | undefined>(undefined);
+
+    const login = useCallback(async (email: string, password: string) => {
+        const response = await signInWithEmailAndPassword(auth, email, password);
+
+        return response;
+    }, []);
 
     const fetchUser = async (uid: string): Promise<User | undefined> => {
         try {
@@ -54,6 +66,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
     }, []);
 
     const contextValue: AuthContextType = {
+        login,
         user,
         setUser,
     };
