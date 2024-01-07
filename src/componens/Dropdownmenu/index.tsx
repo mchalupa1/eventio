@@ -1,15 +1,13 @@
 "use client";
 import style from "./index.module.css";
 import Link from "next/link";
-import {
-  signOut,
-} from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "@/services/firebase/auth";
 import { useRouter } from "next/navigation";
 
 const Dropmenu = () => {
   const logout = async () => {
-    push("/LoginPage")
+    push("/LoginPage");
     await signOut(auth);
   };
   const { push } = useRouter();
@@ -19,7 +17,7 @@ const Dropmenu = () => {
         <ul className={style.ull}>
           <li>
             <Link
-              href={"Profile"}
+              href={"/profile"}
               style={{ textDecoration: "none", color: "#9CA5AF" }}
             >
               Profile
