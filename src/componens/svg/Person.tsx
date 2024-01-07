@@ -1,1 +1,1 @@
-export { default as Person } from "./Person.svg";
+export { default as Person } from './Person.svg';

@@ -1,3 +1,3 @@
 import Page from './Dashboard';
 
-export default Page
+export default Page;

@@ -1,154 +1,154 @@
 .app {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 39px;
-  padding: 0 29px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 39px;
+    padding: 0 29px;
 }
 .logo {
-  display: inline;
-  text-decoration: none;
-  font-weight: bold;
-  margin-left: 59px;
-  color: #323c46;
+    display: inline;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 59px;
+    color: #323c46;
 }
 
 .CloseX {
-  display: inline-flex;
-  gap: 1rem;
+    display: inline-flex;
+    gap: 1rem;
 }
 
 .close {
-  color: #323c46;
-display: inline;
-  font-family: "Hind";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  text-align: center;
+    color: #323c46;
+    display: inline;
+    font-family: 'Hind';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
 }
 
-.X{
-  display: inline;
+.X {
+    display: inline;
 }
 
 .box {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  margin-top: 100px;
-  margin-bottom: 208px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 208px;
 }
 
 .form {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-  background: #ffffff;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
-  border-radius: 2px;
-  height: 608px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    background: #ffffff;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
+    border-radius: 2px;
+    height: 608px;
 }
 
 .boxfooter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 41px;
-  margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 41px;
+    margin-bottom: 40px;
 }
 .Create,
 .info {
-  font-family: "Hind";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28px;
-  color: #323c46;
+    font-family: 'Hind';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    color: #323c46;
 }
 
 .info {
-  font-size: 18px;
-  color: #949ea8;
-  margin-top: -calc(87px - 41px);
+    font-size: 18px;
+    color: #949ea8;
+    margin-top: -calc(87px - 41px);
 }
 
 .inputs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: -50px;
-  gap: 1rem;
-  padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -50px;
+    gap: 1rem;
+    padding: 0px;
 }
 
 .input,
 .input2 {
-  height: 33px;
-  width: 80%;
-  border: none;
-  border-bottom: 1px solid #dae1e7;
-  outline: none;
-  padding: 0px;
+    height: 33px;
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid #dae1e7;
+    outline: none;
+    padding: 0px;
 }
 
 .input {
-  border-bottom: 1px solid red;
+    border-bottom: 1px solid red;
 }
 
 .input2:focus {
-  border-bottom: 1px solid #22d486;
+    border-bottom: 1px solid #22d486;
 }
 
 .input:focus {
-  border-bottom: 1px solid red;
+    border-bottom: 1px solid red;
 }
 .submit {
-  background: #22d486;
-  border-radius: 4px;
-  width: 240px;
-  height: 57px;
-  color: white;
-  margin-top: 10px;
-  border: none;
-  cursor: pointer;
+    background: #22d486;
+    border-radius: 4px;
+    width: 240px;
+    height: 57px;
+    color: white;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
 }
 .form p {
-  color: red;
-  font-size: 14px;
-  margin: 0px;
-  padding: 0px;
-  width: 80%;
-  line-height: 1px;
+    color: red;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+    width: 80%;
+    line-height: 1px;
 }
 
 @media (max-width: 500px) {
-  .form {
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    margin-top: -70px;
-  }
-  .close {
-    display: none;
-  }
-  .navbar {
-    padding: 0px;
-  }
-  .logo {
-    margin-left: 24px;
-  }
+    .form {
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        margin-top: -70px;
+    }
+    .close {
+        display: none;
+    }
+    .navbar {
+        padding: 0px;
+    }
+    .logo {
+        margin-left: 24px;
+    }
 
-  .X {
-    margin-right: 19px;
-  }
+    .X {
+        margin-right: 19px;
+    }
 }
 
 @media (max-width: 380px) {
-  .form {
-    grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
-    margin-top: -70px;
-  }
+    .form {
+        grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
+        margin-top: -70px;
+    }
 }

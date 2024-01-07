@@ -1,1 +1,1 @@
-export { default as WebD2 } from "./WebD2.svg";
+export { default as WebD2 } from './WebD2.svg';

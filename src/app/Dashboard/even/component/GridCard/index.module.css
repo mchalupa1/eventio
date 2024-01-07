@@ -1,65 +1,62 @@
 .allBoxs {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
-  flex: 1;
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+    flex: 1;
+    gap: 1rem;
 }
 
 .GridOneBox {
-  cursor: pointer;
-  display: grid;
-  padding-left: 35px;
-  padding-right: 35px;
-  background: #ffffff;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
-  border-radius: 2px;
-  height: 296px;
-  grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
-  margin: 0px;
+    cursor: pointer;
+    display: grid;
+    padding-left: 35px;
+    padding-right: 35px;
+    background: #ffffff;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
+    border-radius: 2px;
+    height: 296px;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
+    margin: 0px;
 }
 
 .RowOneBox {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 0.7fr 0.8fr 0.5fr 0.45fr;
-  background: #ffffff;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
-  border-radius: 2px;
-  height: 72px;
-  margin-bottom: 16px;
-  align-items: center;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 0.7fr 0.8fr 0.5fr 0.45fr;
+    background: #ffffff;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
+    border-radius: 2px;
+    height: 72px;
+    margin-bottom: 16px;
+    align-items: center;
 }
 
 /*media*/
 @media (max-width: 500px) {
-  .GridOneBox {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  .allBoxs {
-    
-    grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
-   
-  }
+    .GridOneBox {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    .allBoxs {
+        grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+    }
 }
 
 @media (max-width: 1450px) {
-  .RowOneBox {
-    grid-template-columns: 1.5fr 1.7fr 1fr 0.5fr 0.55fr;
-  }
-  
+    .RowOneBox {
+        grid-template-columns: 1.5fr 1.7fr 1fr 0.5fr 0.55fr;
+    }
 }
 
 @media (max-width: 1280px) {
-  .RowOneBox {
-    display: grid;
-    height: 136px;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2fr 1fr 1fr 1fr;
-    padding: 8px;
-    grid-template-areas:
-      "header header"
-      "main main"
-      "date sidebar"
-      "capacity sidebar";
-  }
+    .RowOneBox {
+        display: grid;
+        height: 136px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2fr 1fr 1fr 1fr;
+        padding: 8px;
+        grid-template-areas:
+            'header header'
+            'main main'
+            'date sidebar'
+            'capacity sidebar';
+    }
 }

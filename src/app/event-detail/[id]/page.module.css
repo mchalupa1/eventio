@@ -1,60 +1,57 @@
 .middlePart {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  padding: 20px;
-  flex: 1;
-  margin: 50px 50px 0px 50px;
-}
-.allBox {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(600px, 3fr));
-  flex: 1;
-  gap:1rem;
-}
-
-.idecko {
-  color: #a9aeb4;
-  font-family: "Hind";
-  font-size: 12px;
-  line-height: 24px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 41px;
-}
-
-.box {
-  display: grid;
-  padding-left: 32px;
-  padding-right: 35px;
-  background: #ffffff;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
-  border-radius: 2px;
-  height: 296px;
-  grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
-
-  margin: 0px;
-}
-
-
-@media (max-width: 760px) {
-  
-  .allBox {
-    grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
-  }
-}
-
-@media (max-width: 580px) {
-  .allBox {
-    grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
-  }
-  .middlePart {
     display: flex;
     flex-direction: column;
     align-self: center;
+    padding: 20px;
     flex: 1;
-    margin: 50px 8px 16px 8px;
-    padding: 0px;
-  }
-  
+    margin: 50px 50px 0px 50px;
+}
+.allBox {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 3fr));
+    flex: 1;
+    gap: 1rem;
+}
+
+.idecko {
+    color: #a9aeb4;
+    font-family: 'Hind';
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 41px;
+}
+
+.box {
+    display: grid;
+    padding-left: 32px;
+    padding-right: 35px;
+    background: #ffffff;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
+    border-radius: 2px;
+    height: 296px;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
+
+    margin: 0px;
+}
+
+@media (max-width: 760px) {
+    .allBox {
+        grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
+    }
+}
+
+@media (max-width: 580px) {
+    .allBox {
+        grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+    }
+    .middlePart {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        flex: 1;
+        margin: 50px 8px 16px 8px;
+        padding: 0px;
+    }
 }

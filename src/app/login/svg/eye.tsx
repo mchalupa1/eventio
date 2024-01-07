@@ -1,1 +1,1 @@
-export { default as Eye } from "./Eye.svg";
+export { default as Eye } from './Eye.svg';

@@ -1,1 +1,1 @@
-export { default as WhiteLogo } from "./WhiteLogo.svg";
+export { default as WhiteLogo } from './WhiteLogo.svg';

@@ -1,19 +1,12 @@
-"use client";
-import { useThemeContext } from "../componens/Context/Filter/index";
-import Loading from "../../../componens/Loading/loading";
-import GridCard from "./component/GridCard";
+'use client';
+
+import Loading from '../../../componens/Loading/loading';
+import { useThemeContext } from '../componens/Context/Filter/index';
+import GridCard from './component/GridCard';
 
 export default function EventsList() {
-  /*Data providing*/
-  const { grip, data } = useThemeContext();
+    /*Data providing*/
+    const { grip, data } = useThemeContext();
 
-  return (
-    <>
-      {data ? (
-        <GridCard data={data} grip={grip}></GridCard>
-      ) : (
-        <Loading></Loading>
-      )}
-    </>
-  );
+    return <>{data ? <GridCard data={data} grip={grip}></GridCard> : <Loading></Loading>}</>;
 }

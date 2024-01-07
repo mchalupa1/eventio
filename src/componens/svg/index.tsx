@@ -1,1 +1,1 @@
-export { default as WebDevelopment } from "./WebDevelopment.svg";
+export { default as WebDevelopment } from './WebDevelopment.svg';
