@@ -1,6 +1,6 @@
 "use client";
 import { useThemeContext } from "../componens/Context/Filter/index";
-import Loading from "../Loading/loading";
+import Loading from "../../../componens/Loading/loading";
 import GridCard from "./component/GridCard";
 
 export default function EventsList() {
@@ -9,7 +9,7 @@ export default function EventsList() {
 
   return (
     <>
-      {data? (
+      {data ? (
         <GridCard data={data} grip={grip}></GridCard>
       ) : (
         <Loading></Loading>

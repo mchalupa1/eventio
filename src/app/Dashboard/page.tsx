@@ -3,12 +3,11 @@ import Navbar from "@/componens/Navbar/navbar";
 import EventsList from "./even";
 import style from "./page.module.css";
 import { useEffect, useState } from "react";
-import CreateBtn from "./componens/CreateBtn";
+import CreateBtn from "../../componens/CreateBtn";
 import Head from "./componens/Head";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/services/firebase/db";
 import { ThemeContext } from "./componens/Context/Filter";
-
 
 export type Event = {
   title: string;
@@ -54,8 +53,8 @@ export default function Page() {
       >
         <Navbar></Navbar>
         <div className={style.middlePart}>
-          <Head></Head> 
-            <EventsList></EventsList>
+          <Head></Head>
+          <EventsList></EventsList>
         </div>
         <CreateBtn></CreateBtn>
       </ThemeContext.Provider>

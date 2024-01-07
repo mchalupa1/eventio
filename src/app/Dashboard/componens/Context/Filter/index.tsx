@@ -4,8 +4,8 @@ import { Event } from "@/app/Dashboard/page";
 type ThemeContext = {
   data: Event[]| undefined ;
   setData: React.Dispatch<React.SetStateAction<Event[]| undefined>>;
-  OriginalData: Event[];
-  setoRData: React.Dispatch<React.SetStateAction<Event[] >>;
+  OriginalData: Event[] | undefined;
+  setoRData: React.Dispatch<React.SetStateAction<Event[]>>;
   grip: boolean;
   setgrip: React.Dispatch<React.SetStateAction<boolean>>;
 };

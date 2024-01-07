@@ -7,12 +7,12 @@ import { Event } from "@/app/Dashboard/page";
 import { useEffect, useState } from "react";
 import DateTime from "@/app/Dashboard/even/component/GridCard/DateTime";
 import Mentor from "@/app/Dashboard/even/component/GridCard/Mentor";
-import Loading from "@/app/Dashboard/Loading/loading";
+import Loading from "@/componens/Loading/loading";
 import Title from "@/app/Dashboard/even/component/GridCard/Title";
 import Description from "@/app/Dashboard/even/component/GridCard/Description";
 import LowerPart from "@/app/Dashboard/even/component/GridCard/LowerPart";
 import AttendeesList from "./components/Attendees";
-import CreateBtn from "@/app/Dashboard/componens/CreateBtn";
+import CreateBtn from "@/componens/CreateBtn";
 
 type DetailsProps = {
   params: {
@@ -32,7 +32,6 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
         if (docSnap.exists()) {
           const userData = docSnap.data() as Event;
           setData((prevData) => {
-            
             if (prevData?.joiners !== userData.joiners) {
               return { ...prevData, ...userData };
             }
@@ -46,8 +45,6 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
 
     void fetchData();
   }, []);
-
-
 
   return (
     <main>
@@ -69,9 +66,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                 idecko={data.id}
               />
             </div>
-            <AttendeesList joiners={data.joiners} authorUID={data.authorUID}>
-
-            </AttendeesList>
+            <AttendeesList joiners={data.joiners} authorUID={data.authorUID} />
           </div>
         ) : (
           <Loading />

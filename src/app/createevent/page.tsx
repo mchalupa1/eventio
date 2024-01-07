@@ -6,7 +6,7 @@ import style from "./page.module.css";
 import { Logo } from "@/componens/svg/Logo";
 import { X } from "./svg/X";
 import alldata from "../data";
-import { compareAsc, format, isFuture, startOfDay } from "date-fns";
+import { compareAsc, format, isFuture, isToday, startOfDay } from "date-fns";
 import { addDays, isPast, formatISO9075 } from "date-fns";
 import { db } from "@/services/firebase/db";
 import {
@@ -33,9 +33,7 @@ const Page = () => {
     mode: "all",
   });
 
-  const currentDate = format(new Date(), "yyyy-MM-dd");
-  const currentTime = formatISO9075(new Date(), { representation: "time" });
-  const [timevalid, setTimevalid] = useState(false);
+  const [formDate, setformDate] = useState<Date>();
 
   const usersCollectionRef = collection(db, "events");
 
@@ -62,8 +60,16 @@ const Page = () => {
           <Logo></Logo>
         </Link>
         <div className={style.CloseX}>
-          <Link href={"/Dashboard"} className={style.X}><X></X></Link>
-          <Link href={"/Dashboard"} style={{ textDecoration: "none" }} className={style.close}>Close</Link>
+          <Link href={"/Dashboard"} className={style.X}>
+            <X></X>
+          </Link>
+          <Link
+            href={"/Dashboard"}
+            style={{ textDecoration: "none" }}
+            className={style.close}
+          >
+            Close
+          </Link>
         </div>
       </nav>
       <div className={style.box}>
@@ -112,30 +118,42 @@ const Page = () => {
               placeholder="Date"
               {...register("date", {
                 required: "Date is required",
-                // @ts-ignore
                 validate: (fieldValue) => {
-                  return fieldValue < currentDate
-                    ? "The date is in the past"
-                    : setTimevalid(true);
+                  const selectedDate = new Date(fieldValue);
+                  setformDate(selectedDate);
+                  if (isToday(selectedDate)) {
+                    return undefined; // Vrátí undefined, pokud je datum dnešní
+                  } else if (isPast(selectedDate)) {
+                    return "The date is in the past";
+                  } else {
+                    return undefined; // Vrátí undefined, pokud datum není dnešní ani v minulosti
+                  }
                 },
               })}
-            ></input>
+            />
             <p>{errors.date?.message?.toString()}</p>
             <input
               type="time"
               className={errors.time ? style.input : style.input2}
               {...register("time", {
                 required: "Time is required",
-                validate: (e) => {
-                  return timevalid
-                    ? true
-                    : e > currentTime
-                    ? true
-                    : "Wrong time";
+                validate: (selectedTime) => {
+                  if (formDate && isToday(formDate)) {
+                    const currentTime = formatISO9075(new Date(), {
+                      representation: "time",
+                    });
+                    if (selectedTime < currentTime) {
+                      return "Time is in the past";
+                    } else {
+                      return undefined;
+                    }
+                  } else {
+                    return undefined;
+                  }
                 },
               })}
               placeholder="Time"
-            ></input>
+            />
             <p>{errors.time?.message?.toString()}</p>
             <input
               className={errors.capacity ? style.input : style.input2}

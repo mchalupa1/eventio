@@ -1,7 +1,6 @@
-"use client";
 import { WebD3WebD3 } from "@/componens/svg2/WebD3";
 import style from "./index.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { WebDevelopment2 } from "@/componens/svg/index2-darkgrip";
 import { WebD1 } from "@/componens/svg2/WebD1";
 import { WebD2 } from "@/componens/svg2/WebD2";
@@ -11,7 +10,7 @@ import { useThemeContext } from "../Context/Filter/index";
 import { format } from "date-fns";
 
 export default function Head() {
-  // Aktuální datum a cas
+  // Aktuální datum a čas
   const currentDate = format(new Date(), "yyyy-MM-dd");
   const currentTime = format(new Date(), "HH:mm");
   /*obdrzeni contextu*/
@@ -20,35 +19,41 @@ export default function Head() {
 
   /*Filter Future*/
   const FilterFutureEvents = () => {
-    const futureEvents = OriginalData.filter((item) => {
+    const futureEvents = OriginalData?.filter((item) => {
       if (item.date > currentDate) {
         return true;
-      } else if (item.date === currentDate) {
-        if (item.time > currentTime) {
-          return true;
-        }
+      } else if (item.date === currentDate && item.time > currentTime) {
+        return true;
       } else {
         return false;
       }
-    });
+    }) ?? [];
     return futureEvents;
   };
 
   const handleFilterFutureEvents = () => {
     const futureEvents = FilterFutureEvents();
     setData(futureEvents);
-    setPick(() => ({ ...pick, all: false, past: false, future: true }));
+    setPick({ all: false, past: false, future: true });
   };
+
+  useEffect(() => {
+    if (pick.all === true) {
+      handleAllEvents();
+    } else if (pick.future === true) {
+      handleFilterFutureEvents();
+    } else if(pick.past === true) {
+      handleFilterPastEvents()
+    }
+  }, [OriginalData]); 
 
   /*Past filter*/
   const FilterPastEvents = () => {
-    const pastEvents = OriginalData.filter((item) => {
+    const pastEvents = OriginalData?.filter((item) => {
       if (item.date < currentDate) {
         return true;
-      } else if (item.date === currentDate) {
-        if (item.time < currentTime) {
-          return true;
-        }
+      } else if (item.date === currentDate && item.time < currentTime) {
+        return true;
       } else {
         return false;
       }
@@ -59,13 +64,15 @@ export default function Head() {
   const handleFilterPastEvents = () => {
     const pastEvents = FilterPastEvents();
     setData(pastEvents);
-    setPick(() => ({...pick, all:false, past:true, future:false}))
+    setPick({ all: false, past: true, future: false });
+    console.log("past events");
   };
 
   /*AllEvents Filter*/
   const handleAllEvents = () => {
     setData(OriginalData);
-    setPick(() => ({...pick, all:true, future:false, past:false}))
+    setPick({ all: true, future: false, past: false });
+    console.log("all events");
   };
 
   /*color changing*/
@@ -80,7 +87,7 @@ export default function Head() {
       <div className={style.categories}>
         <ul className={style.allEV}>
           <li className={style.categorisShow}>SHOW:</li>
-          <li className={pick.all? style.alEpick:style.alE} onClick={handleAllEvents}>
+          <li className={pick.all ? style.alEpick : style.alE} onClick={handleAllEvents}>
             ALL EVENTS
           </li>
           <li
@@ -89,7 +96,7 @@ export default function Head() {
           >
             FUTURE EVENTS
           </li>
-          <li className={pick.past? style.pEpick: style.pE} onClick={handleFilterPastEvents}>
+          <li className={pick.past ? style.pEpick : style.pE} onClick={handleFilterPastEvents}>
             PAST EVENTS
           </li>
         </ul>

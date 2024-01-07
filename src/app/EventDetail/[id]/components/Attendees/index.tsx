@@ -24,7 +24,7 @@ export default function AttendeesList(props: {
 
     return allUsersData;
   };
-  console.log(users);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {

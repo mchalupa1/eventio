@@ -1,6 +1,6 @@
 "use client";
 import { useAuthContext } from "@/app/Context/auth";
-import Loading from "@/app/Dashboard/Loading/loading";
+import Loading from "@/componens/Loading/loading";
 import GridCard from "@/app/Dashboard/even/component/GridCard";
 import { Event } from "@/app/Dashboard/page";
 import { db } from "@/services/firebase/db";
