@@ -49,8 +49,7 @@ export default function Page() {
   return (
     <main className={style.all}>
       <ThemeContext.Provider
-        value={{ data, setData, OriginalData, setoRData, grip, setgrip }}
-      >
+        value={{ data, setData, OriginalData, setoRData, grip, setgrip }}>
         <Navbar></Navbar>
         <div className={style.middlePart}>
           <Head></Head>

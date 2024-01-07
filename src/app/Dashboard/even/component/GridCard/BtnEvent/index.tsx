@@ -16,7 +16,7 @@ export default function BtnEvent(props: {
   return (
     <>
       {user && user.uid === props.author ? (
-        <Link href={"/createevent"}>
+        <Link href={"/EventEdit/" + props.idec}>
           <button className={style.statusE}>EDIT</button>
         </Link>
       ) : props.joiners.includes(user?.uid as string) ? (
