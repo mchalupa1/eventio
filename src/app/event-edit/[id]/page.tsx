@@ -5,7 +5,7 @@ import { db } from "@/services/firebase/db";
 import { Event } from "@/app/Dashboard/page";
 import { useEffect, useState } from "react";
 import style from "./page.module.css"
-import AttendeesList from "@/app/EventDetail/[id]/components/Attendees";
+import AttendeesList from "@/app/event-detail/[id]/components/Attendees";
 import Loading from "@/componens/Loading/loading";
 
 
@@ -49,7 +49,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
       {data ? (
           <div className={style.allBox}>
             <div className={style.box}>
-              
+
             </div>
             <AttendeesList joiners={data.joiners} authorUID={data.authorUID} />
           </div>

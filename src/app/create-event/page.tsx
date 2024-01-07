@@ -56,15 +56,15 @@ const Page = () => {
   return (
     <main className={style.app}>
       <nav className={style.navbar}>
-        <Link href="/Dashboard" className={style.logo}>
+        <Link href="/" className={style.logo}>
           <Logo></Logo>
         </Link>
         <div className={style.CloseX}>
-          <Link href={"/Dashboard"} className={style.X}>
+          <Link href={"/"} className={style.X}>
             <X></X>
           </Link>
           <Link
-            href={"/Dashboard"}
+            href={"/"}
             style={{ textDecoration: "none" }}
             className={style.close}
           >

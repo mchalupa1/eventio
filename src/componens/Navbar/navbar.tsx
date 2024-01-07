@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <nav>
       <div className={styles.navbar}>
-        <Link href="/Dashboard" className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <Logo></Logo>
         </Link>
         <div className={styles.user}>

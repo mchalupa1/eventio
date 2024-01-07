@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 export const config = {
-  matcher: ["/", "/Profile", "/createevent", "/EventDetail", "/EventEdit"],
+  matcher: ["/", "/profile", "/create-event", "/event-detail", "/event-edit"],
 };
 
 export enum AuthCookie {
@@ -10,7 +10,7 @@ export enum AuthCookie {
 
 const signOut = (request: NextRequest) => {
   const origin = `${request.nextUrl.protocol}//${request.headers.get("host")}`;
-  const response = NextResponse.redirect(new URL("/LoginPage", origin));
+  const response = NextResponse.redirect(new URL("/login", origin));
 
   response.cookies.delete(AuthCookie.IdToken);
 

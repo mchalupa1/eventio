@@ -26,9 +26,9 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
           authorUID,
         } = item;
         return (
-          
+
             <Link
-              href={`/EventDetail/${item.id}`}
+              href={`/event-detail/${item.id}`}
               style={{ textDecoration: "none" }}
               className={props.grip ? style.GridOneBox : style.RowOneBox}
               key={id}
@@ -58,7 +58,7 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
                 ></LowerPartRow>
               )}
             </Link>
-          
+
         );
       })}
     </div>

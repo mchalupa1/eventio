@@ -4,6 +4,7 @@ import BtnLeave from "./Btns/leavebtn";
 import style from "./index.module.css";
 import Link from "next/link";
 import { useAuthContext } from "@/app/Context/auth";
+import { useRouter } from "next/navigation";
 
 export default function BtnEvent(props: {
   author: string;
@@ -12,13 +13,12 @@ export default function BtnEvent(props: {
   capac: string;
 }) {
   const { user } = useAuthContext();
+  const {push} = useRouter()
 
   return (
     <>
       {user && user.uid === props.author ? (
-        <Link href={"/EventEdit/" + props.idec}>
-          <button className={style.statusE}>EDIT</button>
-        </Link>
+          <button className={style.statusE} onClick={() => push("/event-edit/" + props.idec)}>EDIT</button>
       ) : props.joiners.includes(user?.uid as string) ? (
         <BtnLeave
           uid={user?.uid as string}
