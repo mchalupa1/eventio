@@ -53,6 +53,10 @@
 
 @media (max-width: 500px) {
     .container {
-        margin-right: 14px;
+        margin-right: 3px;
     }
+
+	.all{
+		width: 80px;
+	}
 }

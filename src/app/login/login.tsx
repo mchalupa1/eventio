@@ -50,24 +50,13 @@ const Page = () => {
                 <input
                     className={style.INEmail}
                     placeholder="Email"
-                    {...register('email', {
-                        required: 'Email is required',
-                        pattern: {
-                            value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                            message: 'Oops! That email and password combination is not valid.',
-                        },
-                    })}
+                    {...register('email')}
                 ></input>
                 <input
                     className={style.INPassword}
-                    type={eye ? 'password' : 'text'}
+                    type={ 'password'}
                     placeholder="Password"
-                    {...register('password', {
-                        minLength: {
-                            value: 6,
-                            message: 'Oops! That email and password combination is not valid.',
-                        },
-                    })}
+                    {...register('password')}
                 ></input>
                 <input type="submit" className={style.btn} value="SIGN IN"></input>
             </form>

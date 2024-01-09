@@ -7,9 +7,9 @@ import style from './index.module.css';
 
 export default function BtnEvent(props: {
     author: string;
-    joiners: string;
+    joiners: string; //joiners
     idec: string;
-    capac: string;
+    capac: string; //capacity
 }) {
     const { user } = useAuthContext();
     const { push } = useRouter();
@@ -21,20 +21,28 @@ export default function BtnEvent(props: {
 
     return (
         <>
-            {user && user.uid === props.author ? (
-                    <button className={style.statusE} onClick={Routing}>
-                    EDIT
-                    </button>
-            ) : props.joiners.includes(user?.uid as string) ? (
-                <BtnLeave uid={user?.uid as string} joiners={props.joiners} id={props.idec} />
-            ) : (
-                <BtnJoin
-                    uid={user?.uid as string}
-                    joiners={props.joiners}
-                    id={props.idec}
-                    capac={props.capac}
-                />
-            )}
+            {
+			(props.joiners.length === Number(props.capac))?
+			(user && user.uid === props.author)?
+			<button className={style.statusE} onClick={Routing}>
+			EDIT
+			</button>:
+			(props.joiners.includes(user?.uid as string))?<BtnLeave uid={user?.uid as string} joiners={props.joiners} id={props.idec} />:<button className={style.filledBtn}>FILLED</button>:
+			(user && user.uid === props.author) ? (
+				<button className={style.statusE} onClick={Routing}>
+				EDIT
+				</button>
+			) : props.joiners.includes(user?.uid as string) ? (
+			<BtnLeave uid={user?.uid as string} joiners={props.joiners} id={props.idec} />
+			) : (
+			<BtnJoin
+				uid={user?.uid as string}
+				joiners={props.joiners}
+				id={props.idec}
+				capac={props.capac}
+			/>
+			)
+			}
         </>
     );
 }

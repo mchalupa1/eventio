@@ -1,0 +1,13 @@
+/* NotFound.module.css */
+.notFound {
+	text-align: center;
+	margin: 100px auto;
+	max-width: 400px;
+  }
+
+
+  .notFound p {
+	margin: 10px 0;
+	text-decoration: none;
+  }
+
