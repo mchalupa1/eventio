@@ -1,7 +1,5 @@
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
-
-import Droplist from '@/componens/Droplist';
 import { WebD1 } from '@/componens/svg2/WebD1';
 import { WebD2 } from '@/componens/svg2/WebD2';
 import { WebD3WebD3 } from '@/componens/svg2/WebD3';
