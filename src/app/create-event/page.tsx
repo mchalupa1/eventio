@@ -129,7 +129,7 @@ const Page = () => {
                         />
                         <p>{errors.date?.message?.toString()}</p>
                         <input
-                            type="time"
+                            type="text"
                             className={errors.time ? style.input : style.input2}
                             {...register('time', {
                                 required: 'Time is required',
@@ -149,6 +149,8 @@ const Page = () => {
                                 },
                             })}
                             placeholder="Time"
+							onFocus={(e) => (e.target.type = "time")}
+                            onBlur={(e) => (e.target.type = "text")}
                         />
                         <p>{errors.time?.message?.toString()}</p>
                         <input

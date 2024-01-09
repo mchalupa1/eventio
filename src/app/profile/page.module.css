@@ -74,3 +74,12 @@
     gap: 1rem;
     cursor: pointer;
 }
+
+@media (max-width: 500px) {
+    .middlePart {
+        width: 95%;
+        flex: 1;
+        margin: 60px 8px 60px 8px;
+        padding: 0px;
+    }
+}
