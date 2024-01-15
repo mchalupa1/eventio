@@ -1,8 +1,6 @@
 'use client';
-
 import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-
 import { Event } from '@/app/Dashboard';
 import DateTime from '@/app/Dashboard/even/component/GridCard/DateTime';
 import Description from '@/app/Dashboard/even/component/GridCard/Description';
@@ -13,7 +11,6 @@ import CreateBtn from '@/componens/CreateBtn';
 import Loading from '@/componens/Loading/loading';
 import Navbar from '@/componens/Navbar/navbar';
 import { db } from '@/services/firebase/db';
-
 import AttendeesList from './components/Attendees';
 import style from './page.module.css';
 

@@ -5,10 +5,11 @@
     padding: 20px;
     flex: 1;
     margin: 50px 50px 0px 50px;
+
 }
 .allBox {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(600px, 3fr));
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
     flex: 1;
     gap: 1rem;
 }
@@ -21,6 +22,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 41px;
+
 }
 
 .box {
@@ -32,7 +34,6 @@
     border-radius: 2px;
     height: 296px;
     grid-template-rows: 0.5fr 0.5fr 0.5fr 2fr 1.5fr;
-
     margin: 0px;
 }
 

@@ -1,29 +1,14 @@
 'use client';
-
-import { compareAsc, format, isFuture, isToday, startOfDay } from 'date-fns';
-import { addDays, formatISO9075, isPast } from 'date-fns';
-import { onAuthStateChanged } from 'firebase/auth';
-import {
-    DocumentReference,
-    addDoc,
-    collection,
-    doc,
-    getDocs,
-    setDoc,
-    updateDoc,
-} from 'firebase/firestore';
+import { formatISO9075, isPast, isToday } from 'date-fns';
+import {addDoc,collection,doc,updateDoc,} from 'firebase/firestore';
 import Link from 'next/link';
-import { use, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
-import Navbar from '@/componens/Navbar/navbar';
 import { Logo } from '@/componens/svg/Logo';
-import { auth } from '@/services/firebase/auth';
 import { db } from '@/services/firebase/db';
-
 import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
-import { X } from './svg/X';
+import { X } from '../../componens/svg2/svg/X';
 
 const Page = () => {
     const { user } = useAuthContext();

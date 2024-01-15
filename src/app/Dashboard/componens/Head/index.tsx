@@ -65,14 +65,14 @@ export default function Head() {
         const pastEvents = FilterPastEvents();
         setData(pastEvents);
         setPick({ all: false, past: true, future: false });
-        console.log('past events');
+
     };
 
     /*AllEvents Filter*/
     const handleAllEvents = () => {
         setData(OriginalData);
         setPick({ all: true, future: false, past: false });
-        console.log('all events');
+        
     };
 
     /*color changing*/

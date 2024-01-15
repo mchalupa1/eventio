@@ -1,0 +1,86 @@
+.middlePart {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-self: center;
+    padding: 20px;
+    flex: 1;
+    margin: 50px 180px 0px 180px;
+	width: 80%;
+}
+
+.head {
+    display: inline-flex;
+    justify-content: space-between;
+	align-items: center;
+}
+.idecko {
+    color: #a9aeb4;
+    font-family: 'Hind';
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 41px;
+	margin: 0px;
+}
+
+.delete {
+    display: inline-flex;
+	gap: 0.5rem;
+	align-items: center;
+	cursor: pointer;
+}
+
+.deletetext{
+	color: #FF4081;
+	font-size: 12px;
+	letter-spacing: 1px;
+}
+
+.deletetext:hover{
+	text-decoration: underline;
+	color: #FF4081;
+
+}
+
+.bin{
+margin: 0px;
+}
+
+
+
+.allBox {
+    display: flex;
+    gap: 1rem;
+}
+
+
+.form {
+    background: #ffffff;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
+    border-radius: 2px;
+    height: 464px;
+	display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+
+}
+
+@media (max-width: 760px) {
+    .allBox {
+        grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
+    }
+}
+
+@media (max-width: 580px) {
+    .allBox {
+        grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+    }
+    .middlePart {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        flex: 1;
+        margin: 50px 8px 16px 8px;
+        padding: 0px;
+    }
+}

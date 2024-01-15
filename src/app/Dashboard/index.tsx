@@ -54,7 +54,7 @@ export default function Page() {
             <ThemeContext.Provider
                 value={{ data, setData, OriginalData, setoRData, grip, setgrip }}
             >
-                <Navbar></Navbar>
+            <Navbar></Navbar>
                 <div className={style.middlePart}>
                     <Head></Head>
                     <EventsList></EventsList>
