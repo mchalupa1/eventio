@@ -117,6 +117,10 @@
     border: none;
     cursor: pointer;
 }
+
+.submit:hover{
+	background-color:rgba(32, 189, 120, 1);
+}
 .form p {
     color: red;
     font-size: 14px;

@@ -1,17 +1,17 @@
 .middlePart {
-    display: grid;
-    grid-template-columns: 1fr;
+	display: flex;
+    flex-direction: column;
     align-self: center;
     padding: 20px;
     flex: 1;
-    margin: 50px 180px 0px 180px;
-	width: 80%;
+    margin: 50px 50px 0px 50px;
 }
 
 .head {
-    display: inline-flex;
-    justify-content: space-between;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+	margin-bottom: 41px;
+	gap: 0.5rem;
 }
 .idecko {
     color: #a9aeb4;
@@ -25,16 +25,17 @@
 }
 
 .delete {
-    display: inline-flex;
+    display: flex;
 	gap: 0.5rem;
 	align-items: center;
-	cursor: pointer;
+
 }
 
 .deletetext{
 	color: #FF4081;
 	font-size: 12px;
 	letter-spacing: 1px;
+	cursor: pointer;
 }
 
 .deletetext:hover{
@@ -45,25 +46,80 @@
 
 .bin{
 margin: 0px;
+cursor: pointer;
 }
 
-
-
 .allBox {
-    display: flex;
+	display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+    flex: 1;
     gap: 1rem;
 }
 
 
 .form {
+	display: grid;
     background: #ffffff;
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
     border-radius: 2px;
     height: 464px;
-	display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+	align-items: center;
+	justify-content: center;
+}
+
+.input,
+.input2 {
+    height: 33px;
+    width: 90%;
+    border: none;
+    border-bottom: 1px solid #dae1e7;
+    outline: none;
+    padding: 0px;
+
 
 }
+
+.input {
+    border-bottom: 1px solid red;
+}
+
+.input2:focus {
+    border-bottom: 1px solid #22d486;
+}
+
+.input:focus {
+    border-bottom: 1px solid red;
+}
+.submit {
+    background: #22d486;
+    border-radius: 4px;
+    width: 240px;
+    height: 57px;
+    color: white;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.submit:hover{
+	background-color:rgba(32, 189, 120, 1);
+}
+.form p {
+    color: red;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+    width: 90%;
+    line-height: 1px;
+}
+
+
 
 @media (max-width: 760px) {
     .allBox {

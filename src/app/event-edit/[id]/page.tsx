@@ -1,5 +1,5 @@
 'use client';
-import { collection, doc, getDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Event } from '@/app/Dashboard';
 import AttendeesList from '@/app/event-detail/[id]/components/Attendees';
@@ -10,6 +10,7 @@ import {Bin} from "@/componens/svg/Bin"
 import style from './page.module.css';
 import { useForm } from 'react-hook-form';
 import { formatISO9075, isPast, isToday } from 'date-fns';
+import { useRouter } from 'next/navigation';
 
 type DetailsProps = {
     params: {
@@ -19,7 +20,7 @@ type DetailsProps = {
 
 const EventDetail: React.FC<DetailsProps> = ({ params }) => {
     const [data, setData] = useState<Event | undefined>(undefined);
-
+	const { push } = useRouter();
 	/*Data fetching*/
     useEffect(() => {
         const fetchData = async () => {
@@ -49,10 +50,11 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
         formState: { errors },
         register,
         handleSubmit,
+        setValue, // Potřebujeme setValue pro aktualizaci hodnot
     } = useForm({
         mode: 'all',
+		 // Nastavíme defaultValues na načtená data
     });
-
     const [formDate, setformDate] = useState<Date>();
 
     const usersCollectionRef = collection(db, 'events');
@@ -72,7 +74,15 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
 		*/
 		console.log("send")
     });
-
+	const DeleteEvent = async () => {
+        try {
+           const eventRef = doc(db, 'events', params.id);
+            await deleteDoc(eventRef);
+            push('/');
+        } catch (error) {
+            console.error('Error deleting event:', error);
+        }
+    };
     return (
         <main>
             <Navbar />
@@ -80,8 +90,8 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
 				<div className={style.head}>
 				<p className={style.idecko}>Detail event: {params.id}</p>
 				<div className={style.delete}>
-                <p className={style.bin}><Bin></Bin></p>
-				<p className={style.deletetext}>DELETE EVENT</p>
+                <p className={style.bin} onClick={DeleteEvent}><Bin></Bin></p>
+				<p className={style.deletetext} onClick={DeleteEvent}>DELETE EVENT</p>
 				</div>
 				</div>
                 {data ? (
@@ -103,6 +113,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                 },
                             })}
                             placeholder="Title"
+                          onChange={(e) =>setData({...data,title:e.target.value}) }
                         ></input>
                         <p>{errors.title?.message?.toString()}</p>
                         <input
@@ -119,6 +130,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                 },
                             })}
                             placeholder="Description"
+							value={data.description}
                         ></input>
                         <p>{errors.description?.message?.toString()}</p>
                         <input
@@ -139,10 +151,11 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                     }
                                 },
                             })}
+							value={data.date}
                         />
                         <p>{errors.date?.message?.toString()}</p>
                         <input
-                            type="text"
+                            type="time"
                             className={errors.time ? style.input : style.input2}
                             {...register('time', {
                                 required: 'Time is required',
@@ -162,8 +175,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                 },
                             })}
                             placeholder="Time"
-							onFocus={(e) => (e.target.type = "time")}
-                            onBlur={(e) => (e.target.type = "text")}
+							value={data.time}
                         />
                         <p>{errors.time?.message?.toString()}</p>
                         <input
@@ -178,12 +190,13 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                 },
                             })}
                             placeholder="Capacity"
+							value={data.capacity}
                         ></input>
                         <p>{errors.capacity?.message?.toString()}</p>
                         <input
                             type="Submit"
                             className={style.submit}
-                            value="CREATE NEW EVENT"
+                            value="UPDATE THE EVENT"
                         ></input>
                     </div>
                 </form>
@@ -202,3 +215,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
 };
 
 export default EventDetail;
+function push(arg0: string) {
+	throw new Error('Function not implemented.');
+}
+

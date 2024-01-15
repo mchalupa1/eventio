@@ -27,7 +27,7 @@ export default function BtnEvent(props: {
 			<button className={style.statusE} onClick={Routing}>
 			EDIT
 			</button>:
-			(props.joiners.includes(user?.uid as string))?<BtnLeave uid={user?.uid as string} joiners={props.joiners} id={props.idec} />:<button className={style.filledBtn}>FILLED</button>:
+			(props.joiners.includes(user?.uid as string))?<BtnLeave uid={user?.uid as string} joiners={props.joiners} id={props.idec} />:<button className={style.filledBtn} onClick={(e) => {e.preventDefault()}}>FILLED</button>:
 			(user && user.uid === props.author) ? (
 				<button className={style.statusE} onClick={Routing}>
 				EDIT
