@@ -16,6 +16,7 @@ const Page = () => {
         formState: { errors },
         register,
         handleSubmit,
+		reset,
     } = useForm({
         mode: 'all',
     });
@@ -37,6 +38,7 @@ const Page = () => {
         const docRef = doc(usersCollectionRef, colRef.id);
         console.log(docRef);
         await updateDoc(docRef, { id: colRef.id });
+reset()
     });
     return (
         <main className={style.app}>

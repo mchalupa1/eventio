@@ -1,5 +1,5 @@
 'use client';
-import { collection, deleteDoc, doc, getDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Event } from '@/app/Dashboard';
 import AttendeesList from '@/app/event-detail/[id]/components/Attendees';
@@ -11,6 +11,8 @@ import style from './page.module.css';
 import { useForm } from 'react-hook-form';
 import { formatISO9075, isPast, isToday } from 'date-fns';
 import { useRouter } from 'next/navigation';
+import { date } from 'yup';
+import Head from '@/app/Dashboard/componens/Head';
 
 type DetailsProps = {
     params: {
@@ -46,33 +48,29 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
     }, []);
 
 	/*form things*/
+
+
     const {
         formState: { errors },
         register,
         handleSubmit,
-        setValue, // Potřebujeme setValue pro aktualizaci hodnot
+        setValue,
     } = useForm({
         mode: 'all',
-		 // Nastavíme defaultValues na načtená data
     });
     const [formDate, setformDate] = useState<Date>();
 
     const usersCollectionRef = collection(db, 'events');
     const handle = handleSubmit(async ({ title, description, date, time, capacity }) => {
-       /* const colRef = await addDoc(usersCollectionRef, {
-            authorUID: user?.uid,
+        const docRef = doc(usersCollectionRef, data?.id);
+		await updateDoc(docRef, {
             title: title,
             description: description,
             date: date,
             time: time,
             capacity: capacity,
-            joiners: [],
         });
-        const docRef = doc(usersCollectionRef, colRef.id);
-        console.log(docRef);
-        await updateDoc(docRef, { id: colRef.id });
-		*/
-		console.log("send")
+		push("/")
     });
 	const DeleteEvent = async () => {
         try {
@@ -84,6 +82,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
         }
     };
     return (
+
         <main>
             <Navbar />
             <div className={style.middlePart}>
@@ -113,7 +112,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                 },
                             })}
                             placeholder="Title"
-                          onChange={(e) =>setData({...data,title:e.target.value}) }
+							defaultValue={data.title}
                         ></input>
                         <p>{errors.title?.message?.toString()}</p>
                         <input
@@ -130,7 +129,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                 },
                             })}
                             placeholder="Description"
-							value={data.description}
+							defaultValue={data.description}
                         ></input>
                         <p>{errors.description?.message?.toString()}</p>
                         <input
@@ -151,7 +150,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                     }
                                 },
                             })}
-							value={data.date}
+							defaultValue={data.date}
                         />
                         <p>{errors.date?.message?.toString()}</p>
                         <input
@@ -175,7 +174,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                 },
                             })}
                             placeholder="Time"
-							value={data.time}
+							defaultValue={data.time}
                         />
                         <p>{errors.time?.message?.toString()}</p>
                         <input
@@ -188,9 +187,16 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                     value: /^[0-9]*$/,
                                     message: 'Only numbers are allowed',
                                 },
+								validate:(fieldValue) => {
+									if(fieldValue < data.joiners.length){
+										return  "Small capacity."
+									}else{
+										return undefined
+									}
+								}
                             })}
                             placeholder="Capacity"
-							value={data.capacity}
+							defaultValue={data.capacity}
                         ></input>
                         <p>{errors.capacity?.message?.toString()}</p>
                         <input
@@ -200,10 +206,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                         ></input>
                     </div>
                 </form>
-
 						</div>
-
-
                         <AttendeesList joiners={data.joiners} authorUID={data.authorUID} />
                        </div>
                 ) : (

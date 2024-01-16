@@ -12,6 +12,10 @@
 	letter-spacing: 1px;
 }
 
+.statusJ:hover{
+	background-color: rgba(32, 189, 120, 1)
+}
+
 .statsuL {
     background-color: #ff4081;
     width: 100px;
@@ -24,6 +28,9 @@
     cursor: pointer;
     display: inline-block;
 	letter-spacing: 1px;
+}
+.statsuL:hover{
+	background-color: rgba(231, 51, 112, 1);
 }
 
 .statusE {
@@ -38,6 +45,11 @@
     cursor: pointer;
     display: inline-block;
 	letter-spacing: 1px;
+}
+
+.statusE:hover{
+	background-color: rgba(196, 201, 209, 1);
+	color:rgba(169, 174, 180, 1);
 }
 
 .filledBtn{
