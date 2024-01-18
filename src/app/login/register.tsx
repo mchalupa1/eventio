@@ -49,14 +49,14 @@ const Page = () => {
             errors.firstName ||
             errors.lastName ? (
                 <p className={style.undertitleE}>
-                    Oops! That email and password combination is not valid.
+                    Oops! This is not valid.
                 </p>
             ) : (
                 <p className={style.undertitle}>Enter your details below.</p>
             )}
             <form className={style.form} onSubmit={singin} autoComplete="off">
-                <input
-                    className={style.INfirstname}
+				<input
+                    className={errors.firstName? style.errorInput :style.INfirstname}
                     placeholder="First name"
                     {...register('firstName', {
                         minLength: {
@@ -66,7 +66,7 @@ const Page = () => {
                     })}
                 ></input>
                 <input
-                    className={style.INlastname}
+                    className={errors.lastName? style.errorInput :style.INlastname}
                     placeholder="Last name"
                     {...register('lastName', {
                         minLength: {
@@ -76,7 +76,7 @@ const Page = () => {
                     })}
                 ></input>
                 <input
-                    className={style.INEmail}
+                    className={errors.email? style.errorInput :style.INEmail}
                     placeholder="Email"
                     {...register('email', {
                         required: 'Email is required',
@@ -88,7 +88,7 @@ const Page = () => {
                 ></input>
                 <input
                     type="password"
-                    className={style.INPassword}
+                    className={errors.password? style.errorInput :style.INPassword}
                     placeholder="Password"
                     {...register('password', {
                         minLength: {
@@ -99,7 +99,7 @@ const Page = () => {
                 ></input>
                 <input
                     type="password"
-                    className={style.INRepeatPassword}
+                    className={errors.repeatPassword? style.errorInput :style.INRepeatPassword}
                     placeholder="Repeat Password"
                     {...register('repeatPassword', {
                         minLength: {

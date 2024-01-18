@@ -64,12 +64,13 @@
     flex-direction: column;
     width: 100%;
     gap: 2rem;
+	box-sizing: border-box;
 }
 
 .INEmail,
 .INfirstname,
 .INlastname,
-.INRepeatPassword {
+.INRepeatPassword, .errorInput {
     border: none;
     border-bottom: 1px solid #dae1e7;
     outline: none;
@@ -85,6 +86,7 @@
     background: #f2f2f2;
     height: 33px;
     color: #323c46;
+	width: auto;
 }
 
 .INPassword::placeholder,
@@ -103,6 +105,20 @@
 .INfirstname:focus,
 .INlastname:focus {
     border-bottom: 1px solid #22d486;
+}
+
+.errorInput{
+	border-bottom: 1px solid red;
+}
+
+.group{
+	position: relative;
+
+}
+
+.placeholder{
+	position: absolute;
+
 }
 
 .title {
