@@ -4,7 +4,7 @@
     align-self: center;
     padding: 20px;
     flex: 1;
-    margin: 50px 50px 0px 50px;
+    margin: 50px 120px 0px 120px;
 
 }
 .allBox {
@@ -37,7 +37,7 @@
     margin: 0px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 880px) {
     .allBox {
         grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
     }
