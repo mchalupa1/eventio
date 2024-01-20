@@ -48,12 +48,13 @@ const Page = () => {
             )}
             <form className={style.form} onSubmit={submit} autoComplete="off">
                 <input
-                    className={style.INEmail}
+                    className={errors.email || errors.password? style.errorInput:style.INEmail}
                     placeholder="Email"
                     {...register('email')}
+					type="text"
                 ></input>
                 <input
-                    className={style.INPassword}
+                    className={errors.email || errors.password? style.errorInput:style.INEmail}
                     type={ 'password'}
                     placeholder="Password"
                     {...register('password')}

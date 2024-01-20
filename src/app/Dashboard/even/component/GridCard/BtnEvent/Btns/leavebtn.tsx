@@ -6,7 +6,7 @@ import { db } from '@/services/firebase/db';
 
 import style from '../index.module.css';
 
-const BtnLeave = (props: { uid: string; joiners: string; id: string }) => {
+const BtnLeave = (props: { uid: string; joiners: string[]; id: string }) => {
     const ButtonChange = async (e: any) => {
         e.preventDefault();
         if (props.joiners.includes(props.uid)) {

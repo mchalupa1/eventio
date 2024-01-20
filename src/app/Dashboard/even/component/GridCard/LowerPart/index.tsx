@@ -9,8 +9,8 @@ import style from './index.module.css';
 
 export default function LowerPart(props: {
     grip: boolean;
-    joiners: string;
-    capacity: string;
+    joiners: string[];
+    capacity: number;
     authorUID: string;
     idecko: string;
 }) {

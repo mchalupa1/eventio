@@ -59,6 +59,7 @@ const Page = () => {
                     className={errors.firstName? style.errorInput :style.INfirstname}
                     placeholder="First name"
                     {...register('firstName', {
+						required: 'First name is required',
                         minLength: {
                             value: 3,
                             message: 'Oops! That email and password combination is not valid.',
@@ -69,6 +70,7 @@ const Page = () => {
                     className={errors.lastName? style.errorInput :style.INlastname}
                     placeholder="Last name"
                     {...register('lastName', {
+						required: 'Last name is required',
                         minLength: {
                             value: 3,
                             message: 'Oops! That email and password combination is not valid.',
@@ -91,6 +93,7 @@ const Page = () => {
                     className={errors.password? style.errorInput :style.INPassword}
                     placeholder="Password"
                     {...register('password', {
+						 required: 'Password is required',
                         minLength: {
                             value: 6,
                             message: 'Oops! That email and password combination is not valid.',
@@ -100,8 +103,9 @@ const Page = () => {
                 <input
                     type="password"
                     className={errors.repeatPassword? style.errorInput :style.INRepeatPassword}
-                    placeholder="Repeat Password"
+                    placeholder="Repeat password"
                     {...register('repeatPassword', {
+						required: 'Repeat password is required',
                         minLength: {
                             value: 6,
                             message: 'Oops! That email and password combination is not valid.',

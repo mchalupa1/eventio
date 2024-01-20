@@ -25,7 +25,7 @@ const Page = () => {
     const [LoginBox, setLoginBox] = useState(true);
 
     return (
-        <main className={style.all}>
+        <div className={style.all}>
             <nav className={style.navbar}>
                 <div className={style.logo}>
                     <Logo></Logo>
@@ -41,10 +41,10 @@ const Page = () => {
                     </p>
                 </div>
             </nav>
-            <div className={style.middlePart}>
+            <main className={style.middlePart}>
                 {LoginBox ? <Login></Login> : <Register></Register>}
-            </div>
-        </main>
+            </main>
+        </div>
     );
 };
 

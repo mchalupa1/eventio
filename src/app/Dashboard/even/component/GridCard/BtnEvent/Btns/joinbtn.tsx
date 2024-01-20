@@ -6,10 +6,10 @@ import { db } from '@/services/firebase/db';
 
 import style from '../index.module.css';
 
-const BtnJoin = (props: { uid: string; joiners: string; id: string; capac: string }) => {
+const BtnJoin = (props: { uid: string; joiners: string[]; id: string; capac: number }) => {
     const ButtonChange = async (e: any) => {
         e.preventDefault();
-        if (Number(props.capac) === props.joiners.length) {
+        if (props.capac === props.joiners.length) {
         } else {
             if (props.joiners.includes(props.uid) === false) {
                 const docRef = doc(db, 'events', props.id);

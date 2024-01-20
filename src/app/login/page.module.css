@@ -24,7 +24,6 @@
 .already {
     display: inline;
     color: #c9ced3;
-    font-family: Hind;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -34,7 +33,6 @@
 .singup {
     display: inline;
     color: #949ea8;
-    font-family: Hind;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -52,6 +50,7 @@
     justify-content: center;
     margin: 0px 50px 0px 50px;
 }
+
 .box {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
@@ -123,27 +122,20 @@
 
 .title {
     color: #323c46;
-    font-family: Hind;
     font-size: 28px;
-    font-style: normal;
-    font-weight: 400;
     margin-bottom: -12px;
     text-align: center;
 }
 
 .undertitle {
     color: #949ea8;
-    font-family: Hind;
     font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
     margin-bottom: 64px;
     text-align: center;
 }
 
 .undertitleE {
     color: #ff4081;
-    font-family: Hind;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -159,7 +151,6 @@
     border: none;
     background: #22d486;
     color: #fff;
-    font-family: Hind;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;

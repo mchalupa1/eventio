@@ -7,9 +7,9 @@ import style from './index.module.css';
 
 export default function BtnEvent(props: {
     author: string;
-    joiners: string; //joiners
+    joiners: string[]; //joiners
     idec: string;
-    capac: string; //capacity
+    capac: number; //capacity
 }) {
     const { user } = useAuthContext();
     const { push } = useRouter();
@@ -22,7 +22,7 @@ export default function BtnEvent(props: {
     return (
         <>
             {
-			(props.joiners.length === Number(props.capac))?
+			(props.joiners.length === props.capac)?
 			(user && user.uid === props.author)?
 			<button className={style.statusE} onClick={Routing}>
 			EDIT

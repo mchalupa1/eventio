@@ -14,11 +14,11 @@ import style from './page.module.css';
 
 export type Event = {
     title: string;
-    date: string;
+    date: Date;
     id: string;
     description: string;
-    capacity: string;
-    joiners: string;
+    capacity: number;
+    joiners: string[];
     time: string;
     authorUID: string;
 };

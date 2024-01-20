@@ -3,20 +3,13 @@ import React from 'react';
 
 import style from './index.module.css';
 
-export default function DateTime(props: { grip: boolean; date: string; time: string }) {
-    const dateObject = parseISO(props.date);
-    const timeObject = parseISO(`1970-01-01T${props.time}`);
-
-    const isValidDate = isValid(dateObject);
-    const isValidTime = isValid(timeObject);
-
-    const formattedDate = isValidDate ? format(dateObject, 'MMMM d, yyyy') : 'Invalid Date';
-    const formattedTime = isValidTime ? format(timeObject, 'K:mm aa') : 'Invalid Time';
+export default function DateTime(props: { grip: boolean; date: Date; time:string}) {
+	const startsAt = new Date(`${props.date} ${props.time}`);
 
     return (
         <div className={props.grip ? style.alltime : style.alltime2}>
             <p className={props.grip ? style.date : style.date2}>
-                {`${formattedDate} – ${formattedTime}`}
+			{format(startsAt, 'MMMM d, yyyy - K:m aa')}
             </p>
         </div>
     );
