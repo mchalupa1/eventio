@@ -14,7 +14,7 @@ import style from './page.module.css';
 
 export type Event = {
     title: string;
-    date: Date;
+    date: string;
     id: string;
     description: string;
     capacity: number;
