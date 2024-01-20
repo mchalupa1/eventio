@@ -3,7 +3,7 @@ import React from 'react';
 
 import style from './index.module.css';
 
-export default function DateTime(props: { grip: boolean; date: Date; time:string}) {
+export default function DateTime(props: { grip: boolean; date: string; time:string}) {
 	const startsAt = new Date(`${props.date} ${props.time}`);
 
     return (
