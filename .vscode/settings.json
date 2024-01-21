@@ -3,8 +3,5 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "prettier.configPath": ".prettierrc.json",
     "typescript.tsdk": "node_modules/typescript/lib",
-    "files.eol": "\n",
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "ms-vsliveshare.vsliveshare"
-    }
+    "files.eol": "\n"
 }
