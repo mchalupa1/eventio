@@ -11,6 +11,8 @@ import { ThemeContext } from './componens/Context/Filter';
 import Head from './componens/Head';
 import EventsList from './even';
 import style from './page.module.css';
+import { useEvents } from '@/services/firebase/firestore/useEvents';
+import Loading from '@/componens/Loading/loading';
 
 export type Event = {
     title: string;
@@ -27,6 +29,9 @@ export default function Page() {
     /*Data fetching*/
     const [data, setData] = useState<Event[] | undefined>();
     const [OriginalData, setoRData] = useState<Event[]>([]);
+
+	const {data: newData, loading} = useEvents()
+
     useEffect(() => {
         const fetchData = async () => {
             const colRef = collection(db, 'events');
@@ -57,7 +62,7 @@ export default function Page() {
             <Navbar></Navbar>
                 <div className={style.middlePart}>
                     <Head></Head>
-                    <EventsList></EventsList>
+                    <EventsList data={newData} loading={loading} />
                 </div>
                 <CreateBtn></CreateBtn>
             </ThemeContext.Provider>

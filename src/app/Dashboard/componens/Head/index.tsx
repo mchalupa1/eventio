@@ -9,6 +9,8 @@ import { WebDevelopment3 } from '@/componens/svg/index3';
 import { useThemeContext } from '../Context/Filter/index';
 import style from './index.module.css';
 
+
+
 export default function Head() {
     // Aktuální datum a čas
     const currentDate = format(new Date(), 'yyyy-MM-dd');
@@ -72,7 +74,7 @@ export default function Head() {
     const handleAllEvents = () => {
         setData(OriginalData);
         setPick({ all: true, future: false, past: false });
-        
+
     };
 
     /*color changing*/
