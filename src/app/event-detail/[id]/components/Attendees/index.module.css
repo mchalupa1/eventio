@@ -6,12 +6,11 @@
     margin: 0px;
     max-width: 450px;
     overflow: auto;
-	
 }
 
 .attendees {
     color: #323c46;
-    font-family: 'Hind';
+
     font-size: 22px;
     margin: 0px;
     margin-top: 32px;
@@ -38,7 +37,7 @@
 
 .joiner {
     color: #949ea8;
-    font-family: 'Hind';
+
     font-size: 13px;
 }
 
@@ -54,6 +53,6 @@
 
 .You {
     color: #949ea8;
-    font-family: 'Hind';
+
     font-size: 13px;
 }
