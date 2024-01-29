@@ -5,15 +5,15 @@
     border: none;
     border-radius: 4px;
     color: #ffffff;
-    font-family: 'Hind';
+
     font-size: 14px;
     display: inline-block;
     cursor: pointer;
-	letter-spacing: 1px;
+    letter-spacing: 1px;
 }
 
-.statusJ:hover{
-	background-color: rgba(32, 189, 120, 1)
+.statusJ:hover {
+    background-color: rgba(32, 189, 120, 1);
 }
 
 .statsuL {
@@ -23,14 +23,14 @@
     border: none;
     border-radius: 4px;
     color: #ffffff;
-    font-family: 'Hind';
+
     font-size: 14px;
     cursor: pointer;
     display: inline-block;
-	letter-spacing: 1px;
+    letter-spacing: 1px;
 }
-.statsuL:hover{
-	background-color: rgba(231, 51, 112, 1);
+.statsuL:hover {
+    background-color: rgba(231, 51, 112, 1);
 }
 
 .statusE {
@@ -40,28 +40,28 @@
     border: none;
     border-radius: 4px;
     color: #a9aeb4;
-    font-family: 'Hind';
+
     font-size: 14px;
     cursor: pointer;
     display: inline-block;
-	letter-spacing: 1px;
+    letter-spacing: 1px;
 }
 
-.statusE:hover{
-	background-color: rgba(196, 201, 209, 1);
-	color:rgba(169, 174, 180, 1);
+.statusE:hover {
+    background-color: rgba(196, 201, 209, 1);
+    color: rgba(169, 174, 180, 1);
 }
 
-.filledBtn{
-	background: #d9dce1;
+.filledBtn {
+    background: #d9dce1;
     width: 100px;
     height: 32px;
     border: none;
     border-radius: 4px;
     color: #a9aeb4;
-    font-family: 'Hind';
+
     font-size: 14px;
     cursor: pointer;
     display: inline-block;
-	letter-spacing: 1px;
+    letter-spacing: 1px;
 }

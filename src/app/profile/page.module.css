@@ -36,7 +36,7 @@
 .icon {
     color: rgba(148, 158, 168, 1);
     font-size: 25px;
-    font-family: 'Hind';
+
     letter-spacing: 0px;
 }
 
@@ -53,7 +53,7 @@
 
 .events {
     color: #323c46;
-    font-family: 'Hind';
+
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
