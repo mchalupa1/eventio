@@ -1,13 +1,8 @@
 'use client';
-
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
-import Eye from './svg/Eye.svg';
 
 const Page = () => {
     const {
@@ -21,16 +16,10 @@ const Page = () => {
     const { push } = useRouter();
     const { login } = useAuthContext();
 
-    const [eye, seteye] = useState(true);
-    const [LoginBox, setLoginBox] = useState(true);
-
     const submit = handleSubmit(async ({ email, password }) => {
         try {
             const user = await login(email, password);
-
             push('/');
-
-            console.log(user);
         } catch (error) {
             setError('email', { message: 'problem' });
         }

@@ -9,9 +9,11 @@ import { db } from '@/services/firebase/db';
 import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
 import { X } from '../../componens/svg2/svg/X';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
     const { user } = useAuthContext();
+	const { push } = useRouter();
     const {
         formState: { errors },
         register,
@@ -27,7 +29,7 @@ const Page = () => {
 
     const handle = handleSubmit(async ({ title, description, date, time, capacity }) => {
         const colRef = await addDoc(usersCollectionRef, {
-            authorUID: user?.uid,
+            author: user,
             title: title,
             description: description,
             date: date,
@@ -38,6 +40,7 @@ const Page = () => {
         const docRef = doc(usersCollectionRef, colRef.id);
         console.log(docRef);
         await updateDoc(docRef, { id: colRef.id });
+		push("/")
 reset()
     });
     return (
@@ -165,3 +168,7 @@ reset()
 };
 
 export default Page;
+function push(arg0: string) {
+	throw new Error('Function not implemented.');
+}
+

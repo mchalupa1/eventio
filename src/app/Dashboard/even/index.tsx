@@ -1,5 +1,4 @@
 'use client';
-
 import Loading from '../../../componens/Loading/loading';
 import { useThemeContext } from '../componens/Context/Filter/index';
 import GridCard from './component/GridCard';

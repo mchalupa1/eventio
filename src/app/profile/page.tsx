@@ -1,13 +1,10 @@
 'use client';
-
 import { useState } from 'react';
-
 import Navbar from '@/componens/Navbar/navbar';
 import { WebD1 } from '@/componens/svg2/WebD1';
 import { WebD2 } from '@/componens/svg2/WebD2';
 import { WebDevelopment2 } from '@/componens/svg/index2-darkgrip';
 import { WebDevelopment3 } from '@/componens/svg/index3';
-
 import { useAuthContext } from '../Context/auth';
 import EventsList from './components/Data';
 import Box from './components/box/index';

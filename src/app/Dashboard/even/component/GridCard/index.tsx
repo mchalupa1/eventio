@@ -1,9 +1,6 @@
 'use client';
-
 import Link from 'next/link';
-
 import { Event } from '@/app/Dashboard';
-
 import DateTime from './DateTime';
 import Description from './Description';
 import LowerPartGrip from './LowerPart';
@@ -16,7 +13,7 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
     return (
         <div className={props.grip === false ? style.allBoxsgrip : style.allBoxs}>
             {props.data.map((item) => {
-                const { id, date, title, description, capacity, joiners, time, authorUID } = item;
+                const { id, date, title, description, capacity, joiners, time, author } = item;
                 return (
                     <Link
                         href={`/event-detail/${item.id}`}
@@ -26,14 +23,14 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
                     >
                         <DateTime grip={props.grip} date={date} time={time}></DateTime>
                         <Title grip={props.grip} title={title}></Title>
-                        <Mentor grip={props.grip} authorUID={authorUID}></Mentor>
+                        <Mentor grip={props.grip} author={author}></Mentor>
                         <Description grip={props.grip} description={description}></Description>
                         {props.grip ? (
                             <LowerPartGrip
                                 grip={props.grip}
                                 joiners={joiners}
                                 capacity={capacity}
-                                authorUID={authorUID}
+                                author={author}
                                 idecko={id}
                             ></LowerPartGrip>
                         ) : (
@@ -41,7 +38,7 @@ export default function GridCard(props: { data: Event[]; grip: boolean }) {
                                 grip={props.grip}
                                 joiners={joiners}
                                 capacity={capacity}
-                                authorUID={authorUID}
+                                author={author}
                                 idecko={id}
                             ></LowerPartRow>
                         )}

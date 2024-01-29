@@ -11,6 +11,7 @@ import { ThemeContext } from './componens/Context/Filter';
 import Head from './componens/Head';
 import EventsList from './even';
 import style from './page.module.css';
+import { User } from '../Context/auth';
 
 export type Event = {
     title: string;
@@ -18,9 +19,9 @@ export type Event = {
     id: string;
     description: string;
     capacity: number;
-    joiners: string[];
+    joiners: User[];
     time: string;
-    authorUID: string;
+    author: User;
 };
 
 export default function Page() {

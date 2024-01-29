@@ -1,19 +1,19 @@
 'use client';
-
-import { doc, updateDoc } from 'firebase/firestore';
-
+import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '@/services/firebase/db';
-
 import style from '../index.module.css';
+import { User } from '@/app/Context/auth';
 
-const BtnLeave = (props: { uid: string; joiners: string[]; id: string }) => {
-    const ButtonChange = async (e: any) => {
+const BtnLeave = (props: { client?: User; joiners: User[]; id: string }) => {
+
+
+	const ButtonChange = async (e: any) => {
         e.preventDefault();
-        if (props.joiners.includes(props.uid)) {
+        if (props.client?.uid && props.joiners.some(joiner => joiner.uid === props.client?.uid)) {
             const docRef = doc(db, 'events', props.id);
             let joiners = [...props.joiners];
             const fillJoiners = joiners.filter((item) => {
-                return item !== props.uid;
+                return item.uid !== props.client?.uid;
             });
 
             if (docRef) {

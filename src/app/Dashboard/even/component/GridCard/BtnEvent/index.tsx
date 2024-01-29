@@ -1,13 +1,13 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '@/app/Context/auth';
+import { User, useAuthContext } from '@/app/Context/auth';
 import BtnJoin from './Btns/joinbtn';
 import BtnLeave from './Btns/leavebtn';
 import style from './index.module.css';
 
 export default function BtnEvent(props: {
-    author: string;
-    joiners: string[]; //joiners
+    author?: User;
+    joiners: User[]; //joiners
     idec: string;
     capac: number; //capacity
 }) {
@@ -19,24 +19,26 @@ export default function BtnEvent(props: {
 	push('/event-edit/' + props.idec)
 	}
 
+
     return (
         <>
             {
+
 			(props.joiners.length === props.capac)?
-			(user && user.uid === props.author)?
+			(user && user.uid === props.author?.uid)?
 			<button className={style.statusE} onClick={Routing}>
 			EDIT
 			</button>:
-			(props.joiners.includes(user?.uid as string))?<BtnLeave uid={user?.uid as string} joiners={props.joiners} id={props.idec} />:<button className={style.filledBtn} onClick={(e) => {e.preventDefault()}}>FILLED</button>:
-			(user && user.uid === props.author) ? (
+			(user && props.joiners.some(joiner => joiner.uid === user.uid))?<BtnLeave client={user} joiners={props.joiners} id={props.idec} />:<button className={style.filledBtn} onClick={(e) => {e.preventDefault()}}>FILLED</button>:
+			(user && user.uid === props.author?.uid) ? (
 				<button className={style.statusE} onClick={Routing}>
 				EDIT
 				</button>
-			) : props.joiners.includes(user?.uid as string) ? (
-			<BtnLeave uid={user?.uid as string} joiners={props.joiners} id={props.idec} />
+			) : user && props.joiners.some(joiner => joiner.uid === user.uid) ? (
+			<BtnLeave client={user} joiners={props.joiners} id={props.idec} />
 			) : (
 			<BtnJoin
-				uid={user?.uid as string}
+				client={user}
 				joiners={props.joiners}
 				id={props.idec}
 				capac={props.capac}

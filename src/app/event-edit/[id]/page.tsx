@@ -11,8 +11,7 @@ import style from './page.module.css';
 import { useForm } from 'react-hook-form';
 import { formatISO9075, isPast, isToday } from 'date-fns';
 import { useRouter } from 'next/navigation';
-import { date } from 'yup';
-import Head from '@/app/Dashboard/componens/Head';
+
 
 type DetailsProps = {
     params: {
@@ -207,7 +206,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                     </div>
                 </form>
 						</div>
-                        <AttendeesList joiners={data.joiners} authorUID={data.authorUID} />
+                        <AttendeesList joiners={data.joiners} author={data.author} />
                        </div>
                 ) : (
                     <Loading />

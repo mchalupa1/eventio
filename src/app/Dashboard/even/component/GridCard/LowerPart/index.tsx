@@ -1,17 +1,14 @@
 'use client';
-
-import Link from 'next/link';
-
 import { Person } from '@/componens/svg/Person';
-
 import BtnEvent from '../BtnEvent';
 import style from './index.module.css';
+import { User } from '@/app/Context/auth';
 
 export default function LowerPart(props: {
     grip: boolean;
-    joiners: string[];
+    joiners: User[];
     capacity: number;
-    authorUID: string;
+    author: User;
     idecko: string;
 }) {
     return (
@@ -25,7 +22,7 @@ export default function LowerPart(props: {
             </div>
             <div>
                 <BtnEvent
-                    author={props.authorUID}
+                    author={props.author}
                     joiners={props.joiners}
                     idec={props.idecko}
                     capac={props.capacity}

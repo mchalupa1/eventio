@@ -1,16 +1,9 @@
 'use client';
-
-import firebase from 'firebase/app';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { addDoc, collection, doc, getDocs, setDoc } from 'firebase/firestore';
-import { getStorage, ref } from 'firebase/storage';
+import {doc,setDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
-import { use, useState } from 'react';
 import { useForm } from 'react-hook-form';
-
-import { auth } from '@/services/firebase/auth';
 import { db } from '@/services/firebase/db';
-
 import style from './page.module.css';
 
 const Page = () => {

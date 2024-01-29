@@ -1,13 +1,13 @@
 'use client';
-
+import { User } from '@/app/Context/auth';
 import BtnEvent from '../BtnEvent/index';
 import style from './index.module.css';
 
 export default function LowerPart(props: {
     grip: boolean;
-    joiners: string[];
+    joiners: User[];
     capacity: number;
-    authorUID: string;
+    author: User;
     idecko: string;
 }) {
     return (
@@ -17,7 +17,7 @@ export default function LowerPart(props: {
             </p>
             <div className={style.boxbtn}>
                 <BtnEvent
-                    author={props.authorUID}
+                    author={props.author}
                     joiners={props.joiners}
                     idec={props.idecko}
                     capac={props.capacity}

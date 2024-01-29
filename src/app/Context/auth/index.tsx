@@ -10,12 +10,11 @@ import {
 } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
-
 import { AuthCookie } from '@/middleware';
 import { auth } from '@/services/firebase/auth';
 import { db } from '@/services/firebase/db';
 
-type User = { uid: string; fname: string; lname: string; email: string };
+export type User = { uid: string; fname: string; lname: string; email: string };
 
 type AuthContextType = {
     user: User | undefined;
