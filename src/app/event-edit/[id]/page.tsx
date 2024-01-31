@@ -35,7 +35,6 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
         formState: { errors },
         register,
         handleSubmit,
-        setValue,
     } = useForm({
         mode: 'all',
     });
