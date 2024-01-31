@@ -1,6 +1,9 @@
 'use client';
+
 import { User } from '@/app/Context/auth';
-import BtnEvent from '../BtnEvent/index';
+import { Person } from '@/componens/svg/Person';
+
+import BtnEvent from '../BtnEvent';
 import style from './index.module.css';
 
 export default function LowerPart(props: {
@@ -11,11 +14,15 @@ export default function LowerPart(props: {
     idecko: string;
 }) {
     return (
-        <>
-            <p className={style.capacity}>
-                {props.joiners.length} of {props.capacity}
-            </p>
-            <div className={style.boxbtn}>
+        <div className={style.lower}>
+            <div className={style.PesronCapacity}>
+                {' '}
+                <Person></Person>
+                <p className={style.capacity}>
+                    {props.joiners.length} of {props.capacity}
+                </p>
+            </div>
+            <div>
                 <BtnEvent
                     author={props.author}
                     joiners={props.joiners}
@@ -23,6 +30,6 @@ export default function LowerPart(props: {
                     capac={props.capacity}
                 ></BtnEvent>
             </div>
-        </>
+        </div>
     );
 }

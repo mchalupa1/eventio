@@ -1,12 +1,7 @@
 import { createContext, useContext } from 'react';
 
-import { Event } from '@/app/Dashboard';
 
 type ThemeContext = {
-    data: Event[] | undefined;
-    setData: React.Dispatch<React.SetStateAction<Event[] | undefined>>;
-    OriginalData: Event[] | undefined;
-    setoRData: React.Dispatch<React.SetStateAction<Event[]>>;
     grip: boolean;
     setgrip: React.Dispatch<React.SetStateAction<boolean>>;
 };

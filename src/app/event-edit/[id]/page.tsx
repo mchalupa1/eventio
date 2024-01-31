@@ -1,7 +1,5 @@
 'use client';
-import { collection, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-import { Event } from '@/app/Dashboard';
+import { collection, deleteDoc, doc,updateDoc } from 'firebase/firestore';
 import AttendeesList from '@/app/event-detail/[id]/components/Attendees';
 import Loading from '@/componens/Loading/loading';
 import Navbar from '@/componens/Navbar/navbar';
@@ -11,7 +9,9 @@ import style from './page.module.css';
 import { useForm } from 'react-hook-form';
 import { formatISO9075, isPast, isToday } from 'date-fns';
 import { useRouter } from 'next/navigation';
-
+import { useEffect, useState } from 'react';
+import useEvents from '@/services/firebase/useDataHook';
+import { Event } from '@/services/firebase/useDataHook';
 
 type DetailsProps = {
     params: {
@@ -20,35 +20,17 @@ type DetailsProps = {
 };
 
 const EventDetail: React.FC<DetailsProps> = ({ params }) => {
-    const [data, setData] = useState<Event | undefined>(undefined);
 	const { push } = useRouter();
-	/*Data fetching*/
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const docRef = doc(db, 'events', params.id);
-                const docSnap = await getDoc(docRef);
+	const {OriginalData} = useEvents();
+	const [data, setData] = useState<Event | undefined>();
 
-                if (docSnap.exists()) {
-                    const userData = docSnap.data() as Event;
-                    setData((prevData) => {
-                        if (prevData?.joiners !== userData.joiners) {
-                            return { ...prevData, ...userData };
-                        }
-                        return prevData;
-                    });
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        };
+	useEffect(() => {
+        const eventData = OriginalData?.find((event) => event.id === params.id);
+        setData(eventData);
+    }, [OriginalData]);
 
-        void fetchData();
-    }, []);
 
 	/*form things*/
-
-
     const {
         formState: { errors },
         register,

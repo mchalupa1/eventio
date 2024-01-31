@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { useAuthContext } from '@/app/Context/auth';
 import { Event } from '@/app/Dashboard';
-import GridCard from '@/app/Dashboard/even/component/GridCard';
+import GridCard from '@/app/Dashboard/even/component';
 import Loading from '@/componens/Loading/loading';
 import { db } from '@/services/firebase/db';
 

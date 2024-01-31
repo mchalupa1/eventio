@@ -9,10 +9,11 @@ import { useAuthContext } from '../Context/auth';
 import EventsList from './components/Data';
 import Box from './components/box/index';
 import style from './page.module.css';
+import useGrip from '../Dashboard/componens/Head/useGrip';
+
 
 const Profile = () => {
-    /*Grip*/
-    const [grip, setGrip] = useState(true);
+	const {grip,toggleGrip} = useGrip()
 
     return (
         <div className={style.all}>
@@ -26,9 +27,7 @@ const Profile = () => {
                             <li
                                 role="button"
                                 className={style.grip1}
-                                onClick={() => {
-                                    setGrip(!grip);
-                                }}
+                                onClick={toggleGrip}
                             >
                                 {grip === true ? (
                                     <WebDevelopment2></WebDevelopment2>
@@ -39,9 +38,7 @@ const Profile = () => {
                             <li
                                 role="button"
                                 className={style.grip2}
-                                onClick={() => {
-                                    setGrip(!grip);
-                                }}
+                                onClick={toggleGrip}
                             >
                                 {grip === false ? (
                                     <WebD2></WebD2>
