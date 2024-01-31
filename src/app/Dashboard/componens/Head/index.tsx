@@ -4,12 +4,18 @@ import { WebD2 } from '@/componens/svg2/WebD2';
 import { WebDevelopment2 } from '@/componens/svg/index2-darkgrip';
 import { WebDevelopment3 } from '@/componens/svg/index3';
 import style from './index.module.css';
-import useGrip from './useGrip';
-import useEvents from '@/services/firebase/useDataHook';
 
-export default function Head() {
-	const { grip, toggleGrip } = useGrip();
-	const { pick, FilterFutureEvents , FilterPastEvents, FilterAllEvents} = useEvents();
+interface HeadProps {
+	grip: boolean;
+	toggleGrip: () => void;
+	pick: any;
+	FilterAllEvents: () => void;
+	FilterFutureEvents: () => void;
+	FilterPastEvents: () => void;
+  }
+
+
+export default function Head({ grip, toggleGrip, pick, FilterAllEvents, FilterFutureEvents, FilterPastEvents }: HeadProps) {
 
     return (
         <>

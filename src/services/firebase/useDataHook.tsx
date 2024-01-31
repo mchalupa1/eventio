@@ -5,26 +5,26 @@ import { db } from './db';
 import { format } from 'date-fns';
 
 export type Event = {
-    title: string;
-    date: string;
-    id: string;
-    description: string;
-    capacity: number;
-    joiners: User[];
-    time: string;
-    author: User;
+  title: string;
+  date: string;
+  id: string;
+  description: string;
+  capacity: number;
+  joiners: User[];
+  time: string;
+  author: User;
 };
 
-const useEvents = () => {
+const useEvents = (collectionName: string) => {
   const [data, setData] = useState<Event[] | undefined>();
   const [OriginalData, setOriginalData] = useState<Event[] | undefined>()
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [pick, setPick] = useState({
-	all: true,
-	future: false,
-	past: false,
-});
+    all: true,
+    future: false,
+    past: false,
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +32,7 @@ const useEvents = () => {
       setError(null);
 
       try {
-        const colRef = collection(db, 'events');
+        const colRef = collection(db, collectionName);
 
         const unsubscribe = onSnapshot(colRef, (snapshot) => {
           const newData: Event[] = [];
@@ -40,12 +40,14 @@ const useEvents = () => {
           snapshot.forEach((doc) => {
             newData.push(doc.data() as Event);
           });
+
+
 		  setData(newData)
-		  setOriginalData(newData)
+          setOriginalData(newData)
           setLoading(false);
         });
 
-        return () => unsubscribe();
+        return unsubscribe;
       } catch (error) {
         setError("An error occurred while loading data.");
         setLoading(false);
@@ -60,43 +62,43 @@ const useEvents = () => {
   const currentTime = format(new Date(), 'HH:mm');
 
   const FilterFutureEvents = () => {
-		const FutureEvents = OriginalData?.filter((item) => {
-			if (item.date > currentDate) {
-				return true;
-			} else if (item.date === currentDate && item.time > currentTime) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-	setData(FutureEvents);
-	setPick({ all: false, past: false, future: true });
+    const FutureEvents = OriginalData?.filter((item) => {
+      if (item.date > currentDate) {
+        return true;
+      } else if (item.date === currentDate && item.time > currentTime) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setData(FutureEvents);
+    setPick({ all: false, past: false, future: true });
 
-};
+  };
 
-const FilterPastEvents = () => {
-	const PastEvents = OriginalData?.filter((item) => {
-		if (item.date < currentDate) {
-			return true;
-		} else if (item.date === currentDate && item.time < currentTime) {
-			return true;
-		} else {
-			return false;
-		}
-	});
-	setData(PastEvents)
-	setPick({ all: false, past: true, future: false });
+  const FilterPastEvents = () => {
+    const PastEvents = OriginalData?.filter((item) => {
+      if (item.date < currentDate) {
+        return true;
+      } else if (item.date === currentDate && item.time < currentTime) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setData(PastEvents)
+    setPick({ all: false, past: true, future: false });
 
-};
+  };
 
-const FilterAllEvents = () => {
-	setData(OriginalData);
-	setPick({ all: true, future: false, past: false });
+  const FilterAllEvents = () => {
+    setData(OriginalData);
+    setPick({ all: true, future: false, past: false });
 
-};
+  };
 
-
-  return { data, OriginalData, loading, error,pick, FilterFutureEvents , FilterPastEvents, FilterAllEvents};
+  
+  return { data, OriginalData, loading, error,pick, FilterFutureEvents, FilterPastEvents, FilterAllEvents};
 };
 
 export default useEvents;

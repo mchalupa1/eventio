@@ -20,7 +20,7 @@ type DetailsProps = {
 };
 
 const EventDetail: React.FC<DetailsProps> = ({ params }) => {
-    const {OriginalData} = useEvents();
+    const {OriginalData} = useEvents("events");
 	const [data, setData] = useState<Event | undefined>();
 
 	useEffect(() => {

@@ -1,6 +1,5 @@
 'use client';
 import Link from 'next/link';
-import useEvents from '@/services/firebase/useDataHook';
 import DateTime from './DateTime';
 import Description from './Description';
 import LowerPartGrip from './LowerPart';
@@ -9,14 +8,16 @@ import Mentor from './Mentor';
 import Title from './Title';
 import style from './index.module.css';
 import Loading from '@/componens/Loading/loading';
-import useGrip from '../../componens/Head/useGrip';
-import { useEffect, useState } from 'react';
+import { Event } from '@/services/firebase/useDataHook';
 
-export default function EventsList() {
-	const { data, loading, error,pick, FilterAllEvents, FilterFutureEvents, FilterPastEvents } = useEvents();
-	const { grip, toggleGrip } = useGrip();
+interface EventsListProps {
+	data?: Event[];
+	grip: boolean;
+	loading: boolean;
+	error: string | null;
+  }
 
-	
+export default function EventsList({data, grip, loading, error}:EventsListProps) {
 
 	if (loading) {
 		return <Loading />;
@@ -25,7 +26,6 @@ export default function EventsList() {
 	if (error) {
 		return <p>{error}</p>;
 	}
-
 
 
 	return (
