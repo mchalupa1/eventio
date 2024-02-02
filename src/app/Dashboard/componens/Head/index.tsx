@@ -15,7 +15,7 @@ interface HeadProps {
   }
 
 
-export default function Head({ grip, toggleGrip, pick, FilterAllEvents, FilterFutureEvents, FilterPastEvents }: HeadProps) {
+export default function Header({ grip, toggleGrip, pick, FilterAllEvents, FilterFutureEvents, FilterPastEvents }: HeadProps) {
 
     return (
         <>

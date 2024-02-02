@@ -18,6 +18,7 @@ export type Event = {
 const useEvents = (collectionName: string) => {
   const [data, setData] = useState<Event[] | undefined>();
   const [OriginalData, setOriginalData] = useState<Event[] | undefined>()
+  const [FilterData, setFilterData] = useState<Event[] | undefined>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [pick, setPick] = useState({
@@ -36,14 +37,22 @@ const useEvents = (collectionName: string) => {
 
         const unsubscribe = onSnapshot(colRef, (snapshot) => {
           const newData: Event[] = [];
-
           snapshot.forEach((doc) => {
             newData.push(doc.data() as Event);
           });
 
 
-		  setData(newData)
-          setOriginalData(newData)
+          if(pick.all){
+            setData(newData)
+            setOriginalData(newData)
+
+          }else if( pick.past){
+			const updateFilter = newData.filter((item) => {
+				return FilterData?.some((data) => item.id === data.id) ?? false;
+
+			  });
+			  setData(updateFilter);
+          }
           setLoading(false);
         });
 
@@ -55,7 +64,7 @@ const useEvents = (collectionName: string) => {
     };
 
     void fetchData();
-  }, []);
+  }, [pick, FilterData]);
 
   // Aktuální datum a čas
   const currentDate = format(new Date(), 'yyyy-MM-dd');
@@ -73,7 +82,7 @@ const useEvents = (collectionName: string) => {
     });
     setData(FutureEvents);
     setPick({ all: false, past: false, future: true });
-
+    setFilterData(FutureEvents)
   };
 
   const FilterPastEvents = () => {
@@ -88,7 +97,7 @@ const useEvents = (collectionName: string) => {
     });
     setData(PastEvents)
     setPick({ all: false, past: true, future: false });
-
+    setFilterData(PastEvents)
   };
 
   const FilterAllEvents = () => {
@@ -97,7 +106,7 @@ const useEvents = (collectionName: string) => {
 
   };
 
-  
+
   return { data, OriginalData, loading, error,pick, FilterFutureEvents, FilterPastEvents, FilterAllEvents};
 };
 

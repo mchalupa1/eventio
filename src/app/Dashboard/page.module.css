@@ -6,8 +6,6 @@
 }
 
 .middlePart {
-    display: flex;
-    flex-direction: column;
     align-self: center;
     max-width: 1500px;
     width: 80%;

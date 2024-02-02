@@ -12,6 +12,8 @@ import Navbar from '@/componens/Navbar/navbar';
 import AttendeesList from './components/Attendees';
 import style from './page.module.css';
 import useEvents from '@/services/firebase/useDataHook';
+import Head from 'next/head';
+
 
 type DetailsProps = {
     params: {
@@ -31,6 +33,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
 
     return (
         <main>
+			
             <Navbar />
             <div className={style.middlePart}>
                 <p className={style.idecko}>Detail event: {params.id}</p>

@@ -11,7 +11,7 @@ import Loading from '@/componens/Loading/loading';
 import { Event } from '@/services/firebase/useDataHook';
 
 interface EventsListProps {
-	data?: Event[];
+	data:  Event[] | undefined;
 	grip: boolean;
 	loading: boolean;
 	error: string | null;

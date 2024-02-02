@@ -1,7 +1,7 @@
 'use client';
 import Navbar from '@/componens/Navbar/navbar';
 import CreateBtn from '../../componens/CreateBtn';
-import Head from './componens/Head';
+import Header from './componens/Head';
 import EventsList from './even/component';
 import style from './page.module.css';
 import useGrip from './componens/Head/useGrip';
@@ -16,7 +16,7 @@ export default function Page() {
         <main className={style.all}>
                 <Navbar></Navbar>
                 <div className={style.middlePart}>
-				<Head
+				<Header
           grip={grip}
           toggleGrip={toggleGrip}
           pick={pick}
