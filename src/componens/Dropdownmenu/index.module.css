@@ -31,27 +31,23 @@
 .ull {
     cursor: pointer;
     display: grid;
-    gap: 1rem;
+    gap: 0.1rem;
     list-style: none;
     color: #9ca5af;
     font-size: 14px;
-
-    font-style: normal;
     padding-top: 20px;
     padding-right: 16px;
     padding-left: 16px;
-    padding-bottom: 16px;
+    padding-bottom: 14px;
     margin: 0px;
 }
 
-.btn {
-    border: none;
-    background-color: #ffffff;
+.logout {
     padding: 0px;
     cursor: pointer;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 580px) {
     .container {
         margin-right: 3px;
     }
@@ -59,4 +55,8 @@
     .all {
         width: 80px;
     }
+
+	.ull{
+		padding-right: 10px;
+	}
 }
