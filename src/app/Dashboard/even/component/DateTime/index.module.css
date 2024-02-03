@@ -23,6 +23,7 @@
 
 .alltime2 {
     order: 4;
+    overflow: hidden;
 }
 
 @media (max-width: 1250px) {

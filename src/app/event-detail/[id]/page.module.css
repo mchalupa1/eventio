@@ -15,7 +15,6 @@
 
 .idecko {
     color: #a9aeb4;
-
     font-size: 12px;
     line-height: 24px;
     letter-spacing: 1px;
@@ -53,4 +52,12 @@
         margin: 50px 8px 16px 8px;
         padding: 0px;
     }
+}
+
+@media (max-width: 500px) {
+    .box {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
 }
