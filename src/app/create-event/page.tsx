@@ -1,24 +1,27 @@
 'use client';
-import { formatISO9075, isPast, isToday } from 'date-fns';
-import {addDoc,collection,doc,updateDoc,} from 'firebase/firestore';
+
+import { formatISO9075, isPast, isToday, parse } from 'date-fns';
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+
 import { Logo } from '@/componens/svg/Logo';
 import { db } from '@/services/firebase/db';
+
+import { X } from '../../componens/svg2/svg/X';
 import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
-import { X } from '../../componens/svg2/svg/X';
-import { useRouter } from 'next/navigation';
 
 const Page = () => {
     const { user } = useAuthContext();
-	const { push } = useRouter();
+    const { push } = useRouter();
     const {
         formState: { errors },
         register,
         handleSubmit,
-		reset,
+        reset,
     } = useForm({
         mode: 'all',
     });
@@ -28,6 +31,7 @@ const Page = () => {
     const usersCollectionRef = collection(db, 'events');
 
     const handle = handleSubmit(async ({ title, description, date, time, capacity }) => {
+        const timestamp = parse(date + time, 'y-MM-ddHH:mm', new Date());
         const colRef = await addDoc(usersCollectionRef, {
             author: user,
             title: title,
@@ -36,12 +40,13 @@ const Page = () => {
             time: time,
             capacity: capacity,
             joiners: [],
+            timestamp,
         });
         const docRef = doc(usersCollectionRef, colRef.id);
         console.log(docRef);
         await updateDoc(docRef, { id: colRef.id });
-		push("/")
-reset()
+        push('/');
+        reset();
     });
     return (
         <main className={style.app}>
@@ -155,11 +160,9 @@ reset()
                             placeholder="Capacity"
                         ></input>
                         <p>{errors.capacity?.message?.toString()}</p>
-                        <input
-                            type="Submit"
-                            className={style.submit}
-                            value="CREATE NEW EVENT"
-                        ></input>
+                        <button type="submit" className={style.submit}>
+                            Create Event
+                        </button>
                     </div>
                 </form>
             </div>
@@ -168,7 +171,3 @@ reset()
 };
 
 export default Page;
-function push(arg0: string) {
-	throw new Error('Function not implemented.');
-}
-

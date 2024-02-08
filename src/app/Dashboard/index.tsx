@@ -6,6 +6,7 @@ import EventsList from './even/component';
 import style from './page.module.css';
 import useGrip from './componens/Head/useGrip';
 import useEvents from '@/services/firebase/useDataHook';
+import { isAfter } from 'date-fns';
 
 export default function Page() {
 	const { data, loading, error,pick, FilterAllEvents, FilterFutureEvents, FilterPastEvents } = useEvents("events");
@@ -30,3 +31,5 @@ export default function Page() {
         </main>
     );
 }
+const example = isAfter(new Date(2024, 3, 2), new Date(2020, 2, 3))
+//=> true

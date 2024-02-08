@@ -7,23 +7,25 @@ import { db } from '@/services/firebase/db';
 import style from './page.module.css';
 
 const Page = () => {
-    const auth = getAuth();
+
     const {
         formState: { errors },
         register,
         handleSubmit,
         watch,
-        setError,
     } = useForm({
         mode: 'all',
     });
+
+	const auth = getAuth();
     const { push } = useRouter();
-    const singin = handleSubmit(async ({ email, password, firstName, lastName }) => {
+
+    const submit = handleSubmit(async ({ email, password, firstName, lastName }) => {
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password);
             const uid = user.user.uid;
-            console.log(uid);
-            const create = await setDoc(doc(db, 'users', uid), {
+
+            await setDoc(doc(db, 'users', uid), {
                 fname: firstName,
                 lname: lastName,
                 email: email,
@@ -33,6 +35,7 @@ const Page = () => {
             console.log(error);
         }
     });
+
     return (
         <div className={style.box}>
             <p className={style.title}>Get started absolutely free.</p>
@@ -47,7 +50,7 @@ const Page = () => {
             ) : (
                 <p className={style.undertitle}>Enter your details below.</p>
             )}
-            <form className={style.form} onSubmit={singin} autoComplete="off">
+            <form className={style.form} onSubmit={submit} autoComplete="off">
 				<input
                     className={errors.firstName? style.errorInput :style.INfirstname}
                     placeholder="First name"

@@ -9,7 +9,6 @@ const Page = () => {
         formState: { errors },
         register,
         handleSubmit,
-        setError,
     } = useForm({
         mode: 'all',
     });
@@ -21,7 +20,7 @@ const Page = () => {
             const user = await login(email, password);
             push('/');
         } catch (error) {
-            setError('email', { message: 'problem' });
+            console.log(error);
         }
     });
 

@@ -1,7 +1,9 @@
 import { format } from 'date-fns';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+
 import { User } from '@/app/Context/auth';
+
 import { db } from './db';
 
 export type Event = {
@@ -18,7 +20,6 @@ export type Event = {
 const useEvents = (collectionName: string) => {
     const [data, setData] = useState<Event[] | undefined>();
     const [OriginalData, setOriginalData] = useState<Event[] | undefined>();
-    const [FilterData, setFilterData] = useState<Event[] | undefined>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [pick, setPick] = useState({
@@ -32,28 +33,32 @@ const useEvents = (collectionName: string) => {
             setLoading(true);
             setError(null);
 
+            const now = new Date();
+
             try {
-                const colRef = collection(db, collectionName);
+                const queryFutureEvents = query(
+                    collection(db, collectionName),
+                    where('timestamp', '>=', now),
+                );
+                const queryPastEvents = query(
+                    collection(db, collectionName),
+                    where('timestamp', '<=', now),
+                );
+                const queryAllEvents = query(collection(db, collectionName));
 
-                const unsubscribe = onSnapshot(colRef, (snapshot) => {
+                const unsubscribe = onSnapshot(
+                    pick.all ? queryAllEvents : pick.past ? queryPastEvents : queryFutureEvents,
+                    (snapshot) => {
+                        const newData: Event[] = [];
+                        snapshot.forEach((doc) => {
+                            newData.push(doc.data() as Event);
+                        });
 
-					const newData: Event[] = [];
-                    snapshot.forEach((doc) => {
-                        newData.push(doc.data() as Event);
-
-                    });
-
-                    if (pick.all) {
                         setData(newData);
                         setOriginalData(newData);
-                    } else if (pick.future || pick.past) {
-                        const updateFilter = newData.filter((item) => {
-                            return FilterData?.some((data) => item.id === data.id) ?? false;
-                        });
-                        setData(updateFilter);
-                    }
-                    setLoading(false);
-                });
+                        setLoading(false);
+                    },
+                );
                 return unsubscribe;
             } catch (error) {
                 setError('An error occurred while loading data.');
@@ -62,44 +67,17 @@ const useEvents = (collectionName: string) => {
         };
 
         void fetchData();
-    }, [pick, FilterData]);
-
-    // Aktuální datum a čas
-    const currentDate = format(new Date(), 'yyyy-MM-dd');
-    const currentTime = format(new Date(), 'HH:mm');
+    }, [pick, collectionName]);
 
     const FilterFutureEvents = () => {
-        const FutureEvents = OriginalData?.filter((item) => {
-            if (item.date > currentDate) {
-                return true;
-            } else if (item.date === currentDate && item.time > currentTime) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-        setData(FutureEvents);
         setPick({ all: false, past: false, future: true });
-        setFilterData(FutureEvents);
     };
 
     const FilterPastEvents = () => {
-        const PastEvents = OriginalData?.filter((item) => {
-            if (item.date < currentDate) {
-                return true;
-            } else if (item.date === currentDate && item.time < currentTime) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-        setData(PastEvents);
         setPick({ all: false, past: true, future: false });
-        setFilterData(PastEvents);
     };
 
     const FilterAllEvents = () => {
-        setData(OriginalData);
         setPick({ all: true, future: false, past: false });
     };
 
