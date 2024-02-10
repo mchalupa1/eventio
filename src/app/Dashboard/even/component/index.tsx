@@ -31,7 +31,7 @@ export default function EventsList({data, grip, loading, error}:EventsListProps)
 	return (
         <div className={grip === false ? style.allBoxsgrip : style.allBoxs}>
             {data?.map((item) => {
-                const { id, date, title, description, capacity, joiners, time, author } = item;
+                const { id, date, title, description, capacity, joiners, time, author, startDate } = item;
                 return (
                     <Link
                         href={`/event-detail/${item.id}`}

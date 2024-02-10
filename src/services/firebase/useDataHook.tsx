@@ -15,6 +15,7 @@ export type Event = {
     joiners: User[];
     time: string;
     author: User;
+	startDate:Date;
 };
 
 const useEvents = (collectionName: string) => {

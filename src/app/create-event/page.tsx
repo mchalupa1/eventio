@@ -1,6 +1,6 @@
 'use client';
 
-import { formatISO9075, isPast, isToday, parse } from 'date-fns';
+import { format, formatISO9075, isPast, isToday, parse } from 'date-fns';
 import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -161,7 +161,7 @@ const Page = () => {
                         ></input>
                         <p>{errors.capacity?.message?.toString()}</p>
                         <button type="submit" className={style.submit}>
-                            Create Event
+                            CREATE EVENT
                         </button>
                     </div>
                 </form>

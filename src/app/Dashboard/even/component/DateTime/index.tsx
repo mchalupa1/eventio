@@ -9,7 +9,7 @@ export default function DateTime(props: { grip: boolean; date: string; time:stri
     return (
         <div className={props.grip ? style.alltime : style.alltime2}>
             <p className={props.grip ? style.date : style.date2}>
-			{format(startsAt, 'MMMM d, yyyy - K:m aa')}
+			{format(startsAt, 'MMMM d, yyyy - K:mm aa')}
             </p>
         </div>
     );
