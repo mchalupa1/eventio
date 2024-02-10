@@ -1,6 +1,5 @@
-import { Inter } from 'next/font/google';
-import Head from 'next/head';
 
+import { Inter } from 'next/font/google';
 import { AuthContextProvider } from './Context/auth';
 import './global.css';
 
@@ -18,11 +17,6 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className={inter.className}>
-            <Head>
-                <title>awdwadawd</title>
-                <meta name="description" content={metadata.description} />
-                <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
-            </Head>
             <body>
                 <AuthContextProvider>{children}</AuthContextProvider>
             </body>

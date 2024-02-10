@@ -1,4 +1,4 @@
-import { format, isValid, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import React from 'react';
 
 import style from './index.module.css';
