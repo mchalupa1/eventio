@@ -1,6 +1,5 @@
 'use client';
 import { useRouter } from 'next/navigation';
-
 import { useForm } from 'react-hook-form';
 import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
@@ -15,12 +14,12 @@ const Page = () => {
     } = useForm({
         mode: 'all',
     });
+	
     const { push } = useRouter();
     const { login } = useAuthContext();
 
 
     const submit = handleSubmit(async ({ email, password }) => {
-
         try {
             await login(email, password);
             push('/');

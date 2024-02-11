@@ -1,6 +1,4 @@
 'use client';
-
-// Marking this file as a client entry
 import { deleteCookie, setCookie } from 'cookies-next';
 import {
     User as FirebaseAuthUser,

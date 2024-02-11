@@ -2,7 +2,6 @@
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { db } from '@/services/firebase/db';
 import style from './page.module.css';
@@ -20,8 +19,6 @@ const Page = () => {
 
     const auth = getAuth();
     const { push } = useRouter();
-
-
 
     const submit = handleSubmit(async ({ email, password, firstName, lastName }) => {
         try {
