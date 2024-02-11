@@ -1,31 +1,29 @@
 'use client';
-
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { db } from '@/services/firebase/db';
-
 import style from './page.module.css';
 
 const Page = () => {
     const {
-        formState: { errors },
+        formState: { errors , isSubmitting},
         register,
         handleSubmit,
         watch,
+		setError
     } = useForm({
         mode: 'all',
     });
 
     const auth = getAuth();
     const { push } = useRouter();
-    const [loading, setloading] = useState(false);
+
+
 
     const submit = handleSubmit(async ({ email, password, firstName, lastName }) => {
-        setloading(true);
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password);
             const uid = user.user.uid;
@@ -37,6 +35,9 @@ const Page = () => {
             });
             push('/');
         } catch (error) {
+			setError('email', {
+                message: 'Invalid email',
+            });
             console.log(error);
         }
     });
@@ -116,7 +117,7 @@ const Page = () => {
                         },
                     })}
                 ></input>
-                {loading ? (
+                {isSubmitting ? (
                     <button className={style.loadingBtn}>LOADING...</button>
                 ) : (
                     <input type="submit" className={style.btn} value="SIGN IN"></input>
