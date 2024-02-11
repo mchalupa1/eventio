@@ -206,6 +206,4 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
 };
 
 export default EventDetail;
-function push(arg0: string) {
-    throw new Error('Function not implemented.');
-}
+

@@ -1,5 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
@@ -14,12 +15,16 @@ const Page = () => {
     });
     const { push } = useRouter();
     const { login } = useAuthContext();
+    const [loading, setloading] = useState(false);
+	const [formError, setFormError] = useState(false);
 
     const submit = handleSubmit(async ({ email, password }) => {
-        try {
+		setloading(true)
+		try {
             const user = await login(email, password);
             push('/');
         } catch (error) {
+			setFormError(true);
             console.log(error);
         }
     });
@@ -27,7 +32,7 @@ const Page = () => {
     return (
         <div className={style.box}>
             <p className={style.title}>Sign in to Eventio.</p>
-            {errors.email || errors.password ? (
+            {formError || errors.email || errors.password ? (
                 <p className={style.undertitleE}>
                     Oops! That email and password combination is not valid.
                 </p>
@@ -36,18 +41,22 @@ const Page = () => {
             )}
             <form className={style.form} onSubmit={submit} autoComplete="off">
                 <input
-                    className={errors.email || errors.password? style.errorInput:style.INEmail}
+                    className={errors.email? style.errorInput:style.INEmail}
                     placeholder="Email"
-                    {...register('email')}
-					type="text"
+                    {...register('email', {
+                        required: 'Email is required',
+                    })}
+                    type="text"
                 ></input>
                 <input
-                    className={errors.email || errors.password? style.errorInput:style.INEmail}
-                    type={ 'password'}
+                    className={errors.password? style.errorInput: style.INPassword}
                     placeholder="Password"
-                    {...register('password')}
+					type='password'
+                    {...register('password',{
+						required:"Password is required",
+					})}
                 ></input>
-                <input type="submit" className={style.btn} value="SIGN IN"></input>
+                {loading ? <button className={style.loadingBtn}>LOADING...</button>:<input type="submit" className={style.btn} value="SIGN IN"></input> }
             </form>
         </div>
     );
