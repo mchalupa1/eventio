@@ -14,20 +14,6 @@
     border-radius: 14px;
 }
 
-.all::before {
-    content: '';
-    position: absolute;
-    top: -0.00003rem;
-    right: 1.1rem;
-    width: 28.91px;
-    height: 12px;
-    transform: rotate(45deg);
-    background-color: white;
-    border-left: 1px solid white;
-    border-top: 1px solid white;
-    border-radius: 3px;
-}
-
 .ull {
     cursor: pointer;
     display: grid;
@@ -49,14 +35,14 @@
 
 @media (max-width: 580px) {
     .container {
-        margin-right: 3px;
+        margin-right: 7px;
     }
 
     .all {
         width: 80px;
     }
 
-	.ull{
-		padding-right: 10px;
-	}
+    .ull {
+        padding-right: 12px;
+    }
 }
