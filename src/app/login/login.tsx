@@ -6,15 +6,14 @@ import style from './page.module.css';
 
 const Page = () => {
     const {
-        formState: { errors, isSubmitting },
+        formState: { errors, isSubmitting},
         register,
         handleSubmit,
         setError,
-
     } = useForm({
         mode: 'all',
     });
-	
+
     const { push } = useRouter();
     const { login } = useAuthContext();
 
@@ -61,7 +60,7 @@ const Page = () => {
                         required: 'Password is required',
                     })}
                 ></input>
-                { isSubmitting ? (
+                {isSubmitting ? (
                     <button className={style.loadingBtn}>LOADING...</button>
                 ) : (
                     <input type="submit" className={style.btn} value="SIGN IN"></input>

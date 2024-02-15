@@ -1,20 +1,19 @@
 'use client';
-
 import { format, formatISO9075, isPast, isToday, parse } from 'date-fns';
 import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { Logo } from '@/componens/svg/Logo';
 import { db } from '@/services/firebase/db';
-
 import { X } from '../../componens/svg2/svg/X';
 import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
 
 const Page = () => {
+	const [formDate, setformDate] = useState<Date>();
+	
     const { user } = useAuthContext();
     const { push } = useRouter();
     const {
@@ -25,8 +24,6 @@ const Page = () => {
     } = useForm({
         mode: 'all',
     });
-
-    const [formDate, setformDate] = useState<Date>();
 
     const usersCollectionRef = collection(db, 'events');
 
@@ -48,6 +45,8 @@ const Page = () => {
         push('/');
         reset();
     });
+
+
     return (
         <main className={style.app}>
             <nav className={style.navbar}>

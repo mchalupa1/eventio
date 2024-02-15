@@ -1,9 +1,7 @@
-import { format } from 'date-fns';
+
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-
 import { User } from '@/app/Context/auth';
-
 import { db } from './db';
 
 export type Event = {

@@ -29,6 +29,11 @@
     align-items: center;
 }
 
+.error{
+	color: #323c46;
+    font-size: 28px;
+}
+
 /*media*/
 @media (max-width: 500px) {
     .GridOneBox {

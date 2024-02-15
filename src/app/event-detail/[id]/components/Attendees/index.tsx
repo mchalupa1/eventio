@@ -1,21 +1,21 @@
 
 import style from './index.module.css';
-import { User } from '@/app/Context/auth';
+import { User, useAuthContext } from '@/app/Context/auth';
 
-export default function AttendeesList(props: { joiners: User[]; author: User }) {
+export default function AttendeesList(props: { joiners: User[]}) {
+	const {user} = useAuthContext();
 
     return (
         <div className={style.BoxJoiners}>
             <p className={style.attendees}>Attendees</p>
             <div className={style.allJoiners}>
-                {props.joiners.map((user, index) => (
+                {props.joiners.map((joiner, index) => (
                     <div
                         key={index}
-                        className={user?.fname === 'You' ? style.YouBox : style.joinerBox}
+                        className={user?.uid === joiner.uid?  style.YouBox : style.joinerBox}
                     >
                         <p
-                            className={user?.fname === 'You' ? style.You : style.joiner}
-                        >{`${user?.fname} ${user?.lname}`}</p>
+                        >{user?.uid === joiner.uid ? "You" : `${joiner.fname} ${joiner.lname}`}</p>
                     </div>
                 ))}
             </div>

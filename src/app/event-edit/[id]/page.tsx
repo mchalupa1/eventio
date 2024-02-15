@@ -1,11 +1,9 @@
 'use client';
-
 import { formatISO9075, isPast, isToday, parse } from 'date-fns';
 import { collection, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import AttendeesList from '@/app/event-detail/[id]/components/Attendees';
 import Loading from '@/componens/Loading/loading';
 import Navbar from '@/componens/Navbar/navbar';
@@ -13,7 +11,6 @@ import { Bin } from '@/componens/svg/Bin';
 import { db } from '@/services/firebase/db';
 import useEvents from '@/services/firebase/useDataHook';
 import { Event } from '@/services/firebase/useDataHook';
-
 import style from './page.module.css';
 
 type DetailsProps = {
@@ -22,16 +19,17 @@ type DetailsProps = {
     };
 };
 
-const EventDetail: React.FC<DetailsProps> = ({ params }) => {
-    const { push } = useRouter();
+const EventEdit: React.FC<DetailsProps> = ({ params }) => {
     const { OriginalData } = useEvents('events');
     const [data, setData] = useState<Event | undefined>();
 
     useEffect(() => {
         const eventData = OriginalData?.find((event) => event.id === params.id);
         setData(eventData);
-    }, [OriginalData]);
+    }, [OriginalData, params.id]);
 
+
+    const { push } = useRouter();
     /*form things*/
     const {
         formState: { errors },
@@ -65,6 +63,8 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
             console.error('Error deleting event:', error);
         }
     };
+
+
     return (
         <main>
             <Navbar />
@@ -195,7 +195,7 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                 </div>
                             </form>
                         </div>
-                        <AttendeesList joiners={data.joiners} author={data.author} />
+                        <AttendeesList joiners={data.joiners}/>
                     </div>
                 ) : (
                     <Loading />
@@ -205,5 +205,5 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
     );
 };
 
-export default EventDetail;
+export default EventEdit;
 

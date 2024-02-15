@@ -1,16 +1,11 @@
 'use client';
-
 import { useEffect, useState } from 'react';
-
-import Loading from '@/componens/Loading/loading';
 import Navbar from '@/componens/Navbar/navbar';
 import { WebD1 } from '@/componens/svg2/WebD1';
 import { WebD2 } from '@/componens/svg2/WebD2';
 import { WebDevelopment2 } from '@/componens/svg/index2-darkgrip';
 import { WebDevelopment3 } from '@/componens/svg/index3';
-import useDataHook from '@/services/firebase/useDataHook';
 import useEvents, { Event } from '@/services/firebase/useDataHook';
-
 import { useAuthContext } from '../Context/auth';
 import useGrip from '../Dashboard/componens/Head/useGrip';
 import EventsList from '../Dashboard/even/component';
@@ -18,7 +13,11 @@ import Box from './components/box/index';
 import style from './page.module.css';
 
 const Profile = () => {
+
     const { grip, toggleGrip } = useGrip();
+
+
+	
     const { user } = useAuthContext();
     const [data, setData] = useState<Event[] | undefined>();
     const { OriginalData, loading, error } = useEvents('events');

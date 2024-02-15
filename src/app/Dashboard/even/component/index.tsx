@@ -24,14 +24,14 @@ export default function EventsList({data, grip, loading, error}:EventsListProps)
 	}
 
 	if (error) {
-		return <p>{error}</p>;
+		return <p className={style.error}>{error}</p>;
 	}
 
 
 	return (
         <div className={grip === false ? style.allBoxsgrip : style.allBoxs}>
             {data?.map((item) => {
-                const { id, date, title, description, capacity, joiners, time, author, startDate } = item;
+                const { id, date, title, description, capacity, joiners, time, author } = item;
                 return (
                     <Link
                         href={`/event-detail/${item.id}`}
