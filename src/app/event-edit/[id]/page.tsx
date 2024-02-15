@@ -42,7 +42,7 @@ const EventEdit: React.FC<DetailsProps> = ({ params }) => {
 
     const usersCollectionRef = collection(db, 'events');
     const handle = handleSubmit(async ({ title, description, date, time, capacity }) => {
-        const docRef = doc(usersCollectionRef, data?.id);
+        const docRef = doc(usersCollectionRef, params.id);
         const timestamp = parse(date + time, 'y-MM-ddHH:mm', new Date());
         await updateDoc(docRef, {
             title: title,
