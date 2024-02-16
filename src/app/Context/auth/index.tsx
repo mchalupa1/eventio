@@ -50,7 +50,12 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
         const unsubscribe = onAuthStateChanged(auth, async (userData: FirebaseAuthUser | null) => {
             if (userData) {
                 const idToken = await userData?.getIdToken();
-                if (idToken) setCookie(AuthCookie.IdToken, idToken);
+                if (idToken)
+                    setCookie(AuthCookie.IdToken, idToken, {
+                        sameSite: true,
+                        secure: true,
+                        maxAge: 3600,
+                    });
 
                 const userFromFetch = await fetchUser(userData.uid);
                 setUser(userFromFetch);
