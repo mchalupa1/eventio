@@ -1,4 +1,5 @@
 'use client';
+
 import { deleteCookie, setCookie } from 'cookies-next';
 import {
     User as FirebaseAuthUser,
@@ -8,6 +9,7 @@ import {
 } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+
 import { AuthCookie } from '@/middleware';
 import { auth } from '@/services/firebase/auth';
 import { db } from '@/services/firebase/db';
@@ -16,7 +18,6 @@ export type User = { uid: string; fname: string; lname: string; email: string };
 
 type AuthContextType = {
     user: User | undefined;
-    setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
     login: (email: string, password: string) => Promise<UserCredential>;
 };
 
@@ -49,9 +50,9 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
         const unsubscribe = onAuthStateChanged(auth, async (userData: FirebaseAuthUser | null) => {
             if (userData) {
                 const idToken = await userData?.getIdToken();
-                const userFromFetch = await fetchUser(userData.uid);
-
                 if (idToken) setCookie(AuthCookie.IdToken, idToken);
+
+                const userFromFetch = await fetchUser(userData.uid);
                 setUser(userFromFetch);
             } else {
                 deleteCookie(AuthCookie.IdToken);
@@ -65,7 +66,6 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
     const contextValue: AuthContextType = {
         login,
         user,
-        setUser,
     };
     return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 };
