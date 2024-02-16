@@ -1,24 +1,23 @@
 'use client';
 
-import { deleteCookie, setCookie } from 'cookies-next';
 import {
     User as FirebaseAuthUser,
-    type UserCredential,
     onAuthStateChanged,
     signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
-import { AuthCookie } from '@/middleware';
 import { auth } from '@/services/firebase/auth';
 import { db } from '@/services/firebase/db';
+
+import { deleteAuthCookie, setAuthCookie } from './utils';
 
 export type User = { uid: string; fname: string; lname: string; email: string };
 
 type AuthContextType = {
     user: User | undefined;
-    login: (email: string, password: string) => Promise<UserCredential>;
+    login: (email: string, password: string) => Promise<FirebaseAuthUser>;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -28,8 +27,11 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
     const login = useCallback(async (email: string, password: string) => {
         const response = await signInWithEmailAndPassword(auth, email, password);
+        const { token: idToken, expirationTime } = await response.user.getIdTokenResult();
 
-        return response;
+        setAuthCookie(idToken, expirationTime);
+
+        return response.user;
     }, []);
 
     const fetchUser = async (uid: string): Promise<User | undefined> => {
@@ -49,24 +51,23 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (userData: FirebaseAuthUser | null) => {
             if (userData) {
-                const idToken = await userData?.getIdToken();
-                if (idToken)
-                    setCookie(AuthCookie.IdToken, idToken, {
-                        sameSite: true,
-                        secure: true,
-                        maxAge: 3600,
-                    });
+                const [{ token: idToken, expirationTime }, userFromFetch] = await Promise.all([
+                    userData?.getIdTokenResult(),
+                    fetchUser(userData.uid),
+                ]);
 
-                const userFromFetch = await fetchUser(userData.uid);
+                setAuthCookie(idToken, expirationTime);
                 setUser(userFromFetch);
             } else {
-                deleteCookie(AuthCookie.IdToken);
+                deleteAuthCookie();
                 setUser(undefined);
             }
         });
 
-        return () => unsubscribe();
-    }, []);
+        return () => {
+            unsubscribe();
+        };
+    }, [setUser]);
 
     const contextValue: AuthContextType = {
         login,
