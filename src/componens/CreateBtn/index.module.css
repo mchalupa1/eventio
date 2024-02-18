@@ -16,9 +16,8 @@
     border-radius: 50%;
     color: #ffffff;
     font-size: 40px;
-   display: inline-flex;
+    display: flex;
     justify-content: center;
-	align-items: center;
 
 }
 

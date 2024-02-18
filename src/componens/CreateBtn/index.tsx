@@ -1,7 +1,5 @@
 'use client';
-
 import Link from 'next/link';
-
 import style from './index.module.css';
 
 export default function CreateBtn() {
