@@ -1,38 +1,32 @@
 'use client';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { db } from '@/services/firebase/db';
+
+import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
 
 const Page = () => {
     const {
-        formState: { errors , isSubmitting},
+        formState: { errors, isSubmitting },
         register,
         handleSubmit,
         watch,
-		setError
+        setError,
     } = useForm({
         mode: 'all',
     });
+    const { register: registerNewUser } = useAuthContext();
 
-    const auth = getAuth();
     const { push } = useRouter();
 
     const submit = handleSubmit(async ({ email, password, firstName, lastName }) => {
         try {
-            const user = await createUserWithEmailAndPassword(auth, email, password);
-            const uid = user.user.uid;
+            await registerNewUser({ email, password, firstName, lastName });
 
-            await setDoc(doc(db, 'users', uid), {
-                fname: firstName,
-                lname: lastName,
-                email: email,
-            });
             push('/');
         } catch (error) {
-			setError('email', {
+            setError('email', {
                 message: 'Invalid email',
             });
             console.log(error);
