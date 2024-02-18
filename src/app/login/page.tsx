@@ -6,7 +6,7 @@ import style from './page.module.css';
 import Register from './register';
 
 const Page = () => {
-
+	
     const [LoginBox, setLoginBox] = useState(true);
 
     return (

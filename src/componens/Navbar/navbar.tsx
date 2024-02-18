@@ -7,7 +7,9 @@ import { Logo } from '@/componens/svg/Logo';
 import Dropmenu from '../Dropdownmenu/index';
 import styles from './navbar.module.css';
 
+
 export default function Navbar() {
+
     const [drop, setDrop] = useState(false);
     const Drop = () => {
         setDrop(!drop);

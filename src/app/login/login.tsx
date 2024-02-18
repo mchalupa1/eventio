@@ -3,10 +3,11 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
+import { useState } from 'react';
 
 const Page = () => {
     const {
-        formState: { errors, isSubmitting},
+        formState: { errors},
         register,
         handleSubmit,
         setError,
@@ -16,9 +17,11 @@ const Page = () => {
 
     const { push } = useRouter();
     const { login } = useAuthContext();
+	const [isLoading, setLoading] = useState(false);
 
 
     const submit = handleSubmit(async ({ email, password }) => {
+		setLoading(true);
         try {
             await login(email, password);
             push('/');
@@ -60,7 +63,7 @@ const Page = () => {
                         required: 'Password is required',
                     })}
                 ></input>
-                {isSubmitting ? (
+                {isLoading ? (
                     <button className={style.loadingBtn}>LOADING...</button>
                 ) : (
                     <input type="submit" className={style.btn} value="SIGN IN"></input>

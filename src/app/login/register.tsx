@@ -1,14 +1,14 @@
 'use client';
-
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-
 import { useAuthContext } from '../Context/auth';
 import style from './page.module.css';
+import { useState } from 'react';
 
 const Page = () => {
+
     const {
-        formState: { errors, isSubmitting },
+        formState: { errors },
         register,
         handleSubmit,
         watch,
@@ -16,14 +16,15 @@ const Page = () => {
     } = useForm({
         mode: 'all',
     });
-    const { register: registerNewUser } = useAuthContext();
 
+    const { register: registerNewUser } = useAuthContext();
     const { push } = useRouter();
+	const [isLoading, setLoading] = useState(false);
 
     const submit = handleSubmit(async ({ email, password, firstName, lastName }) => {
+		setLoading(true);
         try {
             await registerNewUser({ email, password, firstName, lastName });
-
             push('/');
         } catch (error) {
             setError('email', {
@@ -108,7 +109,7 @@ const Page = () => {
                         },
                     })}
                 ></input>
-                {isSubmitting ? (
+                {isLoading ? (
                     <button className={style.loadingBtn}>LOADING...</button>
                 ) : (
                     <input type="submit" className={style.btn} value="SIGN IN"></input>
