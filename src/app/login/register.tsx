@@ -27,6 +27,7 @@ const Page = () => {
             await registerNewUser({ email, password, firstName, lastName });
             push('/');
         } catch (error) {
+			setLoading(false)
             setError('email', {
                 message: 'Invalid email',
             });

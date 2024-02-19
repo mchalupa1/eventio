@@ -26,6 +26,7 @@ const Page = () => {
             await login(email, password);
             push('/');
         } catch (error) {
+			setLoading(false)
             setError('password', {
                 message: 'Invalid email or password',
             });
