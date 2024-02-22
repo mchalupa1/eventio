@@ -113,7 +113,7 @@ const Page = () => {
                 {isLoading ? (
                     <button className={style.loadingBtn}>LOADING...</button>
                 ) : (
-                    <input type="submit" className={style.btn} value="SIGN IN"></input>
+                    <input type="submit" className={style.btn} value="SIGN UP"></input>
                 )}
             </form>
         </div>

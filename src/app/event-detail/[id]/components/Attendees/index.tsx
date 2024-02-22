@@ -22,3 +22,8 @@ export default function AttendeesList(props: { joiners: User[]}) {
         </div>
     );
 }
+
+
+
+
+
