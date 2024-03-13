@@ -1,7 +1,8 @@
-
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { Unsubscribe, collection, onSnapshot, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+
 import { User } from '@/app/Context/auth';
+
 import { db } from './db';
 
 export type Event = {
@@ -13,7 +14,7 @@ export type Event = {
     joiners: User[];
     time: string;
     author: User;
-	startDate:Date;
+    startDate: Date;
 };
 
 const useEvents = (collectionName: string) => {
@@ -28,44 +29,44 @@ const useEvents = (collectionName: string) => {
     });
 
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            setError(null);
+        const now = new Date();
+        let unsubscribe: Unsubscribe;
 
-            const now = new Date();
+        setLoading(true);
+        setError(null);
 
-            try {
-                const queryFutureEvents = query(
-                    collection(db, collectionName),
-                    where('timestamp', '>=', now),
-                );
-                const queryPastEvents = query(
-                    collection(db, collectionName),
-                    where('timestamp', '<=', now),
-                );
-                const queryAllEvents = query(collection(db, collectionName));
+        try {
+            const queryFutureEvents = query(
+                collection(db, collectionName),
+                where('timestamp', '>=', now),
+            );
+            const queryPastEvents = query(
+                collection(db, collectionName),
+                where('timestamp', '<=', now),
+            );
+            const queryAllEvents = query(collection(db, collectionName));
 
-                const unsubscribe = onSnapshot(
-                    pick.all ? queryAllEvents : pick.past ? queryPastEvents : queryFutureEvents,
-                    (snapshot) => {
-                        const newData: Event[] = [];
-                        snapshot.forEach((doc) => {
-                            newData.push(doc.data() as Event);
-                        });
+            unsubscribe = onSnapshot(
+                pick.all ? queryAllEvents : pick.past ? queryPastEvents : queryFutureEvents,
+                (snapshot) => {
+                    const newData: Event[] = [];
+                    snapshot.forEach((doc) => {
+                        newData.push(doc.data() as Event);
+                    });
 
-                        setData(newData);
-                        setOriginalData(newData);
-                        setLoading(false);
-                    },
-                );
-                return unsubscribe;
-            } catch (error) {
-                setError('An error occurred while loading data.');
-                setLoading(false);
-            }
+                    setData(newData);
+                    setOriginalData(newData);
+                    setLoading(false);
+                },
+            );
+        } catch (error) {
+            setError('An error occurred while loading data.');
+            setLoading(false);
+        }
+
+        return () => {
+            unsubscribe();
         };
-
-        void fetchData();
     }, [pick, collectionName]);
 
     const FilterFutureEvents = () => {
