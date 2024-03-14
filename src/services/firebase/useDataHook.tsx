@@ -1,4 +1,4 @@
-import { Unsubscribe, collection, onSnapshot, query, where } from 'firebase/firestore';
+import { type Unsubscribe, collection, onSnapshot, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 import { User } from '@/app/Context/auth';
