@@ -104,7 +104,7 @@
 .INRepeatPassword:focus,
 .INfirstname:focus,
 .INlastname:focus {
-    border-bottom: 1px solid #22d486;
+    border-bottom: 1px solid #323C46;
 }
 
 .errorInput {
@@ -156,6 +156,10 @@
     cursor: pointer;
     align-items: center;
     margin: auto;
+}
+
+.btn:hover{
+	background-color: #20BD78;
 }
 
 .loadingBtn {
