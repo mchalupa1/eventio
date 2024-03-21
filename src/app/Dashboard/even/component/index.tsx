@@ -29,7 +29,7 @@ export default function EventsList({data, grip, loading, error}:EventsListProps)
 
 
 	return (
-        <div className={grip === false ? style.allBoxsgrip : style.allBoxs}>
+        <article className={grip === false ? style.allBoxsgrip : style.allBoxs}>
             {data?.map((item) => {
                 const { id, date, title, description, capacity, joiners, time, author } = item;
                 return (
@@ -63,7 +63,7 @@ export default function EventsList({data, grip, loading, error}:EventsListProps)
                     </Link>
                 );
             })}
-        </div>
+        </article>
     );
 }
 

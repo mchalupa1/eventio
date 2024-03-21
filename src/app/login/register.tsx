@@ -36,7 +36,7 @@ const Page = () => {
     });
 
     return (
-        <div className={style.box}>
+        <section className={style.box}>
             <p className={style.title}>Get started absolutely free.</p>
             {errors.email ||
             errors.repeatPassword ||
@@ -116,7 +116,7 @@ const Page = () => {
                     <input type="submit" className={style.btn} value="SIGN UP"></input>
                 )}
             </form>
-        </div>
+        </section>
     );
 };
 

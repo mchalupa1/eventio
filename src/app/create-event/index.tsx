@@ -47,8 +47,8 @@ const Page = () => {
 
 
     return (
-        <main className={style.app}>
-            <nav className={style.navbar}>
+        <div className={style.app}>
+            <header className={style.navbar}>
                 <Link href="/" className={style.logo}>
                     <Logo></Logo>
                 </Link>
@@ -60,8 +60,8 @@ const Page = () => {
                         Close
                     </Link>
                 </div>
-            </nav>
-            <div className={style.box}>
+            </header>
+            <section className={style.box}>
                 <form className={style.form} autoComplete="off" onSubmit={handle}>
                     <div className={style.boxfooter}>
                         <span className={style.Create}>Create new event</span>
@@ -163,8 +163,8 @@ const Page = () => {
                         </button>
                     </div>
                 </form>
-            </div>
-        </main>
+            </section>
+        </div>
     );
 };
 

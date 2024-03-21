@@ -1,9 +1,11 @@
 'use client';
+
 import { formatISO9075, isPast, isToday, parse } from 'date-fns';
 import { collection, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+
 import AttendeesList from '@/app/event-detail/[id]/components/Attendees';
 import Loading from '@/componens/Loading/loading';
 import Navbar from '@/componens/Navbar/navbar';
@@ -11,6 +13,7 @@ import { Bin } from '@/componens/svg/Bin';
 import { db } from '@/services/firebase/db';
 import useEvents from '@/services/firebase/useDataHook';
 import { Event } from '@/services/firebase/useDataHook';
+
 import style from './page.module.css';
 
 type DetailsProps = {
@@ -27,7 +30,6 @@ const EventEdit: React.FC<DetailsProps> = ({ params }) => {
         const eventData = OriginalData?.find((event) => event.id === params.id);
         setData(eventData);
     }, [OriginalData, params.id]);
-
 
     const { push } = useRouter();
     /*form things*/
@@ -64,12 +66,11 @@ const EventEdit: React.FC<DetailsProps> = ({ params }) => {
         }
     };
 
-
     return (
-        <main>
+        <div>
             <Navbar />
-            <div className={style.middlePart}>
-                <div className={style.head}>
+            <main className={style.middlePart}>
+                <header className={style.head}>
                     <p className={style.idecko}>Detail event: {params.id}</p>
                     <div className={style.delete}>
                         <p className={style.bin} onClick={DeleteEvent}>
@@ -79,10 +80,10 @@ const EventEdit: React.FC<DetailsProps> = ({ params }) => {
                             DELETE EVENT
                         </p>
                     </div>
-                </div>
+                </header>
                 {data ? (
-                    <div className={style.allBox}>
-                        <div className={style.box}>
+                    <section className={style.allBox}>
+                        <article className={style.box}>
                             <form className={style.form} autoComplete="off" onSubmit={handle}>
                                 <div className={style.inputs}>
                                     <input
@@ -188,22 +189,20 @@ const EventEdit: React.FC<DetailsProps> = ({ params }) => {
                                         defaultValue={data.capacity}
                                     ></input>
                                     <p>{errors.capacity?.message?.toString()}</p>
-                                    <button
-                                        type="submit"
-                                        className={style.submit}
-                                    >UPDATE THE EVENT</button>
+                                    <button type="submit" className={style.submit}>
+                                        UPDATE THE EVENT
+                                    </button>
                                 </div>
                             </form>
-                        </div>
-                        <AttendeesList joiners={data.joiners}/>
-                    </div>
+                        </article>
+                        <AttendeesList joiners={data.joiners} />
+                    </section>
                 ) : (
                     <Loading />
                 )}
-            </div>
-        </main>
+            </main>
+        </div>
     );
 };
 
 export default EventEdit;
-

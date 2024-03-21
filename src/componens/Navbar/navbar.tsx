@@ -17,8 +17,8 @@ export default function Navbar() {
 
     const { user } = useAuthContext();
     return (
-        <nav>
-            <div className={styles.navbar}>
+        <header>
+            <nav className={styles.navbar}>
                 <Link href="/" className={styles.logo}>
                     <Logo></Logo>
                 </Link>
@@ -33,8 +33,8 @@ export default function Navbar() {
                         <WebDevelopment></WebDevelopment>
                     </p>
                 </div>
-            </div>
+            </nav>
             {drop ? <Dropmenu></Dropmenu> : null}
-        </nav>
+        </header>
     );
 }

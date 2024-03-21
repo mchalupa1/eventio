@@ -13,9 +13,9 @@ export default function Page() {
 
 
     return (
-        <main className={style.all}>
+        <div className={style.all}>
                 <Navbar></Navbar>
-                <div className={style.middlePart}>
+                <main className={style.middlePart}>
 				<Header
                     grip={grip}
                     toggleGrip={toggleGrip}
@@ -25,8 +25,8 @@ export default function Page() {
                     FilterPastEvents={FilterPastEvents}
 				/>
                 <EventsList data={data} loading={loading} error={error} grip={grip}></EventsList>
-                </div>
+                </main>
                 <CreateBtn></CreateBtn>
-        </main>
+        </div>
     );
 }

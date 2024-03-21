@@ -6,7 +6,7 @@ export default function AttendeesList(props: { joiners: User[]}) {
 	const {user} = useAuthContext();
 
     return (
-        <div className={style.BoxJoiners}>
+        <article className={style.BoxJoiners}>
             <p className={style.attendees}>Attendees</p>
             <div className={style.allJoiners}>
                 {props.joiners.map((joiner, index) => (
@@ -19,7 +19,7 @@ export default function AttendeesList(props: { joiners: User[]}) {
                     </div>
                 ))}
             </div>
-        </div>
+        </article>
     );
 }
 

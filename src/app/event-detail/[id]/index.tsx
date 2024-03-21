@@ -29,13 +29,13 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
     }, [OriginalData , params.id]);
 
     return (
-        <main>
+        <div>
             <Navbar />
-            <div className={style.middlePart}>
+            <main className={style.middlePart}>
                 <p className={style.idecko}>Detail event: {params.id}</p>
                 {data ? (
-                    <div className={style.allBox}>
-                        <div className={style.box}>
+                    <section className={style.allBox}>
+                        <article className={style.box}>
                             <DateTime grip={true} date={data.date} time={data.time} />
                             <Title grip={true} title={data.title} />
                             <Mentor grip={true} author={data.author} />
@@ -47,15 +47,15 @@ const EventDetail: React.FC<DetailsProps> = ({ params }) => {
                                 author={data.author}
                                 idecko={data.id}
                             />
-                        </div>
+                        </article>
                         <AttendeesList joiners={data.joiners}/>
-                    </div>
+                    </section>
                 ) : (
                     <Loading />
                 )}
-            </div>
+            </main>
             <CreateBtn></CreateBtn>
-        </main>
+        </div>
     );
 };
 

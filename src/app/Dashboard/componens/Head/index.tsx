@@ -18,8 +18,8 @@ interface HeadProps {
 export default function Header({ grip, toggleGrip, pick, FilterAllEvents, FilterFutureEvents, FilterPastEvents }: HeadProps) {
 
     return (
-        <>
-            <div className={style.categories}>
+        <header>
+            <nav className={style.categories}>
                 <ul className={style.allEV}>
                     <li className={style.categorisShow}>SHOW:</li>
                     <li className={pick.all ? style.alEpick : style.alE} onClick={FilterAllEvents}>
@@ -54,7 +54,7 @@ export default function Header({ grip, toggleGrip, pick, FilterAllEvents, Filter
                         {grip === false ? <WebD2></WebD2> : <WebDevelopment3></WebDevelopment3>}
                     </li>
                 </ul>
-            </div>
-        </>
+            </nav>
+        </header>
     );
 }
