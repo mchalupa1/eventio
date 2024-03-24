@@ -27,9 +27,8 @@ export default function EventsList({data, grip, loading, error}:EventsListProps)
 		return <p className={style.error}>{error}</p>;
 	}
 
-
 	return (
-        <article className={grip === false ? style.allBoxsgrip : style.allBoxs}>
+        <section className={grip === false ? style.allBoxsgrip : style.allBoxs}>
             {data?.map((item) => {
                 const { id, date, title, description, capacity, joiners, time, author } = item;
                 return (
@@ -49,6 +48,7 @@ export default function EventsList({data, grip, loading, error}:EventsListProps)
                                 joiners={joiners}
                                 capacity={capacity}
                                 author={author}
+
                                 idecko={id}
                             ></LowerPartGrip>
                         ) : (
@@ -63,7 +63,7 @@ export default function EventsList({data, grip, loading, error}:EventsListProps)
                     </Link>
                 );
             })}
-        </article>
+        </section>
     );
 }
 

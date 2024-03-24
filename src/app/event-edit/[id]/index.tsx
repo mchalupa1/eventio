@@ -190,7 +190,7 @@ const EventEdit: React.FC<DetailsProps> = ({ params }) => {
                                     ></input>
                                     <p>{errors.capacity?.message?.toString()}</p>
                                     <button type="submit" className={style.submit}>
-                                        UPDATE THE EVENT
+                                        UPDATE EVENT
                                     </button>
                                 </div>
                             </form>

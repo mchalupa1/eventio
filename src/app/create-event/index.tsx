@@ -159,7 +159,7 @@ const Page = () => {
                         ></input>
                         <p>{errors.capacity?.message?.toString()}</p>
                         <button type="submit" className={style.submit}>
-                            CREATE EVENT
+                            CREATE NEW EVENT
                         </button>
                     </div>
                 </form>
