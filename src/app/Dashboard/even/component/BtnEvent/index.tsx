@@ -22,9 +22,11 @@ export default function BtnEvent(props: {
         push('/event-edit/' + props.idec);
     };
 
+
+
     return (
         <>
-            {props.joiners.length === props.capac ? (
+            {props.joiners.length == props.capac ? (
                 user && user.uid === props.author?.uid ? (
                     <button className={style.statusE} onClick={Routing}>
                         EDIT
